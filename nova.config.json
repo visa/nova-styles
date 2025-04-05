@@ -1,0 +1,8 @@
+{
+  "packageName": "nova-styles",
+  "ossFirstCommitDate": "2025-03-17",
+  "fileExclusions": ["/**/*.d.ts", "/**/*.json", "/**/__snapshots__/**", "/**/node_modules/**"],
+  "licenseFileExclusions": [],
+  "licensePaths": ["workspaces/styles"],
+  "licenseHeaderPaths": ["workspaces", "bin"]
+}

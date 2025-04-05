@@ -1,0 +1,44 @@
+{
+  "@types/prismjs@1.26.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "node_modules/@types/prismjs",
+    "licenseFile": "node_modules/@types/prismjs/LICENSE"
+  },
+  "clsx@2.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lukeed/clsx",
+    "publisher": "Luke Edwards",
+    "email": "luke.edwards05@gmail.com",
+    "url": "https://lukeed.com",
+    "path": "node_modules/clsx",
+    "licenseFile": "node_modules/clsx/license"
+  },
+  "js-tokens@4.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lydell/js-tokens",
+    "publisher": "Simon Lydell",
+    "path": "node_modules/js-tokens",
+    "licenseFile": "node_modules/js-tokens/LICENSE"
+  },
+  "loose-envify@1.4.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/zertosh/loose-envify",
+    "publisher": "Andres Suarez",
+    "email": "zertosh@gmail.com",
+    "path": "node_modules/loose-envify",
+    "licenseFile": "node_modules/loose-envify/LICENSE"
+  },
+  "prism-react-renderer@2.3.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/FormidableLabs/prism-react-renderer",
+    "path": "node_modules/prism-react-renderer",
+    "licenseFile": "node_modules/prism-react-renderer/LICENSE"
+  },
+  "react@18.3.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebook/react",
+    "path": "node_modules/react",
+    "licenseFile": "node_modules/react/LICENSE"
+  }
+}

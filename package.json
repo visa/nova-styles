@@ -1,0 +1,79 @@
+{
+  "name": "@visa/nova-styles-project",
+  "version": "1.6.1",
+  "private": false,
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "build": "npm-run-all --sequential generate:env build:css build:docs copy:metadata build:workshop",
+    "build:css": "npm run build:css -w @visa/nova-styles",
+    "build:docs": "npm run build:docs -w @visa/nova-styles",
+    "build:workshop": "npm run build -w @visa/nova-styles-workshop",
+    "build:watch": "npm-run-all --parallel build:*:watch",
+    "build:css:watch": "npm run build:watch -w @visa/nova-styles",
+    "build:workshop:watch": "npm run build:watch -w @visa/nova-styles-workshop",
+    "copy:metadata": "npm run copy:metadata -w @visa/nova-styles-workshop",
+    "copy:changelog": "npm run copy:changelog -w @visa/nova-styles-workshop",
+    "copy:version": "run-node ./bin/copy-version.js",
+    "dev": "npm-run-all build:watch",
+    "generate:component": "npm run generate:component -w @visa/nova-styles",
+    "generate:theme": "npm run generate:theme -w @visa/nova-styles",
+    "generate:env": "npm run generate:env -w @visa/nova-styles-workshop",
+    "generate:changelog": "npm run generate:changelog -w @visa/nova-styles",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:css": "npm run lint -w @visa/nova-styles",
+    "lint:workshop": "npm run lint -w @visa/nova-styles-workshop",
+    "release:major": "npm-run-all --sequential release:css:major generate:changelog copy:changelog copy:version",
+    "release:css:major": "npm run release -w @visa/nova-styles -- --release-as major",
+    "release:minor": "npm-run-all --sequential release:css:minor generate:changelog copy:changelog copy:version",
+    "release:css:minor": "npm run release -w @visa/nova-styles -- --release-as minor",
+    "release:patch": "npm-run-all --sequential release:css:patch generate:changelog copy:changelog copy:version",
+    "release:css:patch": "npm run release -w @visa/nova-styles -- --release-as patch",
+    "postbuild": "npm-run-all copy:metadata",
+    "postinstall": "npm-run-all --sequential build:css build:docs generate:env",
+    "prepare": "husky install",
+    "start": "npm-run-all --parallel build:watch",
+    "test": "npm-run-all --parallel test:*",
+    "test:css": "npm run test -w @visa/nova-styles",
+    "test:workshop": "npm run test -w @visa/nova-styles-workshop",
+    "husky": "husky",
+    "license:update": "npx @visa/scripts license"
+  },
+  "devDependencies": {
+    "husky": "7.0.4",
+    "jest": "29.7.0",
+    "npm-run-all": "4.1.5",
+    "run-node": "2.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "workspaces": [
+    "workspaces/*"
+  ],
+  "publishConfig": {
+    "registry": "https://artifactory.trusted.visa.com/api/npm/Visa_Commons_npm/",
+    "@visa:registry": "https://artifactory.trusted.visa.com/api/npm/Visa_Commons_npm/"
+  },
+  "dependencies": {
+    "prism-react-renderer": "2.3.1"
+  }
+}
