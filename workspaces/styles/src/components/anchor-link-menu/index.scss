@@ -1,0 +1,165 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../base/flex' as *;
+@use '../../base/typography/vars' as *;
+
+
+@layer components {
+  .v-anchor-link-menu {
+    $root: &;
+
+    background: var(--v-anchor-link-menu-background);
+    inline-size: var(--v-anchor-link-menu-inline-size);
+    padding-block-end: var(--v-anchor-link-menu-padding-block-end);
+    padding-block-start: var(--v-anchor-link-menu-padding-block-start);
+    padding-inline-end: var(--v-anchor-link-menu-padding-inline-end);
+    padding-inline-start: var(--v-anchor-link-menu-padding-inline-start);
+    position: relative;
+
+    &::before {
+      border-block-end-width: var(--v-anchor-link-menu-border-block-end-size);
+      border-block-start-width: var(--v-anchor-link-menu-border-block-start-size);
+      border-color: var(--v-anchor-link-menu-border-color);
+      border-inline-end-width: var(--v-anchor-link-menu-border-inline-end-size);
+      border-inline-start-width: var(--v-anchor-link-menu-border-inline-start-size);
+      border-style: var(--v-anchor-link-menu-border-style);
+      content: '';
+      display: block;
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      row-gap: var(--v-anchor-link-menu-gap); // sass-lint:disable-line no-misspelled-properties
+    }
+    
+    .v-anchor-link-menu-header {
+      color: var(--v-anchor-link-menu-title-text-color);
+      margin-inline-start: calc(var(--v-anchor-link-menu-indicator-offset) + var(--v-anchor-link-menu-indicator-size));
+      padding-block-start: var(--v-anchor-link-menu-item-padding-block);
+      padding-inline: var(--v-anchor-link-menu-item-padding-inline);
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      row-gap: var(--v-anchor-link-menu-gap); // sass-lint:disable-line no-misspelled-properties
+
+      &:not(.v-anchor-link-menu section > ul) {
+        grid-column: 1 / -1;
+      }
+
+      li {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--level}: 1;
+        // indicator-width
+        #{--indicator}: var(--v-anchor-link-menu-indicator-size);
+        // indicator-offset
+        #{--offset}: var(--v-anchor-link-menu-indicator-offset);
+        // (indent-ratio * (level - 1)) : first level has no indent, hense the level-1
+        #{--indent}: calc(var(--v-anchor-link-menu-indent-ratio) * (var(--level) - 1));
+        // link should fill empty space
+        #{--link}: 1fr;
+
+        color: var(--v-link-foreground);
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-areas: 'indicator indicator-offset indent link';
+        grid-template-columns: var(--indicator) var(--offset) var(--indent) var(--link);
+        position: relative;
+        row-gap: var(--v-anchor-link-menu-gap); // sass-lint:disable-line no-misspelled-properties
+
+        &:has(> .v-link[aria-current='true']) {
+          > .v-link {
+            // sass-lint:disable-block no-duplicate-properties
+            #{--v-link-foreground}: var(--palette-default-active);
+
+            &::before {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+
+        > .v-link {
+          @include typography-label;
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-link-active-background}: var(--palette-default-transparent);
+          #{--v-link-background}: var(--palette-default-transparent);
+          #{--v-link-border-radius}: var(--size-rounded-medium);
+          #{--v-link-focus-background}: var(--palette-default-transparent);
+          #{--v-link-foreground}: var(--palette-default-text-subtle);
+          #{--v-link-hover-background}: var(--palette-default-transparent);
+          #{--v-link-padding-block}: var(--v-anchor-link-menu-item-padding-block);
+          #{--v-link-padding-inline}: var(--v-anchor-link-menu-item-padding-inline);
+          #{--v-link-text-decoration}: none;
+          grid-area: link;
+
+          &::before {
+            border-inline-start-color: var(--v-anchor-link-menu-indicator-color);
+            border-inline-start-style: var(--v-anchor-link-menu-indicator-style);
+            border-inline-start-width: var(--v-anchor-link-menu-indicator-size);
+            content: '';
+            display: block;
+            grid-area: indicator;
+            inset-block: 0;
+            inset-inline-start: 0;
+            opacity: 0;
+            position: absolute;
+            visibility: hidden;
+          }
+        }
+      }
+    }
+
+    // Set level to number of nested uls
+    // sass-lint:disable-block force-element-nesting
+    // sass-lint:disable-block no-duplicate-properties
+    ul ul li {
+      #{--level}: 2;
+    }
+    ul ul ul li {
+      #{--level}: 3;
+    }
+    ul ul ul ul li {
+      #{--level}: 4;
+    }
+    ul ul ul ul ul li {
+      #{--level}: 5;
+    }
+    ul ul ul ul ul ul li {
+      #{--level}: 6;
+    }
+
+    
+    @at-root [dir='rtl'] {
+      #{$root} {
+        #{--v-anchor-link-menu-text-align}: right;
+
+        &-header {
+          margin-inline-end: calc(var(--v-anchor-link-menu-indicator-offset) + var(--v-anchor-link-menu-indicator-size));
+          margin-inline-start: 0;
+        }
+      }
+    }
+  }
+}

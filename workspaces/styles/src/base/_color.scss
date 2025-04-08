@@ -1,0 +1,329 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use 'sass:list';
+@use 'sass:map'; 
+@use 'sass:math';
+@use 'sass:string';
+
+@use './math' as *; 
+
+// constants 
+// lab/lch patch
+$EPSILON: math.div(216, 24389);
+$CBRT_EPSILON: math.div(6, 29); 
+$KAPPA: math.div(24389,  27);
+
+// foreground/background contrast 
+@function on-contrast($color, $is-light: #000, $is-dark: #fff) {
+  @if (lightness($color) > 50%) {
+    @return $is-light; 
+  } @else {
+    @return $is-dark; 
+  }
+};
+
+// color gradient generation 
+@function generate-gradient($color1: null, $color2: null, $steps: 10) {
+  @if ($color1 != null and $color2 == null) {
+    @return generate-gradient-1($color1, $steps); 
+  } @else if ($color1 != null and $color2 != null) {
+    @return generate-gradient-2($color1, $color2, $steps); 
+  } @else {
+    @return ();
+  }
+}; 
+
+@function generate-gradient-1($color, $steps: 10) {
+  $gradient: (); 
+
+  $steps: $steps + 2; 
+  $counter: 1; 
+
+  @for $i from 0 through $steps {
+    @if ($i > 0 and $i < $steps) {
+      $percent: math.round(math.div($i, $steps) * 100); 
+      $c: get-hsl-values($color, $lightness: $percent); 
+      $gradient: map.set($gradient, $counter * 10, hsl-values-to-native($c)); 
+      $counter: $counter + 1; 
+    }
+  }
+
+  @return $gradient;
+}; 
+
+@function generate-gradient-2($color1, $color2, $steps: 10) {
+  $gradient: (); 
+
+  $c1: get-hsl-values($color1);
+  $c1h: list.nth($c1, 1);
+  $c1s: list.nth($c1, 2);
+  $c1l: list.nth($c1, 3);
+
+  @if ($c1h == 0) {
+    $c1h: 1;
+  }
+
+  $c2: get-hsl-values($color2); 
+  $c2h: list.nth($c2, 1);
+  $c2s: list.nth($c2, 2);
+  $c2l: list.nth($c2, 3);
+
+  @if ($c2h == 0) {
+    $c2h: 1;
+  }
+
+  $hdiff: math.abs($c1h - $c2h); 
+  $sdiff: math.abs($c1s - $c2s); 
+  $ldiff: math.abs($c1l - $c2l); 
+
+  @for $i from 0 through $steps {
+    $percent: math.div($i, $steps); 
+    $hnew: math.round(math.min($c1h, $c2h) + ($hdiff * $percent)); 
+    $snew: math.round(math.min($c1s, $c2s) + ($sdiff * $percent)); 
+    $lnew: math.round(math.min($c1l, $c2l) + ($ldiff * $percent)); 
+    $c: get-hsl-values($color1, $hue: $hnew, $saturation: $snew, $lightness: $lnew); 
+    $gradient: map.set($gradient, $i * 10, hsl-values-to-native($c)); 
+  }
+
+  @return $gradient;
+}; 
+
+// color manipulation: hex/hsl 
+@function native-hsl($values) {
+  // https://stackoverflow.com/questions/43914842/is-it-possible-to-use-native-css-functions-in-sass
+  @return #{"hsl(#{$values})"};
+}
+
+@function get-hsl-values($hex, $hue: null, $saturation: null, $lightness: null) {
+  // https://css-tricks.com/converting-color-spaces-in-javascript/
+  // https://stackoverflow.com/questions/64655766/how-to-convert-hex-color-code-to-hue-rotation-using-scss-mixin
+  // https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion/9493060#9493060
+  $r: math.div(red($hex), 255);
+  $g: math.div(green($hex), 255); 
+  $b: math.div(blue($hex), 255); 
+
+  $max: math.max($r, $g, $b); 
+  $min: math.min($r, $g, $b); 
+  $d: $max - $min;
+
+  $h: if($hue != null, $hue, math.div($max + $min, 2)); 
+  $s: if($saturation != null, $saturation, math.div($max + $min, 2)); 
+  $l: if($lightness != null, $lightness, math.div($max + $min, 2)); 
+
+  @if ($max == $min) {
+    // achromatic 
+    $h: 0.0;
+    $s: 0.0;
+  } @else {
+    @if ($saturation == null) {
+      $s: if($l > 0.5, math.div($d, (2 - $max - $min)), math.div($d, $max + $min)); 
+    }
+
+    @if ($hue == null) {
+      @if ($max == $r) {
+        $h: math.div($g - $b, $d) % 6;
+      } @else if ($max == $g) {
+        $h: math.div($b - $r, $d) + 2; 
+      } @else {
+        $h: math.div($r - $g, $d) + 4; 
+      }
+
+      $h: $h * 60;
+
+      @if ($h < 0) {
+        $h: $h + 360;
+      }
+    }
+  }
+
+  @if ($saturation == null) {
+    $s: $s * 100 * 1%;
+  }
+
+  @if ($lightness == null) {
+    $l: $l * 100 * 1%; 
+  }
+
+  @return math.round($h), math.round($s), math.round($l); 
+}; 
+
+@function hex-to-hsl($hex, $hue: null, $saturation: null, $lightness: null) { 
+  $values: get-hsl-values($hex, $hue, $saturation, $lightness); 
+  $h: list.nth($values, 1); 
+  $s: list.nth($values, 2);
+  $l: list.nth($values, 3); 
+
+  @return hsl-values-to-native($h $s $l);
+}
+
+@function hsl-values-to-native($hsl) {
+  $h: list.nth($hsl, 1); 
+  $s: list.nth($hsl, 2); 
+  $l: list.nth($hsl, 3); 
+
+  $find: "%"; 
+  @if (str-slice("#{$s}", (str-length("#{$s}") - str-length($find) + 1)) != $find) {
+    $s: "#{$s}%"; 
+  }
+
+  @if (str-slice("#{$l}", (str-length("#{$l}") - str-length($find) + 1)) != $find) {
+    $l: "#{$l}%"; 
+  }
+
+  @return native-hsl($h $s $l); 
+}
+
+@function hsl-to-rgb($hsl) {
+  // https://css-tricks.com/converting-color-spaces-in-javascript/
+  $h: list.nth($hsl, 1);
+  $s: to-number(string.slice("#{list.nth($hsl, 2)}", 1, -1));
+  $l: to-number(string.slice("#{list.nth($hsl, 3)}", 1, -1)); 
+
+  $s: math.div($s, 100); 
+  $l: math.div($l, 100); 
+
+  $c: (1 - math.abs(2 * $l - 1)) * $s; 
+  $x: $c * (1 - math.abs(math.div($h, 60) % 2 - 1));
+  $m: $l - math.div($c, 2); 
+  $r: 0;
+  $g: 0;
+  $b: 0; 
+
+  @if (0 <= $h and $h < 60) {
+    $r: $c; 
+    $g: $x; 
+    $b: 0; 
+  } @else if (60 <= $h and $h < 120) {
+    $r: $x; 
+    $g: $c; 
+    $b: 0; 
+  } @else if (120 <= $h and $h < 180) {
+    $r: 0; 
+    $g: $c; 
+    $b: $x; 
+  } @else if (180 <= $h and $h < 240) {
+    $r: 0; 
+    $g: $x; 
+    $b: $c; 
+  } @else if (240 <= $h and $h < 300) {
+    $r: $x; 
+    $g: 0; 
+    $b: $c; 
+  } @else if (300 <= $h and $h < 360) {
+    $r: $c; 
+    $g: 0; 
+    $b: $x; 
+  }
+
+  $r: math.round(($r + $m) * 255); 
+  $g: math.round(($g + $m) * 255); 
+  $b: math.round(($b + $m) * 255); 
+
+  @return #{"rgb(#{$r}, #{$g}, #{$b})"};
+}
+
+
+// color manipulation: lab patch 
+// https://mina86.com/2021/srgb-lab-lchab-conversions/ 
+@function gamma-expansion($value) {
+  @if ($value <= 10) {
+    @return math.div($value, 3294.6); 
+  } @else {
+    @return pow(math.div($value + 14.025, 269.025), 2.4);
+  }
+}
+
+@function gamma-compression($value) {
+  $v: 269.025 * pow($value, 5 / 12) - 14.025;
+  @if ($value <= 0.00313066844250060782371) {
+    $v: 3294.6 * $value;
+  }
+
+  @return math.round($v); 
+}
+
+@function f($v) {
+  @if ($v > $EPSILON) {
+    @return pow($v, math.div(1, 3)); 
+  } @else {
+    @return math.div((($KAPPA * $v) + 16), 116); 
+  }
+}
+
+@function f_inv($v) {
+  @if ($v > $CBRT_EPSILON) {
+    @return pow($v, 3); 
+  } @else {
+    @return math.div(($v * 116) - 16, $KAPPA); 
+  }
+}
+
+@function rgb-to-xyz($rgb) {
+  $r: gamma-expansion(red($rgb)); 
+  $g: gamma-expansion(green($rgb)); 
+  $b: gamma-expansion(blue($rgb)); 
+
+  @return (
+    $r*0.4124108464885388 + $g*0.3575845678529519 + $b*0.18045380393360833,
+    $r*0.21264934272065283 + $g*0.7151691357059038  + $b*0.07218152157344333,
+    $r*0.019331758429150258 + $g*0.11919485595098397 + $b*0.9503900340503373
+  );
+}
+
+@function xyz-to-lab($xyz) {
+  $fx: math.div(f(list.nth($xyz, 1)), 0.9504492182750991);
+  $fy: f(list.nth($xyz, 2)); 
+  $fz: math.div(f(list.nth($xyz, 3)), 1.0889166484304715); 
+
+  @return (
+    (116 * $fy) - 16, 
+    500 * ($fx - $fy),
+    200 * ($fy - $fz)
+  ); 
+}
+
+@function lab-to-xyz($lab) {
+  $fy: math.div(list.nth($lab, 1) + 16, 116);
+  $fx: math.div(list.nth($lab, 2), 500) + $fy;
+  $fz: $fy - math.div(list.nth($lab, 3), 200); 
+
+  $x: f_inv($fx) * 0.9504492182750991; 
+  $y: math.div(list.nth($lab, 1), $KAPPA); 
+  @if (list.nth($lab, 1) > 8) {
+    $y: pow($fy, 3);
+  } 
+  $z: f_inv($fz) * 1.0889166484304715; 
+
+  @return $x, $y, $z;
+}
+
+@function xyz-to-rgb($xyz) {
+  $x: list.nth($xyz, 1);
+  $y: list.nth($xyz, 2);
+  $z: list.nth($xyz, 3); 
+
+  $r: $x* 3.240812398895283 - $y*1.5373084456298136 - $z*0.4985865229069666;
+  $g: $x*-0.9692430170086407 + $y*1.8759663029085742 + $z*0.04155503085668564;
+  $b: $x* 0.055638398436112804 - $y*0.20400746093241362 + $z*1.0571295702861434;
+
+  @return $r, $g, $b; 
+}
+
+@function hex-to-rgb($chain) {
+  $value: xyz-to-rgb(lab-to-xyz(xyz-to-lab(rgb-to-xyz($chain))));
+  @return rgb(list.nth($value, 1), list.nth($value, 2), list.nth($value, 3)); 
+}

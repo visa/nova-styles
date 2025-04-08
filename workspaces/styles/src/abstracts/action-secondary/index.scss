@@ -1,0 +1,221 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/accessibility' as *;
+
+ 
+
+ $action-secondary-stateless-vars: (
+  block-size: var(--size-scalable-38),
+  font-size: var(--typography-label-font-size),
+  font-weight: 600,
+  gap: var(--size-scalable-2),
+  letter-spacing: .5px,
+  line-height: var(--typography-label-line-height),
+  padding-block: calc(var(--size-scalable-10) - var(--v-action-secondary-border-size)),
+  padding-inline: calc(var(--size-scalable-14) - var(--v-action-secondary-border-size)),
+  // default 
+  background: var(--palette-default-surface-1),
+  border-color: var(--palette-default-active),
+  border-radius: var(--size-rounded-medium),
+  border-size: calc(var(--theme-border-size) / 2),
+  border-style: solid,
+  foreground: var(--palette-default-active),
+);
+
+$action-secondary-vars: (
+  // default 
+  // 
+  hover-background: var(--palette-default-surface-highlight),
+  hover-border-color: var(--palette-default-active-hover),
+  hover-foreground: var(--palette-default-active-hover),
+  //  
+  focus-background: var(--palette-default-surface-highlight),
+  focus-border-color: var(--palette-default-active-hover),
+  focus-foreground: var(--palette-default-active-hover),
+  //  
+  active-background: var(--palette-default-surface-lowlight),
+  active-border-color: var(--palette-default-active-pressed),
+  active-foreground: var(--palette-default-active-pressed),
+  //  
+  disabled-background: var(--palette-default-surface-1),
+  disabled-border-color: var(--palette-default-disabled),
+  disabled-foreground: var(--palette-default-disabled),
+);
+
+// generate component css variables 
+@layer abstracts {
+  :root,
+  .v-alternate {
+    @each $token, $value in $action-secondary-stateless-vars {
+      #{--v-action-secondary-#{$token}}: #{$value};
+    }
+
+    @each $token, $value in $action-secondary-vars {
+      #{--v-action-secondary-#{$token}}: #{$value};
+    }
+  }
+}
+
+
+@mixin action-secondary-stateless($root) {
+  background-color: var(--v-action-secondary-background);
+  border-color: var(--v-action-secondary-border-color);
+  border-radius: var(--v-action-secondary-border-radius);
+  border-style: var(--v-action-secondary-border-style); 
+  border-width:var(--v-action-secondary-border-size);
+  color: var(--v-action-secondary-foreground);
+  font-size: var(--v-action-secondary-font-size);
+  font-weight: var(--v-action-secondary-font-weight);
+  gap: var(--v-action-secondary-gap);
+  letter-spacing: var(--v-action-secondary-letter-spacing); 
+  line-height: var(--v-action-secondary-line-height); 
+}
+
+@layer abstracts {
+  %action-secondary-stateless,
+  .v-action-secondary.v-action-stateless {
+    @include action-secondary-stateless(&); 
+  }
+}
+
+
+
+@mixin action-secondary($root) {
+  @include action-secondary-stateless($root); 
+
+  block-size: var(--v-action-secondary-block-size);
+  cursor: pointer;
+  padding-block: var(--v-action-secondary-padding-block); 
+  padding-inline: var(--v-action-secondary-padding-inline); 
+
+  &:has(.v-radio:only-of-type:hover),
+  &:has(.v-checkbox:only-of-type:hover),
+  &:hover {
+    #{--v-action-secondary-background}: var(--v-action-secondary-hover-background);
+    #{--v-action-secondary-border-color}: var(--v-action-secondary-hover-border-color);
+    #{--v-action-secondary-foreground}: var(--v-action-secondary-hover-foreground);
+  }
+
+  &:has(.v-radio:only-of-type:focus-visible),
+  &:has(.v-checkbox:only-of-type:focus-visible),
+  &:focus-visible {
+    #{--v-action-secondary-background}: var(--v-action-secondary-focus-background);
+    #{--v-action-secondary-border-color}: var(--v-action-secondary-focus-border-color);
+    #{--v-action-secondary-foreground}: var(--v-action-secondary-focus-foreground);
+
+    .v-label {
+      color: var(--v-action-secondary-focus-foreground);
+    }
+  }
+
+  &:has(.v-radio:only-of-type:active),
+  &:has(.v-checkbox:only-of-type:active),
+  &:active {
+    #{--v-action-secondary-background}: var(--v-action-secondary-active-background);
+    #{--v-action-secondary-border-color}: var(--v-action-secondary-active-border-color);
+    #{--v-action-secondary-foreground}: var(--v-action-secondary-active-foreground);
+
+    .v-label {
+      color: var(--v-action-secondary-active-foreground);
+    }
+  }
+
+  &:has(.v-checkbox:only-of-type),
+  &:has(.v-radio:only-of-type) {
+    #{--v-action-secondary-block-size}: 100%;
+
+    &:has(.v-checkbox:focus-visible),
+    &:has(.v-radio:focus-visible) {
+      @include state-focus;
+      #{--theme-focus-outline-offset}: 0px;
+    }
+
+    .v-label:only-of-type {
+      inline-size: 100%;
+    }
+
+    .v-checkbox,
+    .v-radio {
+      &:focus-visible {
+        outline: none;
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  
+  &[disabled],
+  &:has(.v-checkbox:only-of-type:disabled),
+  &:has(.v-radio:only-of-type:disabled) {
+    #{--v-action-secondary-background}: var(--v-action-secondary-disabled-background);
+    #{--v-action-secondary-border-color}: var(--v-action-secondary-disabled-border-color);
+    #{--v-action-secondary-foreground}: var(--v-action-secondary-disabled-foreground);
+    #{--v-label-color}: var(--v-action-secondary-disabled-foreground);
+    #{--v-input-message-color}: var(--v-action-secondary-disabled-foreground);
+    cursor: default;
+  }
+}
+
+@layer abstracts {
+  %action-secondary,
+  .v-action-secondary {
+    &:not(.v-action-stateless) {
+      @include action-secondary(&); 
+    }
+  }
+}
+
+@mixin action-secondary-inputs($root) {
+  &:has(.v-checkbox:only-of-type),
+  &:has(.v-radio:only-of-type) {
+    .v-radio,
+    .v-checkbox {
+      &,
+      &:hover,
+      &:focus-visible,
+      &:active {
+        #{--v-checkbox-glow-color}: transparent;
+      }
+    }
+
+    &:hover {
+      #{--v-checkbox-color}: var(--v-checkbox-hover-color); 
+    }
+
+    &:focus-visible {
+      #{--v-checkbox-color}: var(--v-checkbox-focus-color); 
+    }
+
+    &:active {
+      #{--v-checkbox-color}: var(--v-checkbox-active-color); 
+    }
+  }
+}
+
+@layer components {
+  %action-secondary,
+  .v-action-secondary {
+    &:not(.v-action-stateless) {
+      @include action-secondary-inputs(&); 
+    }
+  }
+}
+
+
+

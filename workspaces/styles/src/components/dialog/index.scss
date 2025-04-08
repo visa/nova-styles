@@ -1,0 +1,79 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+
+@layer components {
+  .v-dialog {
+    $root: &;
+    // leave technical margin as 'auto' to keep dialog centered but add space between
+    // dialog and edge by limiting size by the defined 'margin'
+    max-block-size: calc(100% - (2 * var(--v-dialog-margin)));
+    #{--v-message-inline-size}: var(--v-dialog-inline-size);
+    #{--v-message-max-inline-size}: var(--v-dialog-inline-size);
+
+    &-default {
+      #{--v-message-border-color}: transparent;
+    }
+
+    &-header {
+      @include typography-headline-3;
+      padding-block: var(--v-dialog-header-padding-block);
+    }
+
+    &:not([open]) {
+      display: none;
+    }
+
+    &[open] {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-message-border-block-start-size}: 0px;
+      #{--v-message-border-inline-end-size}: 0px;
+      #{--v-message-border-inline-start-size}: 0px;
+      #{--v-message-border-radius}: var(--size-rounded-large);
+      #{--v-message-elevation}: var(--elevation-xxlarge);
+      #{--v-message-gap}: 0px;
+      #{--v-message-padding-block-end}: var(--v-dialog-padding-block-end);
+      #{--v-message-padding-block-start }: var(--v-dialog-padding);
+      #{--v-message-padding-inline-end}: var(--v-dialog-padding-inline-end);
+      #{--v-message-padding-inline-start }: var(--v-dialog-padding);
+      #{--v-message-background}: var(--v-dialog-background-color);
+
+      .v-message-content {
+        @include typography-body-2;
+        #{--v-message-text}: var(--palette-default-text);
+        overflow-y: auto;
+        padding-block: var(--v-dialog-content-padding-block);
+        padding-inline: var(--v-dialog-content-padding-inline);
+        word-break: var(--v-dialog-content-word-break); 
+      }
+
+      dialog {
+        &::backdrop {
+          background: var(--palette-default-overlay);
+        }
+      }
+
+      @media (prefers-contrast: more) and (forced-colors: active) {
+        #{--v-message-border-block-end-size}: var(--size-scalable-1);
+        #{--v-message-border-block-start-size}: var(--size-scalable-1);
+        #{--v-message-border-inline-end-size}: var(--size-scalable-1);
+        #{--v-message-border-inline-start-size}: var(--size-scalable-1);
+      }
+    }
+  }
+}

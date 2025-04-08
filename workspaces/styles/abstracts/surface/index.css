@@ -1,0 +1,17 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@layer abstracts{:root,.v-alternate{--v-surface-background:var(--palette-default-surface-1);--v-surface-border-color:var(--palette-default-border);--v-surface-border-radius:var(--size-rounded-none);--v-surface-border-size:0px;--v-surface-border-style:solid;--v-surface-foreground:var(--palette-default-text);--v-surface-inline-size:100%;--v-surface-padding-block:var(--size-scalable-8);--v-surface-padding-inline:var(--size-scalable-8)}}@layer abstracts{.v-surface{background-color:var(--v-surface-background);border-color:var(--v-surface-border-color);border-radius:var(--v-surface-border-radius);border-style:var(--v-surface-border-style);border-width:var(--v-surface-border-size);color:var(--v-surface-foreground);inline-size:var(--v-surface-inline-size);padding-block:var(--v-surface-padding-block);padding-inline:var(--v-surface-padding-inline)}}

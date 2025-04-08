@@ -1,0 +1,168 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+
+@use './vars' as *; 
+
+@layer utilities {
+  // define typography css classes 
+
+  
+  .v-typography-display-1 {
+    @include typography-display-1; 
+  }
+
+  
+  .v-typography-display-2 {
+    @include typography-display-2; 
+  }
+
+  
+  .v-typography-headline-1 {
+    @include typography-headline-1; 
+  }
+
+  
+  .v-typography-headline-2 {
+    @include typography-headline-2; 
+  }
+
+  
+  .v-typography-headline-3 {
+    @include typography-headline-3; 
+  }
+
+  
+  .v-typography-headline-4 {
+    @include typography-headline-4; 
+  }
+
+  
+  .v-typography-subtitle-1 {
+    @include typography-subtitle-1; 
+  }
+
+  
+  .v-typography-subtitle-2 {
+    @include typography-subtitle-2; 
+  }
+
+  
+  .v-typography-subtitle-3 {
+    @include typography-subtitle-3; 
+  }
+
+  
+  .v-typography-overline {
+    @include typography-overline; 
+  }
+
+  
+  .v-typography-body-1 {
+    @include typography-body-1; 
+  }
+
+  
+  .v-typography-body-2 {
+    @include typography-body-2; 
+  }
+
+  
+  .v-typography-body-2-bold {
+    @include typography-body-2-bold; 
+  }
+
+  // @TODO restore example at some point.   
+  // see commit after 537a8df8 to see diff/removal 
+  .v-typography-body-2-link {
+    @include typography-body-2-link; 
+  }
+
+  
+  .v-typography-body-2-medium {
+    @include typography-body-2-medium; 
+  }
+
+  
+  .v-typography-body-3 {
+    @include typography-body-3; 
+  }
+
+  
+  .v-typography-button-medium {
+    @include typography-button-medium; 
+  }
+
+  
+  .v-typography-button-large {
+    @include typography-button-large; 
+  }
+
+  
+  .v-typography-button-small {
+    @include typography-button-small; 
+  }
+
+  
+  .v-typography-label-large {
+    @include typography-label-large; 
+  }
+
+  
+  .v-typography-label-large-active {
+    @include typography-label-large-active; 
+  }
+
+  
+  .v-typography-label {
+    @include typography-label; 
+  }
+
+  
+  .v-typography-label-active {
+    @include typography-label-active; 
+  }
+
+  
+  .v-typography-label-small {
+    @include typography-label-small; 
+  }
+
+  .v-typography-label-small-active {
+    @include typography-label-small-active; 
+  }
+
+  
+  .v-typography-color-default {
+    color: var(--palette-default-text);
+  }
+
+  
+  .v-typography-color-subtle {
+    color: var(--palette-default-text-subtle);
+  }
+  
+  
+  .v-typography-color-active {
+    color: var(--palette-default-active);
+  }
+
+  
+  .v-typography-color-on-active {
+    color: var(--palette-default-on-active);
+  }
+}

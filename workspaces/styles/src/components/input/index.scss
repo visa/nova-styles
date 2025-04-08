@@ -1,0 +1,64 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+
+
+@layer components {
+
+  .v-input-otp {
+    // sass-lint:disable-block no-duplicate-properties 
+    #{--v-input-font-size}: 2.143rem; 
+    #{--typography-letter-spacing}: .286rem; 
+    #{--typography-line-height}: 2.571rem; 
+    text-align: center;
+  }
+
+  .v-input-container {
+    &:has(.v-input:disabled) {
+      .v-button { // @TODO: add this at the abstract level to apply to buttons within all inputs
+        // sass-lint:disable-block no-duplicate-properties 
+        #{--v-button-default-background}: var(--v-button-default-disabled-background);
+        #{--v-button-default-border-color}: var(--v-button-default-disabled-border-color);
+        #{--v-button-default-foreground}: var(--v-button-default-disabled-foreground);
+        cursor: default;
+      }
+    }
+  }
+  
+  textarea {
+    &.v-input {
+      $height: calc(var(--v-input-container-block-size) - (2 * var(--v-input-container-padding-block)));
+      $margin: calc(($height - var(--typography-body-2-line-height)) / 2); 
+      $height: calc($height - $margin); 
+
+      margin-block-start: $margin;  
+      min-block-size: $height; 
+
+
+      
+      &:not([rows]) {
+        block-size: $height;
+      }
+    }
+
+    &.v-input-resize-none {
+      resize: none; 
+    }
+  }
+}
+

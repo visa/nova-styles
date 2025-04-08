@@ -1,0 +1,17 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@layer components{:root,.v-alternate{--v-label-align-items:center;--v-label-color:var(--palette-default-text-subtle);--v-label-display:flex;--v-label-white-space:nowrap;--v-label-white-space-small-breakpoint:normal}}@layer components{.v-label{--typography-font-family:var(--typography-label-font-family);--typography-font-size:var(--typography-label-font-size);--typography-font-weight:var(--typography-label-font-weight);--typography-letter-spacing:var(--typography-label-letter-spacing);--typography-line-height:var(--typography-label-line-height);--typography-text-decoration:var(--typography-label-text-decoration);--typography-text-transform:var(--typography-label-text-transform);font-family:var(--typography-font-family);font-size:var(--typography-font-size);font-weight:var(--typography-font-weight);letter-spacing:var(--typography-letter-spacing);line-height:var(--typography-line-height);text-decoration:var(--typography-text-decoration);text-transform:var(--typography-text-transform);align-items:var(--v-label-align-items);color:var(--v-label-color);cursor:pointer;display:var(--v-label-display);user-select:none;white-space:var(--v-label-white-space)}@container (max-width: 480px){.v-label{--v-label-white-space: var(--v-label-white-space-small-breakpoint)}}.v-label:has(+.v-checkbox:disabled),.v-label:has(+.v-radio:disabled),.v-label:has(.v-checkbox:disabled),.v-label:has(.v-radio:disabled),.v-label:has(+.v-input-container .v-input:disabled){--v-label-color:var(--v-checkbox-disabled-color);cursor:default;pointer-events:none}}

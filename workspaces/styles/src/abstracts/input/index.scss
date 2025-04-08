@@ -1,0 +1,395 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/accessibility' as *;
+@use '../../base/flex' as *;
+@use '../../base/typography/vars' as *;
+
+
+$input-vars: (
+  background: var(--palette-default-transparent),
+  border-color: var(--palette-default-transparent),
+  border-radius: var(--size-rounded-none),
+  border-size: 0px,
+  border-style: solid,
+  color: var(--palette-default-text),
+  font-size: var(--theme-font-size),
+  inline-size: auto,
+  padding-block: var(--size-scalable-0),
+  padding-inline: var(--size-scalable-0),
+  // container
+  container-background: var(--palette-default-surface-1),
+  container-block-size: var(--size-scalable-38),
+  container-border-color: var(--palette-default-active-subtle),
+  container-border-radius: var(--size-rounded-medium),
+  container-border-style: solid,
+  container-border-width: calc(var(--theme-border-size) / 2),
+  container-display: flex,
+  container-gap: var(--size-scalable-6),
+  container-checkbox-gap: var(--size-scalable-2),
+  container-padding-block: var(--size-scalable-3),
+  container-padding-inline: var(--size-scalable-6),
+  // indicator 
+  indicator-color: var(--palette-default-active-subtle),
+  indicator-size: var(--size-responsive-0),
+  // label 
+  label-color: var(--palette-default-text-subtle),
+  // message 
+  message-color: var(--palette-default-text-subtle),
+  message-display: flex,
+  message-gap: var(--size-scalable-4),
+  message-size: var(--typography-label-font-size),
+  // prefix/suffix icon
+  icon-color-primary: var(--palette-default-active),
+  icon-color-secondary: var(--palette-default-active),
+
+  // hover 
+  hover-container-border-color: var(--palette-default-active-hover),
+  hover-indicator-color: var(--palette-default-active-hover),
+  hover-indicator-size: var(--size-responsive-1),
+  // active 
+  active-container-border-color: var(--palette-default-active-pressed),
+  active-indicator-color: var(--palette-default-active-pressed),
+  active-indicator-size: var(--size-responsive-1),
+  active-label-color: var(--palette-default-text-subtle),
+  // focus 
+  focus-container-border-color: var(--palette-default-active-hover),
+  focus-indicator-color: var(--palette-default-active-hover),
+  focus-indicator-size: var(--size-responsive-1),
+  focus-label-color: var(--palette-default-active-hover),
+  // read-only 
+  readonly-container-border-style: dashed,
+  readonly-container-border-color: var(--palette-default-active-subtle),
+  readonly-indicator-size: var(--size-responsive-0),
+  // disabled 
+  disabled-color: var(--palette-default-disabled),
+  disabled-container-border-style: dashed,
+  disabled-container-border-color: var(--palette-default-disabled),
+  disabled-indicator-color: var(--palette-default-disabled),
+  disabled-label-color: var(--palette-default-disabled),
+  disabled-message-color: var(--palette-default-disabled),
+  // error 
+  error-container-border-color: var(--palette-messaging-graphics-negative),
+  error-indicator-color: var(--palette-messaging-graphics-negative),
+  error-label-color: var(--palette-messaging-text-negative),
+  error-message-color: var(--palette-messaging-text-negative),
+  // error-hover 
+  error-hover-container-border-color: var(--palette-messaging-graphics-negative),
+  error-hover-indicator-color: var(--palette-messaging-graphics-negative),
+  error-hover-indicator-size: var(--size-responsive-1),
+  error-hover-label-color: var(--palette-messaging-text-negative),
+  error-hover-message-color: var(--palette-messaging-text-negative)
+);
+
+// generate component css variables 
+@layer abstracts {
+
+  :root,
+  .v-alternate {
+    @each $token, $value in $input-vars {
+      #{--v-input-#{$token}
+    }
+
+    : #{$value};
+  }
+}
+}
+
+
+
+@mixin input() {
+  @include typography-body-2;
+
+  background-color: var(--v-input-background);
+  border-color: var(--v-input-border-color);
+  border-radius: var(--v-input-border-radius);
+  border-width: var(--v-input-border-size);
+  border-style: var(--v-input-border-style);
+  color: var(--v-input-color);
+  flex-grow: 1;
+  font-size: var(--v-input-font-size);
+  inline-size: var(--v-input-inline-size);
+  padding-block: var(--v-input-padding-block);
+  padding-inline: var(--v-input-padding-inline);
+
+  &[type='search'] {
+
+    &::-ms-clear,
+    &::-ms-reveal {
+      display: none;
+    }
+
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      appearance: none;
+    }
+  }
+
+  &[type='date'],
+  &[type='time'] {
+
+    &::-webkit-datetime-edit,
+    &::-webkit-datetime-edit-field-wrapper,
+    &::-webkit-datetime-edit-text {
+      :not([aria-valuenow]) {
+        color: transparent;
+      }
+    }
+  }
+
+  &[type='color'] {
+    cursor: pointer;
+    flex-basis: 5%;
+    block-size: 100%;
+
+    &::-webkit-color-swatch {
+      min-inline-size: 46px;
+      block-size: 25px;
+      border-width: calc(var(--theme-border-size) / 2);
+      border-radius: var(--size-rounded-small);
+    }
+  }
+}
+
+@layer abstracts {
+
+  %input,
+  .v-input {
+    @include input();
+  }
+}
+
+
+
+@mixin input-message() {
+  @include typography-label;
+  color: var(--v-input-message-color);
+  display: var(--v-input-message-display);
+  gap: var(--v-input-message-gap);
+}
+
+@layer abstracts {
+
+  %input-message,
+  .v-input-message {
+    @include input-message();
+  }
+}
+
+
+
+@mixin input-container($root) {
+  align-items: center;
+  box-shadow: inset 0px calc(-1 * var(--v-input-indicator-size)) 0px 0px var(--v-input-indicator-color);
+  display: var(--v-input-container-display);
+  gap: var(--v-input-container-gap); // sass-lint:disable-line no-misspelled-properties
+  min-block-size: var(--v-input-container-block-size);
+
+  #{--v-surface-background}: var(--v-input-container-background);
+  #{--v-surface-border-color}: var(--v-input-container-border-color);
+  #{--v-surface-border-radius}: var(--v-input-container-border-radius);
+  #{--v-surface-border-style}: var(--v-input-container-border-style);
+  #{--v-surface-border-size}: var(--v-input-container-border-width);
+  #{--v-surface-padding-block}: var(--v-input-container-padding-block);
+  #{--v-surface-padding-inline}: var(--v-input-container-padding-inline);
+  #{--v-icon-primary}: var(--v-input-icon-color-primary);
+  #{--v-icon-secondary}: var(--v-input-icon-color-secondary);
+  #{--v-input-placeholder-color}: var(--palette-default-text-subtle);
+
+
+
+  // Solves an issue with close button cutoff inside of input containers
+  // Skyler K. (not sure if this is a good place for this, please reach out for feedback)
+  .v-input {
+    #{--v-input-inline-size}: 100%;
+  }
+
+  .v-input::placeholder {
+    color: var(--v-input-placeholder-color);
+  }
+
+  &:hover {
+    #{--v-input-container-border-color}: var(--v-input-hover-container-border-color);
+    #{--v-input-indicator-color}: var(--v-input-hover-indicator-color);
+    #{--v-input-indicator-size}: var(--v-input-hover-indicator-size);
+    position: relative;
+
+    @media (forced-colors: active) {
+
+      // sass-lint:disable-block no-duplicate-properties 
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        border-block-end: calc(var(--v-input-hover-indicator-size) + 1px) solid transparent;
+        inset-inline: 0;
+        inset-block-end: calc(-1 * (var(--v-input-hover-indicator-size) - 1px));
+      }
+
+      &:has(.v-input[readonly]),
+      &:has(.v-input:disabled) {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &:has(.v-input:focus-visible) {
+    $root-focus: &;
+    #{--v-input-container-border-color}: var(--v-input-focus-container-border-color);
+    #{--v-input-indicator-color}: var(--v-input-focus-indicator-color);
+    #{--v-input-indicator-size}: var(--v-input-focus-indicator-size);
+
+    &:has(select.v-input) {
+      @include state-focus();
+    }
+
+    .v-input {
+      outline-width: var(--size-responsive-0);
+    }
+
+    @at-root .v-label:has(+ #{$root} .v-input:focus-visible) {
+      #{--v-label-color}: var(--v-input-focus-label-color);
+    }
+  }
+
+  &:has(.v-input:active) {
+    #{--v-input-container-border-color}: var(--v-input-active-container-border-color);
+    #{--v-input-indicator-color}: var(--v-input-active-indicator-color);
+    #{--v-input-indicator-size}: var(--v-input-active-indicator-size);
+
+    @at-root .v-label:has(+ #{$root} .v-input:active) {
+      #{--v-label-color}: var(--v-input-active-label-color);
+    }
+  }
+
+
+  &:has(.v-input[readonly]) {
+    #{--v-input-container-border-color}: var(--v-input-readonly-container-border-color);
+    #{--v-input-container-border-style}: var(--v-input-readonly-container-border-style);
+    #{--v-input-indicator-size}: var(--v-input-readonly-indicator-size);
+
+    &:has(.v-input:focus-visible) {
+      @include state-focus();
+      #{--v-label-color}: var(--v-input-focus-label-color);
+      #{--v-input-container-border-color}: var(--v-input-focus-container-border-color);
+      #{--v-input-container-border-style}: solid;
+      #{--v-input-indicator-color}: var(--v-input-focus-indicator-color);
+      #{--v-input-indicator-size}: var(--v-input-readonly-indicator-size);
+    }
+  }
+
+
+  &:has(.v-input:disabled) {
+
+    &,
+    &:has(.v-input:active) {
+      cursor: default;
+
+      #{--v-input-color}: var(--v-input-disabled-color);
+      #{--v-input-container-border-color}: var(--v-input-disabled-container-border-color);
+      #{--v-input-container-border-style}: var(--v-input-disabled-container-border-style);
+      #{--v-input-indicator-size}: var(--v-input-indicator-size);
+      #{--v-input-indicator-color}: var(--v-input-disabled-indicator-color);
+      #{--v-icon-primary}: var(--v-input-disabled-color);
+      #{--v-icon-secondary}: var(--v-input-disabled-color);
+
+
+      &+.v-input-message {
+        cursor: default;
+        #{--v-input-message-color}: var(--v-input-disabled-message-color);
+      }
+
+      // .v-button { // @TODO: add this at the abstract level to apply to buttons within all inputs
+      //   // sass-lint:disable-block no-duplicate-properties 
+      //   #{--v-button-default-background}: var(--v-button-default-disabled-background);
+      //   #{--v-button-default-border-color}: var(--v-button-default-disabled-border-color);
+      //   #{--v-button-default-foreground}: var(--v-button-default-disabled-foreground);
+      //   cursor: default;
+      // }
+
+      @at-root .v-label:has(+ #{$root} .v-input:disabled) {
+        cursor: default;
+        #{--v-label-color}: var(--v-input-disabled-label-color);
+      }
+    }
+  }
+
+  &:has(.v-button-small) {
+    #{--v-input-container-padding-block}: calc(((var(--v-input-container-block-size) - var(--v-button-default-block-size-small)) / 2) - var(--v-input-container-border-width));
+  }
+
+  &:has(.v-checkbox),
+  &:has(.v-radio) {
+    box-shadow: none;
+    min-block-size: 0;
+    #{--v-input-container-gap}: var(--v-input-container-checkbox-gap);
+  }
+}
+
+@layer abstracts {
+
+  %input-container,
+  .v-input-container {
+    @include input-container('.v-input-container');
+  }
+}
+
+
+@mixin input-error {
+  // applied directly to element as .v-input-error
+  color: var(--v-input-error-message-color);
+
+  // applied to input-container 
+  &,
+  &:active,
+  &:focus-visible,
+  &:hover {
+    #{--v-label-color}: var(--v-input-error-label-color);
+    #{--v-input-container-border-color}: var(--v-input-error-container-border-color);
+    #{--v-input-indicator-color}: var(--v-input-error-indicator-color);
+    #{--v-input-message-color}: var(--v-input-error-message-color);
+    #{--v-icon-primary}: var(--v-input-error-indicator-color);
+    #{--v-icon-secondary}: var(--v-input-error-indicator-color);
+  }
+}
+
+@layer abstracts {
+
+  %input-error,
+  // @TODO re-evaluate use of .v-input-error class by itself. 
+  .v-input-error,
+  .v-input-container:has(.v-input[aria-invalid='true']),
+  // .v-label:has(+ .v-input-container > .v-input[aria-invalid='true']),
+  .v-label:has(+ .v-input-container .v-input[aria-invalid='true']),
+  // .v-label:has(+ .v-input-container > .v-input[aria-invalid='true']) ~ .v-input-message,
+  .v-label:has(+ .v-input-container .v-input[aria-invalid='true'])~.v-input-message,
+  *:has(.v-checkbox[aria-invalid='true'])+.v-input-message,
+  *:has(.v-radio[aria-invalid='true'])+.v-input-message,
+  // *:has(.v-checkbox[aria-invalid='true']) + :has(.v-input-message) .v-input-message,
+  // *:has(.v-radio[aria-invalid='true']) + :has(.v-input-message) .v-input-message,
+  fieldset:has(.v-checkbox[aria-invalid='true'])>legend,
+  fieldset:has(.v-checkbox[aria-invalid='true'])>.v-input-message,
+  fieldset:has(.v-input[aria-invalid='true'])>legend,
+  fieldset:has(.v-input[aria-invalid='true'])>.v-input-message,
+  fieldset:has(.v-radio[aria-invalid='true'])>legend,
+  fieldset:has(.v-radio[aria-invalid='true'])>.v-input-message {
+    @include input-error();
+  }
+}

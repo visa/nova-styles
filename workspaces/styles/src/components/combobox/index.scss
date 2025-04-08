@@ -1,0 +1,125 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../base/flex' as *;
+@use '../../base/breakpoints/vars' as *; 
+
+
+
+@layer components {
+  .v-combobox {
+    // @TODO consider removing these definitions in favor of utility classes. 
+    // since the first two elements on each example are not mutually exclusive, could we put the combobox class on the same element?
+    // also, since the surface will probably be wrapped around with 3rd party lib for absolute placement, might not need flex out-of-the-box
+    // compare/contrast with dropdown menu 
+    display: flex; // can't extend here because theme-gap overrides gap below
+    flex-direction: column;
+    gap: var(--v-combobox-gap); // sass-lint:disable-line no-misspelled-properties
+    position: var(--v-combobox-position);
+
+    .v-input-container {
+      .v-chip {
+        color: var(--v-input-color);
+      }
+    }
+    
+    .v-surface {
+      &:has(.v-listbox) {
+        // sass-lint:disable-block no-duplicate-properties 
+        #{--v-surface-border-color}: var(--v-listbox-container-border-color);
+        #{--v-surface-border-radius}: var(--v-listbox-container-border-radius);
+      }
+    }
+
+    .v-listbox-container {
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-listbox-container-border-highlight-size}: var(--v-listbox-container-border-size-initial);
+      #{--v-listbox-container-hover-border-color}: var(--v-surface-border-color);
+      #{--v-listbox-container-focus-border-color}: var(--v-surface-border-color);
+      #{--v-listbox-container-active-border-color}: var(--v-surface-border-color);
+      #{--v-listbox-container-error-text-color}: var(--v-surface-border-color);
+      #{--v-listbox-container-error-border-color}: var(--v-surface-border-color);
+    }
+
+    .v-listbox-container,
+    .v-surface {
+      &:has(.v-listbox) {
+        box-shadow: var(--v-combobox-elevation);
+        display: none;
+      }
+    }
+
+    &:hover { // sass-lint:disable-line force-pseudo-nesting
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-input-container-border-color}: var(--v-input-hover-container-border-color); 
+      #{--v-input-indicator-color}: var(--v-input-hover-indicator-color); 
+      #{--v-input-indicator-size}: var(--v-input-hover-indicator-size); 
+    }
+
+    &:has(.v-listbox-item:focus-visible),
+    .v-listbox:focus-visible, // sass-lint:disable-line force-pseudo-nesting
+    &:has(.v-checkbox:focus-visible),
+    &:has(.v-radio:focus-visible) {
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-input-container-border-color}: var(--v-input-focus-container-border-color); 
+      #{--v-input-indicator-color}: var(--v-input-focus-indicator-color); 
+      #{--v-input-indicator-size}: var(--v-input-focus-indicator-size); 
+      #{--v-label-color}: var(--v-input-focus-label-color); 
+    }
+
+    &:has(.v-listbox-item:active),
+    .v-listbox:active { // sass-lint:disable-line force-pseudo-nesting
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-input-container-border-color}: var(--v-input-active-container-border-color); 
+      #{--v-input-indicator-color}: var(--v-input-active-indicator-color); 
+      #{--v-input-indicator-size}: var(--v-input-active-indicator-size); 
+    }
+
+
+    &:has(.v-input[aria-expanded='true']) {
+      &:has(.v-input[aria-invalid='true']) { // if combobox is invalid and menu is open
+        .v-input-message {
+          height:1px;
+          left:-10000px;
+          overflow:hidden;
+          position:absolute;
+          top:auto;
+          width:1px;
+        }
+      }
+
+      .v-listbox-container,
+      .v-surface {
+        &:has(.v-listbox:not([role='listbox'])) {
+          display: var(--v-listbox-container-display);
+        }
+      }
+    }
+
+    // hide menu when input is disabled or readonly
+    &:has(.v-input:disabled) {
+      .v-listbox-container,
+      .v-surface {
+        &:has(.v-listbox) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+

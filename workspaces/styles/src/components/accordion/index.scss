@@ -1,0 +1,233 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+
+@layer components {
+  .v-accordion {
+    $root: &;
+    display: flex;
+    flex-direction: column;
+
+    %open-heading {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-accordion-foreground-initial}: var(--v-accordion-expanded-foreground);
+      #{--v-button-secondary-foreground}: var(--v-accordion-expanded-foreground);
+      #{--v-button-tertiary-foreground}: var(--v-accordion-expanded-foreground);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    @at-root details#{$root} {
+      &:not([open]) {
+        > .v-accordion-heading .v-accordion-toggle-icon-open {
+          display: none;
+        }
+
+        > .v-accordion-heading .v-accordion-toggle-icon-closed {
+          display: inherit;
+        }
+      }
+
+      &[open] {
+        > .v-accordion-heading .v-accordion-toggle-icon-open {
+          display: inherit;
+        }
+
+        > .v-accordion-heading .v-accordion-toggle-icon-closed {
+          display: none;
+        }
+
+        #{$root}-heading {
+          @extend %open-heading;
+        }
+      }
+    }
+
+    &-heading {
+      list-style: none;
+
+      > .v-icon-tiny {
+        // give tiny icons within an accordion heading (top-level) padding to ensure alignment with other items
+        margin: var(--v-accordion-icon-margin);
+      }
+
+      &:not(:first-child) {
+        margin-block-start: var(--v-accordion-items-gap);
+      }
+
+      // whether accordion header is button or not..
+      &,
+      &.v-button {
+        @include typography-subtitle-2;
+
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-icon-low-height}: var(--v-accordion-icon-size);
+        #{--v-icon-low-width}: var(--v-accordion-icon-size);
+
+        .v-icon {
+          flex-shrink: 0;
+        }
+
+        .v-accordion-toggle-icon {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-icon-tiny-height}: var(--v-accordion-toggle-icon-size);
+          #{--v-icon-tiny-width}: var(--v-accordion-toggle-icon-size);
+          #{--v-icon-primary}: var(--v-accordion-icon-color);
+          #{--v-icon-secondary}: var(--v-accordion-icon-color);
+        }
+      }
+
+      // if accordion header is not also a button..
+      &:not(.v-button) {
+        align-items: var(--v-accordion-align-items);
+        background-color: var(--v-accordion-background);
+        block-size: 100%;
+        border: var(--v-accordion-border-size) var(--v-accordion-border-style) var(--v-accordion-border-color);
+        border-radius: var(--v-accordion-border-radius);
+        color: var(--v-accordion-foreground-initial);
+        display: flex;
+        gap: var(--v-accordion-items-gap); // sass-lint:disable-line no-misspelled-properties
+        justify-content: var(--v-accordion-justify-content);
+        min-block-size: var(--v-accordion-block-size);
+        padding-block: var(--v-accordion-padding-block);
+        padding-inline: var(--v-accordion-padding-inline);
+        text-align: start;
+
+        &:has(.v-button[aria-expanded='true']) {
+          @extend %open-heading;
+        }
+
+        &[aria-expanded='true'] {
+          @extend %open-heading;
+        }
+      }
+
+      // if accordion header is also a button..
+      &.v-button {
+        block-size: calc(100% - (var(--v-button-default-border-size) * 2));
+        min-block-size: var(--v-button-default-block-size);
+        text-align: start;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-align-items}: var(--v-accordion-align-items);
+        #{--v-button-default-justify-content}: var(--v-accordion-justify-content);
+        #{--v-button-default-padding-block}: calc(
+          var(--v-accordion-button-padding-block-medium) - var(--v-button-default-border-size)
+        );
+        #{--v-button-default-padding-inline}: calc(
+          var(--v-accordion-padding-inline) - var(--v-button-default-border-size)
+        );
+
+        &.v-button-secondary,
+        &.v-button-tertiary {
+          // @TODO reverse definition to define default and move
+          // specific icon-two-color styles to theme overrides
+          &:not(.v-icon-two-color) {
+            // sass-lint:disable-block no-duplicate-properties
+            #{--v-button-default-border-color}: var(--v-accordion-border-color);
+            #{--v-button-secondary-foreground}: var(--v-accordion-foreground-initial);
+            #{--v-button-tertiary-foreground}: var(--v-accordion-foreground-initial);
+            #{--v-icon-primary}: var(--v-accordion-icon-color);
+            #{--v-icon-secondary}: var(--v-accordion-icon-color);
+            #{--v-button-secondary-background}: var(--v-accordion-background);
+
+            &:hover,
+            &:focus-visible,
+            &:active,
+            &:disabled {
+              #{--v-icon-primary}: currentColor;
+              #{--v-icon-secondary}: currentColor;
+            }
+          }
+
+          &:has(> .v-accordion-toggle-icon) {
+            &[aria-expanded='true'] {
+              border-bottom-left-radius: 0;
+              border-bottom-right-radius: 0;
+
+              // sass-lint:disable-block no-duplicate-properties
+              #{--v-button-secondary-foreground}: var(--v-accordion-expanded-foreground);
+              #{--v-button-tertiary-foreground}: var(--v-accordion-expanded-foreground);
+            }
+          }
+        }
+
+        &.v-button-small {
+          #{--v-button-default-padding-block}: calc(
+            var(--v-accordion-button-padding-block-small) - var(--v-button-default-border-size)
+          );
+        }
+
+        &.v-button-large {
+          #{--v-button-default-padding-block}: calc(
+            var(--v-accordion-button-padding-block-large) - var(--v-button-default-border-size)
+          );
+        }
+
+        // has a span within for safari support
+        & > span {
+          align-items: var(--v-accordion-align-items);
+          display: flex;
+          gap: var(--v-accordion-items-gap); // sass-lint:disable-line no-misspelled-properties
+          justify-content: var(--v-accordion-justify-content);
+          text-align: start;
+        }
+
+        // removes native chevron for safari support
+        &::marker,
+        &::-webkit-details-marker {
+          display: none;
+        }
+
+        &[disabled], &[aria-disabled="true"] {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-accordion-border-color}: var(--v-button-default-disabled-border-color);
+          #{--v-accordion-foreground-initial}: var(--v-button-default-disabled-foreground);
+          cursor: default;
+          pointer-events: none;
+
+          .v-accordion-toggle-icon {
+            #{--v-icon-primary}: currentColor;
+            #{--v-icon-secondary}: currentColor;
+          }
+        }
+
+        .v-accordion-toggle-icon {
+          align-self: flex-start;
+          display: inline-flex;
+        }
+      }
+    }
+
+    &-panel {
+      background-color: var(--v-accordion-panel-background-color);
+      border-bottom-left-radius: var(--v-accordion-panel-border-radius);
+      border-bottom-right-radius: var(--v-accordion-panel-border-radius);
+      border-color: var(--v-accordion-panel-border-color);
+      border-style: var(--v-accordion-panel-border-style);
+      border-width: var(--v-accordion-panel-border-size); // sass-lint:disable-line property-sort-order
+      border-top-width: 0; // sass-lint:disable-line property-sort-order
+      padding-block: var(--v-accordion-panel-padding-block);
+      padding-inline: var(--v-accordion-panel-padding-inline);
+
+      // add &:not([hidden="until-found"]) when more supported (see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden)
+      &[aria-hidden='true'] {
+        display: none;
+      }
+    }
+  }
+}

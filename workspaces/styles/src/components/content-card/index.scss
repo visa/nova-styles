@@ -1,0 +1,210 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './_vars' as *;
+@use '../../base/accessibility' as *;
+
+
+@layer components {
+  .v-content-card {
+    $root: &;
+    background-color: var(--v-content-card-background-color);
+    border: var(--v-content-card-border);
+    border-radius: var(--v-content-card-border-radius);
+    box-shadow: var(--v-content-card-elevation), var(--v-content-card-border-block-end-none);
+    color: var(--v-content-card-color); 
+    transition: box-shadow 300ms ease-out;
+
+    .v-card-divider {
+      #{--v-divider-color-standard}: var(--v-content-card-divider-color);
+    }
+
+    &-body {
+      padding-block: var(--v-content-card-padding-block);
+      padding-inline: var(--v-content-card-padding-inline);
+    }
+
+    &-title {
+      color: var(--v-content-card-title-color);
+      display: flex;
+      gap: var(--v-content-card-title-gap); // sass-lint:disable-line no-misspelled-properties
+      justify-content: var(--v-content-card-title-justify-content);
+
+      .v-icon-move {
+        transition: transform 300ms ease-out;
+      }
+
+      &-link {
+        color: var(--v-content-card-title-color);
+        text-decoration: none;
+        &:focus-visible {
+          outline: none;
+        }
+      }
+    }
+
+    &-subtitle {
+      color: var(--v-content-card-subtitle-color);
+    }
+
+    
+    @at-root a#{&}, button#{&} {
+      cursor: pointer;
+      display: flex; 
+      text-align: unset;
+      text-decoration: none;
+
+      &:is(button) {
+        inline-size: 100%; 
+      }
+    
+      &:hover,
+      &:focus-visible {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-content-card-border-block-end-none}: var(--v-content-card-border-block-end-hover);
+        #{--v-content-card-elevation}: var(--v-content-card-elevation-clickable);
+        #{--v-content-card-title-color}: var(--palette-default-active-hover);
+        
+        #{--v-icon-primary}: var(--palette-default-active-hover);
+        #{--v-icon-secondary}: var(--palette-default-active-hover);
+      }
+
+      &:hover .v-icon-move {
+        transform: translateX(var(--v-content-card-clickable-title-translate));
+        transition: transform 300ms ease-out;
+      }
+
+      &:active {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-content-card-border-block-end-none}: var(--v-content-card-border-block-end-pressed);
+        #{--v-content-card-title-color}: var(--palette-default-active-pressed);
+
+        #{--v-icon-primary}: var(--palette-default-active-pressed);
+        #{--v-icon-secondary}: var(--palette-default-active-pressed);
+      }
+
+      .v-content-card-title {
+        // sass-lint:disable-block no-duplicate-properties
+        align-items: center;
+        transition: transform 300ms ease-out;
+        #{--v-content-card-title-justify-content}: var(--v-content-card-clickable-title-justify-content);
+        #{--v-content-card-title-gap}: var(--v-content-card-clickable-title-gap);
+      }
+      
+
+      
+      &[aria-disabled='true'],
+      &[disabled],
+      &:is(a):not([href]) { // sass-lint:disable-line force-pseudo-nesting
+        pointer-events: none;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-icon-primary}: var(--v-content-card-disabled-title-color);
+        #{--v-icon-secondary}: var(--v-content-card-disabled-title-color);
+
+        #{--v-content-card-title-color}: var(--v-content-card-disabled-title-color);
+        #{--v-content-card-subtitle-color}: var(--v-content-card-disabled-color);
+
+        #{--v-content-card-color}: var(--v-content-card-disabled-color);
+      }
+    }
+    
+    // @TODO remove in favor of using native a and button elements to handle interaction 
+    &-clickable {
+      cursor: pointer;
+
+      &.v-link {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-link-background}: var(--v-content-card-background-color); 
+        #{--v-link-hover-background}: var(--v-content-card-background-color); 
+        #{--v-link-focus-background}: var(--v-content-card-background-color); 
+        #{--v-link-active-background}: var(--v-content-card-background-color); 
+        #{--v-link-disabled-background}: var(--v-content-card-background-color); 
+        #{--v-link-border-radius}: var(--v-content-card-border-radius);
+      }
+
+      .v-content-card-title {
+        // sass-lint:disable-block no-duplicate-properties
+        align-items: center;
+        transition: transform 300ms ease-out;
+        #{--v-content-card-title-justify-content}: var(--v-content-card-clickable-title-justify-content);
+        #{--v-content-card-title-gap}: var(--v-content-card-clickable-title-gap);
+      }
+      
+      &[aria-disabled='true'] {
+        pointer-events: none;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-icon-primary}: var(--v-content-card-disabled-title-color);
+        #{--v-icon-secondary}: var(--v-content-card-disabled-title-color);
+
+        #{--v-content-card-title-color}: var(--v-content-card-disabled-title-color);
+        #{--v-content-card-subtitle-color}: var(--v-content-card-disabled-color);
+
+        #{--v-content-card-color}: var(--v-content-card-disabled-color);
+      }
+
+      &:has(.v-content-card-title-link:focus-visible) {
+        @include state-focus;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-content-card-border-block-end-none}: var(--v-content-card-border-block-end-hover);
+        #{--v-content-card-elevation}: var(--v-content-card-elevation-clickable);
+        #{--v-content-card-title-color}: var(--palette-default-active-hover);
+
+        #{--v-icon-primary}: var(--palette-default-active-hover);
+        #{--v-icon-secondary}: var(--palette-default-active-hover);
+      }
+    
+      &:hover,
+      &:focus-visible {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-content-card-border-block-end-none}: var(--v-content-card-border-block-end-hover);
+        #{--v-content-card-elevation}: var(--v-content-card-elevation-clickable);
+        #{--v-content-card-title-color}: var(--palette-default-active-hover);
+        
+        #{--v-icon-primary}: var(--palette-default-active-hover);
+        #{--v-icon-secondary}: var(--palette-default-active-hover);
+      }
+
+
+      &:active {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-content-card-border-block-end-none}: var(--v-content-card-border-block-end-pressed);
+        #{--v-content-card-title-color}: var(--palette-default-active-pressed);
+
+        #{--v-icon-primary}: var(--palette-default-active-pressed);
+        #{--v-icon-secondary}: var(--palette-default-active-pressed);
+      }
+    }
+
+    
+    // @TODO remove .v-content-card-border-block-end class in favor of .v-content-card-compact
+    // the border-block-end class name approach follows utility classes approach, but doesn't apply across components 
+    // leaving currently to prevent breaking changes and enable backwards compatibility
+    &-border-block-end,
+    &-compact {
+      #{--v-content-card-border-block-end-none}: var(--v-content-card-border-block-end);
+    }
+
+    
+    &-image {
+      background-color: var(--palette-default-surface-2);
+      block-size: var(--v-content-card-image-block);
+      border-top-left-radius: var(--v-content-card-border-radius);
+      border-top-right-radius: var(--v-content-card-border-radius);
+    }
+
+    
+  }
+}

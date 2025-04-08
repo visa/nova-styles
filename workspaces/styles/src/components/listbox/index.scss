@@ -1,0 +1,423 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../base/accessibility' as *;
+@use '../../base/breakpoints/vars' as *;
+@use '../../base/typography/vars' as *;
+@use '../../abstracts/action-secondary' as *;
+
+@mixin item-selected {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--v-action-secondary-background}: var(--v-listbox-item-selected-background);
+  #{--v-action-secondary-hover-border-color}: transparent;
+  #{--v-action-secondary-focus-border-color}: transparent;
+  #{--v-action-secondary-active-border-color}: transparent;
+  #{--v-action-secondary-disabled-border-color}: transparent;
+}
+
+
+@layer components {
+  .v-listbox {
+    $root: &;
+
+    background-color: var(--v-listbox-background-color);
+    border-color: var(--v-listbox-border-color);
+    border-radius: var(--v-listbox-border-radius);
+    border-style: var(--v-listbox-border-style);
+    border-width: var(--v-listbox-border-size);
+    display: flex;
+    flex-direction: column;
+    gap: var(--v-listbox-group-gap); // sass-lint:disable-line no-misspelled-properties
+    inline-size: 100%;
+    max-block-size: var(--v-listbox-block-size);
+    outline: none;
+    overflow-y: auto;
+    padding: var(--v-listbox-padding);
+
+
+    &.v-listbox-scroll {
+      #{--v-listbox-block-size}: var(--v-listbox-block-size-scroll);
+
+      @include media(mobile) {
+        #{--v-listbox-block-size}: var(--v-listbox-block-size-scroll-mobile);
+      }
+    }
+
+    
+
+    &-item {
+      @extend %action-secondary;
+      @include typography-label-large;
+      align-items: center;
+      display: flex;
+
+      &:hover {
+        .v-label {
+          color: var(--palette-default-active-hover);
+        }
+
+        &:has(input:disabled) .v-label {
+          color: var(--v-checkbox-disabled-color);
+        }
+      }
+
+      &:active {
+        .v-label {
+          color: var(--palette-default-active-pressed);
+        }
+      }
+    
+      &:not(:last-child) {
+        border-block-end: 0px;
+      }
+
+      .v-label {
+        padding-block: var(--v-action-secondary-padding-block);
+        padding-inline: var(--v-action-secondary-padding-inline);
+        padding-inline-start: 0px;
+      }
+
+      &:has(.v-label) {
+        padding-block: 0px; 
+        padding-inline: 0px;
+        padding-inline-start: var(--v-listbox-item-padding-inline); 
+      }
+
+      &,
+      &.v-listbox-item-highlighted[role='option'] { // sass-lint:disable-line force-pseudo-nesting force-attribute-nesting
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-action-secondary-foreground}: var(--v-listbox-item-foreground);
+        #{--v-action-secondary-padding-block}: var(--v-listbox-item-padding-block);
+        #{--v-action-secondary-padding-inline}: var(--v-listbox-item-padding-inline);
+        #{--v-action-secondary-border-color}: var(--v-listbox-item-border-color);
+        #{--v-action-secondary-gap}: var(--v-listbox-item-gap);
+        #{--v-action-secondary-border-color}: var(--palette-default-transparent); 
+        #{--v-action-secondary-hover-border-color}: var(--palette-default-transparent); 
+      }
+
+      .v-radio {
+        border-color: transparent;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-radio-indicator-background}: transparent;
+        #{--v-checkbox-border-size}: 0px;
+      }
+
+      .v-radio,
+      .v-checkbox {
+        #{--v-checkbox-glow-offset}: var(--v-listbox-checkbox-glow-offset);
+      }
+
+      // &:has(.v-radio),
+      // &:has(.v-checkbox),
+      // &:has(.v-label),
+      &:has(.v-link),
+      &:has(.v-button) {
+        cursor: default;
+        display: flex;
+        gap: var(--v-listbox-item-gap); // sass-lint:disable-line no-misspelled-properties
+        padding-block: 0px; 
+        padding-inline: 0px;
+
+        .v-label {
+          flex-grow: 1;
+          gap: var(--v-action-secondary-gap); // sass-lint:disable-line no-misspelled-properties
+          padding-block: var(--v-action-secondary-padding-block);
+          padding-inline: var(--v-action-secondary-padding-inline);
+        }
+
+        .v-link {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-link-hover-background}: var(--v-palette-default-transparent);
+          #{--v-link-padding-block}: var(--v-action-secondary-padding-block);
+          #{--v-link-padding-inline}: var(--v-action-secondary-padding-inline);
+          gap: var(--v-listbox-item-gap); // sass-lint:disable-line no-misspelled-properties
+        }
+  
+        .v-button {
+          &.v-button-tertiary {
+            // sass-lint:disable-block no-duplicate-properties
+            #{--v-button-tertiary-hover-background}: var(--v-palette-default-transparent);
+            #{--v-button-default-gap}: var(--v-listbox-item-gap);
+          }
+        }
+      }
+
+      &:has(.v-radio:checked),
+      &:has(.v-checkbox:checked),
+      &[role='option'][aria-selected='true'], // sass-lint:disable-line force-pseudo-nesting force-attribute-nesting
+      &:is(:checked) { // sass-lint:disable-line force-pseudo-nesting force-attribute-nesting
+        @include item-selected;
+        @include action-secondary(&); // allow hover, focus, active, and disabled states to still apply on selected item
+        @include typography-label-large;
+        cursor: default;
+        display: flex;
+        padding-block: 0px; 
+        padding-inline: 0px;
+        padding-inline-start: var(--v-listbox-item-padding-inline); 
+
+        &:not(:last-child) {
+          border-block-end: 0px;
+        }
+      }
+
+      .v-radio {
+        &::before {
+          background-color: transparent;
+          block-size: var(--size-responsive-17);
+          border: 0; // reset border from regular radio button
+          border-block-end: var(--size-responsive-2) solid var(--v-checkbox-color);
+          border-inline-end: var(--size-responsive-2) solid var(--v-checkbox-color);
+          border-radius: var(--size-rounded-none);
+          content: '';
+          inline-size: var(--size-responsive-7);
+          rotate: 45deg;
+          transform: scale(0);
+          translate: 0px -2px;
+        }
+      }
+
+      &[role='option'] {
+        &:not(:has(.v-label)) {
+          &:not(:has(.v-link)) {
+            &:not(:has(.v-button)) {
+              &:not(:is(.v-link)) {
+                &:not(:is(.v-button)) {
+                  @include action-secondary(&); // allow hover, focus, active, and disabled states to still apply on selected item
+                  @include typography-label-large;
+                }
+              }
+            }
+          }
+        }
+        
+        &.v-listbox-item-highlighted {
+          @include state-focus;
+
+          &:not(:active) {
+            #{--v-action-secondary-background}: var(--v-action-secondary-focus-background);
+          }
+        }
+
+        &[aria-selected='true'] {
+          #{--v-checkbox-indicator-background}: var(--v-checkbox-color);
+
+          &,
+          &:hover,
+          &:focus-visible,
+          &.v-listbox-item-highlighted,
+          &:active {
+            #{--v-action-secondary-foreground}: var(--v-listbox-item-selected-foreground);
+          }
+
+          .v-radio,
+          .v-checkbox {
+            &::before {
+              transform: scale(1);
+            }
+          }
+        }
+
+        &[aria-disabled='true'] {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-label-color}: var(--v-checkbox-disabled-color);
+          #{--v-checkbox-color}: var(--v-checkbox-disabled-color);
+          #{--v-listbox-item-foreground}: var(--v-listbox-container-disabled-color);
+          cursor: default;
+          pointer-events: none;
+        }
+      }
+    }
+
+    @media (forced-colors: active) {
+      label.v-listbox-item:hover,
+      li.v-listbox-item[role='option']:hover,
+      option.v-listbox-item:hover {
+        position: relative;
+        // sass-lint:disable-block no-duplicate-properties 
+        &::after {
+          content: '';
+          position: absolute;
+          display: block;
+          border-block-end: calc(var(--v-input-hover-indicator-size) + 1px) solid transparent;
+          inset-inline: 0;
+          inset-block-end: calc(-1 * (var(--v-input-hover-indicator-size) - 1px));
+        }
+        &:disabled,
+        &:has(.v-input[readonly]),
+        &:has(:disabled) {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    
+
+    &-container {
+      background: var(--v-listbox-container-background);
+      border-color: var(--v-listbox-container-border-color);
+      border-radius: var(--v-listbox-container-border-radius);
+      border-style: var(--v-listbox-container-border-style);
+      border-width: var(--v-listbox-container-border-size);
+      display: var(--v-listbox-container-display);
+      flex-direction: column;
+      overflow: hidden;
+
+      @at-root .v-label {
+        & + .v-listbox-container {
+          margin-block-start: var(--v-listbox-container-margin-block);
+        }
+
+        &:has(+ .v-listbox-container) {
+          display: block; // label turns to inline on this component for some reason
+        }
+      }
+
+      &:has(+ .v-input-message) {
+        margin-block-end: var(--v-listbox-container-margin-block);
+      }
+
+      // don't show listbox border colors when listbox is invalid or disabled
+      &:not(.v-listbox-error) {
+        &:not(.v-listbox-disabled) {
+
+          &:has(.v-listbox-item:hover),
+          &:has(.v-listbox:hover) {
+            // sass-lint:disable-block no-duplicate-properties 
+            #{--v-listbox-container-border-color}: var(--v-listbox-container-hover-border-color);
+            #{--v-listbox-container-border-size}: var(--v-listbox-container-border-highlight-size);
+
+            .v-listbox {
+              #{--v-listbox-padding}: calc(var(--v-listbox-padding-initial) - (var(--v-listbox-container-border-highlight-size) - var(--v-listbox-container-border-size-initial)));
+
+              &.v-listbox-scroll {
+                #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll) - var(--v-listbox-container-border-size));
+
+                @include media(mobile) {
+                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-lisbox-container-block-size));
+                }
+              }
+            }
+          }
+
+          &:has(.v-listbox-item:focus-visible),
+          &:has(.v-listbox-item.v-listbox-item-highlighted),
+          // sass-lint:disable-block force-pseudo-nesting
+          .v-listbox:focus-visible,
+          &:has(.v-checkbox:focus-visible),
+          &:has(.v-radio:focus-visible) {
+            // sass-lint:disable-block no-duplicate-properties 
+            #{--v-listbox-container-border-color}: var(--v-listbox-container-focus-border-color);
+            #{--v-listbox-container-border-size}: var(--v-listbox-container-border-highlight-size);
+
+            .v-listbox {
+              #{--v-listbox-padding}: calc(var(--v-listbox-padding-initial) - (var(--v-listbox-container-border-highlight-size) - var(--v-listbox-container-border-size-initial)));
+
+              &.v-listbox-scroll {
+                #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll) - var(--v-listbox-container-border-size));
+
+                @include media(mobile) {
+                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-lisbox-container-block-size));
+                }
+              }
+            }
+          }
+
+          &:has(.v-listbox-item:active) {
+            // sass-lint:disable-block no-duplicate-properties 
+            #{--v-listbox-container-border-color}: var(--v-listbox-container-active-border-color);
+            #{--v-listbox-container-border-size}: var(--v-listbox-container-border-highlight-size);
+
+            .v-listbox {
+              #{--v-listbox-padding}: calc(var(--v-listbox-padding-initial) - (var(--v-listbox-container-border-highlight-size) - var(--v-listbox-container-border-size-initial)));
+
+              &.v-listbox-scroll {
+                #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll) - var(--v-listbox-container-border-size));
+
+                @include media(mobile) {
+                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-lisbox-container-block-size));
+                }
+              }
+            }
+          }
+
+          @at-root .v-label:has(+ .v-listbox:has(.v-radio:focus-visible)),
+          .v-label:has(+ .v-listbox:has(.v-checkbox:focus-visible)) {
+            #{--v-label-color}: var(--v-listbox-container-focus-border-color);
+          }
+        }
+      }
+
+      &.v-listbox-error {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-listbox-container-border-color}: var(--v-listbox-container-error-border-color);
+        #{--v-listbox-container-border-size}: var(--v-listbox-container-border-highlight-size);
+
+        .v-listbox {
+          #{--v-listbox-padding}: calc(var(--v-listbox-padding-initial) - (var(--v-listbox-container-border-highlight-size) - var(--v-listbox-container-border-size-initial)));
+
+          &.v-listbox-scroll {
+            #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll) - var(--v-listbox-container-border-size));
+
+            @include media(mobile) {
+              #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-lisbox-container-block-size));
+            }
+          }
+        }
+
+        @at-root .v-label:has(+ .v-listbox-error) {
+          #{--v-label-color}: var(--v-listbox-container-error-text-color);
+        }
+
+        & + .v-input-message {
+          // sass-lint:disable-block no-duplicate-properties 
+          #{--v-input-message-color}: var(--v-listbox-container-error-text-color);
+          #{--v-icon-primary}: var(--v-listbox-error-icon-color);
+          #{--v-icon-secondary}: var(--v-listbox-error-icon-color);
+        }
+      }
+
+      &.v-listbox-disabled {
+        // sass-lint:disable-block no-duplicate-properties 
+        #{--v-label-color}: var(--v-listbox-container-disabled-color);
+        #{--v-input-message-color}: var(--v-listbox-container-disabled-color);
+        #{--v-listbox-container-border-color}: var(--v-listbox-container-disabled-color);
+        #{--v-listbox-item-foreground}: var(--v-listbox-container-disabled-color);
+
+        &,
+        .v-listbox-item {
+          pointer-events: none;
+        }
+
+        @at-root .v-label:has(+ .v-listbox-disabled) {
+          #{--v-label-color}: var(--v-listbox-disabled-color);
+          cursor: default;
+        }
+
+        & + .v-input-message {
+          #{--v-input-message-color}: var(--v-listbox-disabled-color);
+          cursor: default;
+        }
+      }
+    }
+
+    
+  }
+}
+

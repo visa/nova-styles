@@ -1,0 +1,139 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/typography/vars' as *;
+@use './_vars' as *;
+
+@layer components {
+  .v-wizard {
+    $root: &;
+
+    &:not(:has(.v-accordion)) {
+      display: flex;
+      flex-direction: var(--v-wizard-flex-direction);
+      flex-wrap: wrap;
+    }
+
+    // vertical
+    &-vertical {
+      #{--v-wizard-flex-direction}: var(--v-wizard-vertical-flex-direction);
+      max-inline-size: var(--v-wizard-vertical-max-inline-size);
+    }
+
+    // compact
+    &-compact {
+      gap: var(--v-wizard-compact-gap); // sass-lint:disable-line no-misspelled-properties
+    }
+
+    // chevron icon should be active subtle when collapsed
+   .v-accordion-toggle-icon-closed {
+      #{--v-accordion-icon-color}: var(--v-wizard-step-icon-color); 
+    }
+  }
+
+  .v-wizard-step {
+    @include typography-label-large;
+    display: flex;
+
+    // general wizard step styles
+    &:not(:has(.v-button)) {
+      align-items: center;
+      gap: var(--v-wizard-step-gap); // sass-lint:disable-line no-misspelled-properties
+      padding-block: var(--v-wizard-step-padding-block);
+      padding-inline: var(--v-wizard-step-padding-inline);
+    }
+
+    & > .v-icon {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-icon-primary}: var(--v-wizard-step-icon-color);
+      #{--v-icon-secondary}: var(--v-wizard-step-icon-color);
+    }
+
+    // wizard step as button or link
+    &.v-button,
+    & > .v-button {
+      block-size: unset;
+      inline-size: unset;
+      padding-block: var(--v-wizard-step-padding-block);
+      padding-inline: var(--v-wizard-step-padding-inline);
+    }
+
+    // vertical
+    @at-root .v-wizard-vertical {
+      .v-wizard-step {
+        justify-content: flex-start;
+
+        &.v-button,
+        & > .v-button {
+          flex-grow: 1;
+        }
+      }
+    }
+
+    // // wizard step as badge (compact)
+    @at-root .v-wizard-compact {
+      .v-wizard-step {
+        flex-basis: var(--v-wizard-compact-step-block-size);
+        justify-content: center;
+        overflow: visible;
+        padding-block: unset;
+        padding-inline: unset;
+        position: relative;
+
+        .v-badge {
+          box-sizing: border-box;
+          max-block-size: var(--v-wizard-compact-step-block-size);
+          max-inline-size: var(--v-wizard-compact-step-block-size);
+          min-block-size: var(--v-wizard-compact-step-block-size);
+          min-inline-size: var(--v-wizard-compact-step-block-size);
+        }
+
+        &:not(:last-child) {
+          &::after {
+            background-color: var(--v-wizard-compact-step-rail-color);
+            content: '';
+            display: inline-block;
+            height: 2px;
+            left: 0px;
+            position: absolute;
+            translate: calc(var(--v-wizard-compact-step-block-size) + 1px);
+            width: calc(var(--v-wizard-compact-gap) - 1px);
+          }
+        }
+      }
+    }
+  }
+
+  // for number badges using v-badge-icon instead of v-badge-number classes
+  @media (forced-colors: active) {
+    .v-badge:not(.v-badge-clear):not(:has(.v-icon)) {
+      #{--v-badge-background}: #fff;
+      #{--v-badge-foreground}: #000;
+      outline: 1px solid #000;
+      forced-color-adjust: none;
+    }
+  }
+
+  @media (forced-colors: active) and (prefers-color-scheme: light) {
+    // light MS High Contrast theme
+    
+    .v-badge:not(.v-badge-clear):not(:has(.v-icon)) {
+      #{--v-badge-background}: #000;
+      #{--v-badge-foreground}:  #fff;
+      outline: 1px solid #fff;
+    }
+  }
+}

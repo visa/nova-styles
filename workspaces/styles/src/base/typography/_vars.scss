@@ -1,0 +1,340 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use 'sass:math'; 
+@use '../../themes/default/config' as *; 
+
+// px to rem 
+// currently using default theme's $font-size for rem calculation
+// consider using --theme-font-size css var or generating rem sizes 
+@function to-rem($px) {
+  @if unit($px) == 'px' {
+    @return math.div($px, $font-size) * 1rem;
+  } @else {
+    @error 'Property #{$px} must be a pixel value.';
+  }
+}
+
+// Mixins
+@mixin typography-default {
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-font-size);
+  font-weight: var(--typography-font-weight);
+  letter-spacing: var(--typography-letter-spacing);
+  line-height: var(--typography-line-height);
+  text-decoration: var(--typography-text-decoration);
+  text-transform: var(--typography-text-transform);
+}
+
+@mixin typography-display-1 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-display-1-font-family);
+  #{--typography-font-size}: var(--typography-display-1-font-size);
+  #{--typography-font-weight}: var(--typography-display-1-font-weight);
+  #{--typography-letter-spacing}: var(--typography-display-1-letter-spacing);
+  #{--typography-line-height}: var(--typography-display-1-line-height);
+  #{--typography-text-decoration}: var(--typography-display-1-text-decoration);
+  #{--typography-text-transform}: var(--typography-display-1-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-display-2 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-display-2-font-family);
+  #{--typography-font-size}: var(--typography-display-2-font-size);
+  #{--typography-font-weight}: var(--typography-display-2-font-weight);
+  #{--typography-letter-spacing}: var(--typography-display-2-letter-spacing);
+  #{--typography-line-height}: var(--typography-display-2-line-height);
+  #{--typography-text-decoration}: var(--typography-display-2-text-decoration);
+  #{--typography-text-transform}: var(--typography-display-2-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-headline-1 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-headline-1-font-family);
+  #{--typography-font-size}: var(--typography-headline-1-font-size);
+  #{--typography-font-weight}: var(--typography-headline-1-font-weight);
+  #{--typography-letter-spacing}: var(--typography-headline-1-letter-spacing);
+  #{--typography-line-height}: var(--typography-headline-1-line-height);
+  #{--typography-text-decoration}: var(--typography-headline-1-text-decoration);
+  #{--typography-text-transform}: var(--typography-headline-1-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-headline-2 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-headline-2-font-family);
+  #{--typography-font-size}: var(--typography-headline-2-font-size);
+  #{--typography-font-weight}: var(--typography-headline-2-font-weight);
+  #{--typography-letter-spacing}: var(--typography-headline-2-letter-spacing);
+  #{--typography-line-height}: var(--typography-headline-2-line-height);
+  #{--typography-text-decoration}: var(--typography-headline-2-text-decoration);
+  #{--typography-text-transform}: var(--typography-headline-2-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-headline-3 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-headline-3-font-family);
+  #{--typography-font-size}: var(--typography-headline-3-font-size);
+  #{--typography-font-weight}: var(--typography-headline-3-font-weight);
+  #{--typography-letter-spacing}: var(--typography-headline-3-letter-spacing);
+  #{--typography-line-height}: var(--typography-headline-3-line-height);
+  #{--typography-text-decoration}: var(--typography-headline-3-text-decoration);
+  #{--typography-text-transform}: var(--typography-headline-3-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-headline-4 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-headline-4-font-family);
+  #{--typography-font-size}: var(--typography-headline-4-font-size);
+  #{--typography-font-weight}: var(--typography-headline-4-font-weight);
+  #{--typography-letter-spacing}: var(--typography-headline-4-letter-spacing);
+  #{--typography-line-height}: var(--typography-headline-4-line-height);
+  #{--typography-text-decoration}: var(--typography-headline-4-text-decoration);
+  #{--typography-text-transform}: var(--typography-headline-4-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-subtitle-1 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-subtitle-1-font-family);
+  #{--typography-font-size}: var(--typography-subtitle-1-font-size);
+  #{--typography-font-weight}: var(--typography-subtitle-1-font-weight);
+  #{--typography-letter-spacing}: var(--typography-subtitle-1-letter-spacing);
+  #{--typography-line-height}: var(--typography-subtitle-1-line-height);
+  #{--typography-text-decoration}: var(--typography-subtitle-1-text-decoration);
+  #{--typography-text-transform}: var(--typography-subtitle-1-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-subtitle-2 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-subtitle-2-font-family);
+  #{--typography-font-size}: var(--typography-subtitle-2-font-size);
+  #{--typography-font-weight}: var(--typography-subtitle-2-font-weight);
+  #{--typography-letter-spacing}: var(--typography-subtitle-2-letter-spacing);
+  #{--typography-line-height}: var(--typography-subtitle-2-line-height);
+  #{--typography-text-decoration}: var(--typography-subtitle-2-text-decoration);
+  #{--typography-text-transform}: var(--typography-subtitle-2-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-subtitle-3 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-subtitle-3-font-family);
+  #{--typography-font-size}: var(--typography-subtitle-3-font-size);
+  #{--typography-font-weight}: var(--typography-subtitle-3-font-weight);
+  #{--typography-letter-spacing}: var(--typography-subtitle-3-letter-spacing);
+  #{--typography-line-height}: var(--typography-subtitle-3-line-height);
+  #{--typography-text-decoration}: var(--typography-subtitle-3-text-decoration);
+  #{--typography-text-transform}: var(--typography-subtitle-3-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-overline {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-overline-font-family);
+  #{--typography-font-size}: var(--typography-overline-font-size);
+  #{--typography-font-weight}: var(--typography-overline-font-weight);
+  #{--typography-letter-spacing}: var(--typography-overline-letter-spacing);
+  #{--typography-line-height}: var(--typography-overline-line-height);
+  #{--typography-text-decoration}: var(--typography-overline-text-decoration);
+  #{--typography-text-transform}: var(--typography-overline-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-body-1 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-body-1-font-family);
+  #{--typography-font-size}: var(--typography-body-1-font-size);
+  #{--typography-font-weight}: var(--typography-body-1-font-weight);
+  #{--typography-letter-spacing}: var(--typography-body-1-letter-spacing);
+  #{--typography-line-height}: var(--typography-body-1-line-height);
+  #{--typography-text-decoration}: var(--typography-body-1-text-decoration);
+  #{--typography-text-transform}: var(--typography-body-1-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-body-2 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-body-2-font-family);
+  #{--typography-font-size}: var(--typography-body-2-font-size);
+  #{--typography-font-weight}: var(--typography-body-2-font-weight);
+  #{--typography-letter-spacing}: var(--typography-body-2-letter-spacing);
+  #{--typography-line-height}: var(--typography-body-2-line-height);
+  #{--typography-text-decoration}: var(--typography-body-2-text-decoration);
+  #{--typography-text-transform}: var(--typography-body-2-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-body-2-bold {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-body-2-bold-font-family);
+  #{--typography-font-size}: var(--typography-body-2-bold-font-size);
+  #{--typography-font-weight}: var(--typography-body-2-bold-font-weight);
+  #{--typography-letter-spacing}: var(--typography-body-2-bold-letter-spacing);
+  #{--typography-line-height}: var(--typography-body-2-bold-line-height);
+  #{--typography-text-decoration}: var(--typography-body-2-bold-text-decoration);
+  #{--typography-text-transform}: var(--typography-body-2-bold-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-body-2-link {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-body-2-link-font-family);
+  #{--typography-font-size}: var(--typography-body-2-link-font-size);
+  #{--typography-font-weight}: var(--typography-body-2-link-font-weight);
+  #{--typography-letter-spacing}: var(--typography-body-2-link-letter-spacing);
+  #{--typography-line-height}: var(--typography-body-2-link-line-height);
+  #{--typography-text-decoration}: var(--typography-body-2-link-text-decoration);
+  #{--typography-text-transform}: var(--typography-body-2-link-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-body-2-medium {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-body-2-medium-font-family);
+  #{--typography-font-size}: var(--typography-body-2-medium-font-size);
+  #{--typography-font-weight}: var(--typography-body-2-medium-font-weight);
+  #{--typography-letter-spacing}: var(--typography-body-2-medium-letter-spacing);
+  #{--typography-line-height}: var(--typography-body-2-medium-line-height);
+  #{--typography-text-decoration}: var(--typography-body-2-medium-text-decoration);
+  #{--typography-text-transform}: var(--typography-body-2-medium-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-body-3 {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-body-3-font-family);
+  #{--typography-font-size}: var(--typography-body-3-font-size);
+  #{--typography-font-weight}: var(--typography-body-3-font-weight);
+  #{--typography-letter-spacing}: var(--typography-body-3-letter-spacing);
+  #{--typography-line-height}: var(--typography-body-3-line-height);
+  #{--typography-text-decoration}: var(--typography-body-3-text-decoration);
+  #{--typography-text-transform}: var(--typography-body-3-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-button-medium {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-button-medium-font-family);
+  #{--typography-font-size}: var(--typography-button-medium-font-size);
+  #{--typography-font-weight}: var(--typography-button-medium-font-weight);
+  #{--typography-letter-spacing}: var(--typography-button-medium-letter-spacing);
+  #{--typography-line-height}: var(--typography-button-medium-line-height);
+  #{--typography-text-decoration}: var(--typography-button-medium-text-decoration);
+  #{--typography-text-transform}: var(--typography-button-medium-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-button-large {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-button-large-font-family);
+  #{--typography-font-size}: var(--typography-button-large-font-size);
+  #{--typography-font-weight}: var(--typography-button-large-font-weight);
+  #{--typography-letter-spacing}: var(--typography-button-large-letter-spacing);
+  #{--typography-line-height}: var(--typography-button-large-line-height);
+  #{--typography-text-decoration}: var(--typography-button-large-text-decoration);
+  #{--typography-text-transform}: var(--typography-button-large-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-button-small {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-button-small-font-family);
+  #{--typography-font-size}: var(--typography-button-small-font-size);
+  #{--typography-font-weight}: var(--typography-button-small-font-weight);
+  #{--typography-letter-spacing}: var(--typography-button-small-letter-spacing);
+  #{--typography-line-height}: var(--typography-button-small-line-height);
+  #{--typography-text-decoration}: var(--typography-button-small-text-decoration);
+  #{--typography-text-transform}: var(--typography-button-small-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-label-large {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-label-large-font-family);
+  #{--typography-font-size}: var(--typography-label-large-font-size);
+  #{--typography-font-weight}: var(--typography-label-large-font-weight);
+  #{--typography-letter-spacing}: var(--typography-label-large-letter-spacing);
+  #{--typography-line-height}: var(--typography-label-large-line-height);
+  #{--typography-text-decoration}: var(--typography-label-large-text-decoration);
+  #{--typography-text-transform}: var(--typography-label-large-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-label-large-active {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-label-large-active-font-family);
+  #{--typography-font-size}: var(--typography-label-large-active-font-size);
+  #{--typography-font-weight}: var(--typography-label-large-active-font-weight);
+  #{--typography-letter-spacing}: var(--typography-label-large-active-letter-spacing);
+  #{--typography-line-height}: var(--typography-label-large-active-line-height);
+  #{--typography-text-decoration}: var(--typography-label-large-active-text-decoration);
+  #{--typography-text-transform}: var(--typography-label-large-active-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-label {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-label-font-family);
+  #{--typography-font-size}: var(--typography-label-font-size);
+  #{--typography-font-weight}: var(--typography-label-font-weight);
+  #{--typography-letter-spacing}: var(--typography-label-letter-spacing);
+  #{--typography-line-height}: var(--typography-label-line-height);
+  #{--typography-text-decoration}: var(--typography-label-text-decoration);
+  #{--typography-text-transform}: var(--typography-label-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-label-active {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-label-active-font-family);
+  #{--typography-font-size}: var(--typography-label-active-font-size);
+  #{--typography-font-weight}: var(--typography-label-active-font-weight);
+  #{--typography-letter-spacing}: var(--typography-label-active-letter-spacing);
+  #{--typography-line-height}: var(--typography-label-active-line-height);
+  #{--typography-text-decoration}: var(--typography-label-active-text-decoration);
+  #{--typography-text-transform}: var(--typography-label-active-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-label-small {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-label-small-font-family);
+  #{--typography-font-size}: var(--typography-label-small-font-size);
+  #{--typography-font-weight}: var(--typography-label-small-font-weight);
+  #{--typography-letter-spacing}: var(--typography-label-small-letter-spacing);
+  #{--typography-line-height}: var(--typography-label-small-line-height);
+  #{--typography-text-decoration}: var(--typography-label-small-text-decoration);
+  #{--typography-text-transform}: var(--typography-label-small-text-transform);
+  @include typography-default;
+}
+
+@mixin typography-label-small-active {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--typography-font-family}: var(--typography-label-small-active-font-family);
+  #{--typography-font-size}: var(--typography-label-small-active-font-size);
+  #{--typography-font-weight}: var(--typography-label-small-active-font-weight);
+  #{--typography-letter-spacing}: var(--typography-label-small-active-letter-spacing);
+  #{--typography-line-height}: var(--typography-label-small-active-line-height);
+  #{--typography-text-decoration}: var(--typography-label-small-active-text-decoration);
+  #{--typography-text-transform}: var(--typography-label-small-active-text-transform);
+  @include typography-default;
+}

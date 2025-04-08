@@ -1,0 +1,296 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use 'sass:math'; 
+@use './config' as *; 
+
+@font-face {
+  font-display: swap;
+  font-family: 'visa-font-light';
+  src: url('https://cdn.visa.com/v0/assets/fonts/types/dialect/latin/visa_font_light.woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'visa-font-regular';
+  src: url('https://cdn.visa.com/v0/assets/fonts/types/dialect/latin/visa_font_regular.woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'visa-font-medium';
+  src: url('https://cdn.visa.com/3.5.0/assets/fonts/types/dialect/visa_font_medium.woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'visa-font-semi-bold';
+  src: url('https://cdn.visa.com/v0/assets/fonts/types/dialect/latin/visa_font_semi_bold.woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+// px to rem 
+@function to-rem($px) {
+  @if unit($px) == 'px' {
+    @return math.div($px, $font-size) * 1rem;
+  } @else {
+    @error 'Property #{$px} must be a pixel value.';
+  }
+} 
+
+/** 
+  * @name Typography
+  * @description lorem ipsum
+  * 
+  * @section Visa Default
+  */
+$typography: (
+  display-1: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(60px),
+    font-weight: 600,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(78px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  display-2: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(49px),
+    font-weight: 600,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(62px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  headline-1: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(32px),
+    font-weight: 600,
+    letter-spacing: to-rem(0.5px),
+    line-height: to-rem(42px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  headline-2: (
+    font-family: 'visa-font-medium, Open Sans, sans-serif',
+    font-size: to-rem(25px),
+    font-weight: 500,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(33px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  headline-3: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(20px),
+    font-weight: 600,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(26px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  headline-4: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(18px),
+    font-weight: 600,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(24px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  subtitle-1: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(16px),
+    font-weight: 600,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(21px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  subtitle-2: (
+    font-family: 'visa-font-medium, Open Sans, sans-serif',
+    font-size: to-rem(16px),
+    font-weight: 500,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(21px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  subtitle-3: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(14px),
+    font-weight: 600,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(18px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  overline: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(10px),
+    font-weight: 600,
+    letter-spacing: to-rem(1px),
+    line-height: to-rem(13px),
+    text-decoration: none,
+    text-transform: uppercase
+  ),
+  body-1: (
+    font-family: 'visa-font-regular, Open Sans, sans-serif',
+    font-size: to-rem(16px),
+    font-weight: 400,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(24px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  body-2: (
+    font-family: 'visa-font-regular, Open Sans, sans-serif',
+    font-size: to-rem(14px),
+    font-weight: 400,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(22px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  body-2-bold: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(14px),
+    font-weight: 600,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(22px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  body-2-link: (
+    font-family: 'visa-font-medium, Open Sans, sans-serif',
+    font-size: to-rem(14px),
+    font-weight: 500,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(22px),
+    text-decoration: underline,
+    text-transform: none
+  ),
+  body-2-medium: (
+    font-family: 'visa-font-medium, Open Sans, sans-serif',
+    font-size: to-rem(14px),
+    font-weight: 500,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(22px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  body-3: (
+    font-family: 'visa-font-regular, Open Sans, sans-serif',
+    font-size: to-rem(12px),
+    font-weight: 400,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(18px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  button-large: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(14px),
+    font-weight: 600,
+    letter-spacing: to-rem(0.25px),
+    line-height: to-rem(18px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  button-medium: (
+    font-family: 'visa-font-semi-bold, Open Sans, sans-serif',
+    font-size: to-rem(12px),
+    font-weight: 600,
+    letter-spacing: to-rem(0.25px),
+    line-height: to-rem(16px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  button-small: (
+    font-family: 'visa-font-medium, Open Sans, sans-serif',
+    font-size: to-rem(12px),
+    font-weight: 500,
+    letter-spacing: to-rem(0.25px),
+    line-height: to-rem(16px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  label-large: (
+    font-family: 'visa-font-regular, Open Sans, sans-serif',
+    font-size: to-rem(14px),
+    font-weight: 400,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(18px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  label-large-active: (
+    font-family: 'visa-font-medium, Open Sans, sans-serif',
+    font-size: to-rem(14px),
+    font-weight: 500,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(18px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  label: (
+    font-family: 'visa-font-regular, Open Sans, sans-serif',
+    font-size: to-rem(12px),
+    font-weight: 400,
+    letter-spacing: to-rem(0px),
+    line-height: 16px,
+    text-decoration: none,
+    text-transform: none
+  ),
+  label-active: (
+    font-family: 'visa-font-medium, Open Sans, sans-serif',
+    font-size: to-rem(12px),
+    font-weight: 500,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(16px),
+    text-decoration: none,
+    text-transform: none
+  ),
+  label-small: (
+    font-family: 'visa-font-regular, Open Sans, sans-serif',
+    font-size: to-rem(11px),
+    font-weight: 400,
+    letter-spacing: to-rem(0px),
+    line-height: to-rem(14px),
+    text-decoration: none,
+    text-transform: none
+  )
+);
+
+@layer theme {
+  // generate available colors css variables 
+  :root {
+    @each $typograph, $group in $typography {
+      @each $style, $value in $group {
+        --typography-#{"" + $typograph}-#{$style}: #{$value};
+      }
+    }
+  }
+}

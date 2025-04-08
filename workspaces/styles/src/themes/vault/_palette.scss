@@ -1,0 +1,143 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/color' as *; // @TODO move to separate from base 
+@use './config' as *; 
+
+// generate color variations 
+$colors: (
+  primary: generate-gradient($primary),
+  secondary: generate-gradient($secondary),
+  grayscale: generate-gradient($lightest, $darkest),
+  // positive: generate-gradient($positive),
+  // warning: generate-gradient($warning),
+  // negative: generate-gradient($negative),
+  // info: generate-gradient($info)
+);
+
+// define css variables based on available colors 
+@layer theme {
+  :root {
+    --color-transparent: rgba(255, 255, 255, 0);
+    --color-primary: #{$primary};
+    --color-secondary: #{$secondary};
+    --color-lightest: #{$lightest};
+    --color-darkest: #{$darkest};
+    // --color-positive: #{$positive};
+    // --color-warning: #{$warning};
+    // --color-negative: #{$negative};
+    // --color-info: #{$info};
+
+    @each $color, $shades in $colors {
+      @each $shade, $value in $shades {
+        --color-#{"" + $color}-#{$shade}: #{$value};
+      }
+    }
+  }
+}
+
+// define theme palette with color variables 
+$palette: (
+  default: (
+    active: var(--color-primary), 
+    active-hover: var(--color-primary-60),
+    active-pressed: #0052e1,
+    active-subtle: var(--color-grayscale-60), 
+    active-accent: var(--color-secondary), 
+    surface-1: var(--color-lightest), 
+    surface-2: rgb(245, 245, 245),
+    surface-3: rgb(245, 245, 245),
+    surface-highlight: rgb(230, 242, 255),
+    surface-lowlight: #e6f2ff,
+    text: var(--color-darkest), 
+    text-subtle: #4a4a4a,
+    text-on-active: var(--color-lightest), 
+    border: var(--color-grayscale-100),
+    disabled: var(--color-grayscale-90),
+    overlay: var(--color-grayscale-70),
+    "transparent": var(--color-transparent)
+  ),
+  alternate: (
+    active: var(--color-secondary), 
+    active-hover: var(--color-secondary-80), 
+    active-pressed: var(--color-secondary-60), 
+    active-subtle: var(--color-grayscale-80), 
+    active-accent: var(--color-lightest), 
+    surface-1: var(--color-primary), 
+    surface-2: var(--color-primary-50),
+    surface-3: var(--color-primary-40),
+    surface-highlight: var(--color-primary-60),
+    surface-lowlight: var(--color-primary-40),
+    text: var(--color-lightest), 
+    text-subtle: var(--color-grayscale-110),
+    text-on-active: var(--color-primary-30),
+    border: var(--color-primary-70),
+    disabled: var(--color-primary-80),
+    overlay: var(--color-grayscale-70),
+    "transparent": var(--color-transparent)
+  ),
+  messaging: (
+    // positive
+    highlight-positive: rgba(214, 242, 196, 0.35),
+    lowlight-positive: rgba(214, 242, 196, 0.6),
+    surface-positive: #e2f6d5,
+    border-positive: #9acea0,
+    graphics-positive: #40996b,
+    text-hover-positive: #36815b,
+    text-positive: #2f6f4e,
+    text-pressed-positive: #1d4430,
+    // warning
+    surface-warning: #fff7cc,
+    highlight-warning: #ffef99,
+    border-warning: #fcd05e, 
+    graphics-warning: #c38004,
+    text-warning: #875903,
+    // negative
+    highlight-negative: rgba(255, 214, 233, 0.35),
+    lowlight-negative: rgba(255, 214, 233, 0.6),
+    surface-negative: #ffeef2,
+    border-negative: #f9b8c0, 
+    graphics-negative: #d65151,
+    text-hover-negative: #d03939,
+    text-negative: #be2d2d,
+    text-pressed-negative: #8c2121,
+    // info
+    highlight-info: #e5f2fa, 
+    border-info: #a1c1df,
+    graphics-info: #2765a8, // rgb(39, 101, 168)
+    text-info: #021e4c
+  )
+); 
+
+@layer theme {
+  :root {
+    @each $scheme, $tokens in $palette {
+      @each $token, $value in $tokens {
+        --palette-#{$scheme}-#{$token}: #{$value};
+      }
+    }
+  }
+
+  .v-alternate {
+    @each $default-token, $default-value in map-get($palette, "default") {
+      @each $alternate-token, $alternate-value in map-get($palette, "alternate") {
+        @if $default-token == $alternate-token {
+          --palette-default-#{$default-token}: var(--palette-alternate-#{$alternate-token});
+        }
+      }
+    }
+  }
+}

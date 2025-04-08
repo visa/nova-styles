@@ -1,0 +1,251 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+ 
+@use './vars' as *; 
+@use '../../base/typography/vars' as *;
+
+ 
+
+@layer components {
+  .v-tab {
+    #{--v-tabs-horizontal-padding-block-end}: calc(var(--v-tabs-active-line-padding) + var(--v-tabs-selected-highlight-border-size));
+    border-block-end-color:  var(--v-tabs-default-highlight);
+    border-block-end-style: solid;
+    border-block-end-width: var(--v-tabs-border-bottom-size);
+    display: inline-block;
+    padding-block-end: var(--v-tabs-horizontal-padding-block-end);
+
+    .v-button {
+      @include typography-label-large;
+      position: initial;
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-padding-inline}: var(--v-tabs-padding-inline);
+      #{--v-button-default-gap}: var(--v-tabs-gap);
+      
+      &,
+      &-secondary,
+      &-tertiary {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-secondary-foreground}: var(--v-tabs-foreground-initial);
+        #{--v-button-tertiary-foreground}: var(--v-tabs-foreground-initial);
+
+        .v-icon {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-icon-primary}: var(--v-tabs-icon-color-initial); 
+          #{--v-icon-secondary}: var(--v-tabs-icon-color-initial); 
+        }
+
+        @at-root .v-nav .v-button[aria-current='page'],
+        &[aria-current='page'],
+        &[aria-selected='true'] {
+          // sass-lint:disable-block no-duplicate-properties
+          color: var(--v-tabs-active-foreground); // tab foreground remains this color when active
+          #{--v-button-secondary-background}: var(--v-tabs-selected-background);
+          #{--v-button-tertiary-background}: var(--v-tabs-selected-background);
+        }
+
+        &:hover,
+        &:focus-visible,
+        &:active {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-icon-primary}: var(--v-button-default-foreground); // icons should copy original coloring and not take on active color
+          #{--v-icon-secondary}: var(--v-button-default-foreground);
+        }
+
+        .v-tab-suffix {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-icon-primary}: var(--v-tabs-suffix-icon-color); 
+          #{--v-icon-secondary}: var(--v-tabs-suffix-icon-color); 
+        }
+
+        &:disabled {
+          #{--v-tabs-active-foreground}: var(--v-button-default-foreground);
+
+          &,
+          .v-icon,
+          .v-tab-suffix {
+            // sass-lint:disable-block no-duplicate-properties
+            #{--v-icon-primary}: currentColor;
+            #{--v-icon-secondary}: currentColor; 
+          }
+        }
+      }
+
+      .v-tab-suffix {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-icon-height}: var(--v-tabs-suffix-icon-size);
+        #{--v-icon-width}: var(--v-tabs-suffix-icon-size);
+        margin-inline-start: auto;
+      }
+
+      &:focus-visible {
+        #{--theme-focus-outline-offset}: var(--v-tabs-outline-offset);
+      }
+
+      @at-root .v-nav .v-button[aria-current='page'],
+      &[aria-current='page'],
+      &[aria-selected='true'] {
+        @include typography-label-large-active;
+      }
+
+      &-stacked {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-block-size}: var(--v-tabs-stacked-block-size);
+        #{--v-button-default-gap}: var(--v-tabs-gap);
+
+        &:has(.v-badge) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-button-default-badge-offset-x}: -.5; 
+          #{--v-button-default-badge-offset-y}: -.15; 
+          position: relative; 
+        }
+      }
+    }
+
+    @at-root .v-nav .v-tab:has(.v-button[aria-current='page']),
+    &:has(.v-button[aria-current='page']),
+    &:has(.v-button[aria-selected='true']) {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-tabs-default-highlight}: var(--v-tabs-selected-highlight);
+      #{--v-tabs-border-bottom-size}: var(--v-tabs-selected-highlight-border-size);
+      #{--v-tabs-horizontal-padding-block-end}: var(--v-tabs-active-line-padding);
+    }
+
+    &:has(.v-button[disabled]) {
+      #{--v-tabs-default-highlight}: transparent;
+    }
+
+    &s {
+      display: flex;
+      flex-direction: var(--v-tabs-direction);
+      gap: var(--v-tabs-group-gap); // sass-lint:disable-line no-misspelled-properties
+    }
+
+    // target all horizontal tabs and/or nav
+    @at-root 
+    .v-tabs, /*:not(.v-tabs-vertical), */
+    .v-tabs-horizontal,
+    .v-nav-horizontal,
+    .v-nav:has(.v-tabs) {
+      // .v-tab {
+      //   .v-button-secondary,
+      //   .v-button-tertiary {
+      //     &[aria-expanded='true'] {
+      //       &:not([aria-selected='true']) {
+      //         &:not([aria-current='page']) {
+      //           // sass-lint:disable-block no-duplicate-properties
+      //           #{--v-button-secondary-background}: var(--v-tabs-expanded-background);
+      //           #{--v-button-tertiary-background}: var(--v-tabs-expanded-background);
+      //           color: var(--v-tabs-expanded-foreground); // tab foreground remains this color when expanded
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
+      
+      .v-tabs,
+      &.v-tabs {
+        flex-wrap: wrap;
+      }
+    }
+
+    // @TODO: see if removing has(tabs-vertical) affected anything
+    // target all vertical tabs and/or nav
+    @at-root 
+    .v-tabs-vertical,
+    .v-nav-vertical {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-block-size}: var(--v-tabs-vertical-block-size);
+      #{--v-button-default-icon-size}: var(--v-tabs-icon-size);
+      #{--v-button-default-justify-content}: flex-start;
+      #{--v-button-default-padding-block}: var(--v-tabs-vertical-padding-block);
+      #{--v-tabs-direction}: column;
+      inline-size: 100%;
+      position: relative; // make ::before relative to list as a whole
+
+      .v-tab {
+        border-block-end: 0;
+        inline-size: 100%;
+        padding-block-end: 0;
+        
+        #{--v-tabs-direction}: row;
+
+        .v-button,
+        &.v-tab-section-title {
+          #{--tabs-margin-inline-start}: calc(var(--v-tabs-vertical-tab-indent) * var(--v-tabs-vertical-nested-count)); // tab indent(14)*n
+          inline-size: calc(100% - var(--tabs-margin-inline-start));
+          margin-inline-start: var(--tabs-margin-inline-start); 
+          padding-inline-end: var(--v-tabs-vertical-padding-inline-end);
+          padding-inline-start: var(--v-tabs-vertical-padding-inline-start);
+          
+          &::before {
+            content: '';
+            position: absolute;
+          }
+
+          &:has(.v-avatar) {
+            .v-avatar {
+              .v-icon,
+              &.v-icon {
+                // @TODO evaluate overriding avatar size here or use .v-avatar-small class in markup 
+                // sass-lint:disable-block no-duplicate-properties
+                #{--v-icon-height}: var(--v-tabs-icon-size);
+                #{--v-icon-width}: var(--v-tabs-icon-size);
+              }
+            }
+          }
+          &[aria-current='page'],
+          &[aria-selected='true'] {
+            &::before {
+              block-size: var(--v-tabs-vertical-block-size);
+              border-inline-start: var(--v-tabs-selected-highlight-border-size) solid var(--v-tabs-default-highlight);
+              content: '';
+              left: 0;
+            }
+          }
+        }
+
+        &.v-tab-section-title {
+          @include typography-overline;
+          color: var(--v-tabs-foreground-initial);
+          padding-block-end: var(--v-tabs-section-title-padding-block-end);
+          padding-block-start: var(--v-tabs-section-title-padding-block-start);
+        }
+      }
+    }
+
+    // .v-tabs-vertical
+    &s-vertical {
+      #{--v-tabs-vertical-nested-count}: 1;
+
+      .v-tabs-vertical {
+        margin-block-start: var(--v-tabs-group-gap);
+        #{--v-tabs-vertical-nested-count}: 2;
+
+        .v-tabs-vertical {
+          #{--v-tabs-vertical-nested-count}: 3;
+        }
+
+        // add extra 2px to tab indent on l3
+        .v-tabs-vertical .v-tab a {
+          #{--tabs-margin-inline-start}: calc(var(--v-tabs-vertical-tab-indent) * var(--v-tabs-vertical-nested-count));
+          margin-inline-start: calc(var(--tabs-margin-inline-start) + 2px); 
+        }
+      }
+    }
+  }
+}

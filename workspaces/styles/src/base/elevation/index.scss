@@ -1,0 +1,66 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './vars' as *; 
+
+
+
+
+@layer base {
+  :root {
+    --elevation-offset-x: 0;
+    --elevation-offset-y: 0;
+    --elevation-blur-radius: 0; 
+    --elevation-spread: 0;
+    --elevation-color: var(--palette-default-transparent); 
+  }
+}
+
+@layer base {
+  // class to treat elevation as box shadow 
+  .v-elevation {
+    box-shadow: var(--elevation-offset-x) var(--elevation-offset-y) var(--elevation-blur-radius) var(--elevation-spread) var(--elevation-color); 
+  }
+
+  // generate elevation css variables by size with all props 
+  :root {
+    @each $name, $definitions in $elevation-properties {
+      @each $prop, $value in $definitions {
+        --elevation-#{$name}-#{$prop}: #{$value}; 
+      }
+
+      @if $name == "inset" {
+        --elevation-#{$name}: inset var(--elevation-#{$name}-offset-x) var(--elevation-#{$name}-offset-y) var(--elevation-#{$name}-blur-radius) var(--elevation-#{$name}-spread) var(--elevation-#{$name}-color); 
+      } @else {
+        --elevation-#{$name}: var(--elevation-#{$name}-offset-x) var(--elevation-#{$name}-offset-y) var(--elevation-#{$name}-blur-radius) var(--elevation-#{$name}-spread) var(--elevation-#{$name}-color); 
+      }
+    }
+  }  
+}
+
+@layer utilities {
+  // generate elevation css classes by size 
+  @each $name, $definitions in $elevation-properties {
+    .v-elevation-#{$name} {
+      @each $prop, $value in $definitions {
+        --elevation-#{$prop}: var(--elevation-#{$name}-#{$prop}); 
+      }
+      @extend .v-elevation; 
+    }
+  }
+}
+
+

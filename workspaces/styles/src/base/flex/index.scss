@@ -1,0 +1,315 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './vars' as *; 
+
+
+
+@layer utilities {
+  // define flex css classes 
+
+  
+  .v-flex {
+    @extend %v-flex; 
+  }
+
+  
+  .v-flex-inline {
+    @extend %v-flex-inline; 
+  }
+
+  
+  .v-flex-col {
+    @extend %v-flex-col; 
+  }
+
+  
+  .v-flex-col-reverse {
+    @extend %v-flex-col-reverse; 
+  }
+
+  
+  .v-flex-row {
+    @extend %v-flex-row; 
+  }
+
+  
+  .v-flex-row-reverse {
+    @extend %v-flex-row-reverse; 
+  }
+
+  
+  .v-flex-wrap {
+    @extend %v-flex-wrap; 
+  }
+  
+  
+  .v-flex-wrap-reverse {
+    @extend %v-flex-wrap-reverse; 
+  }
+
+  
+  .v-flex-nowrap {
+    @extend %v-flex-nowrap; 
+  }
+
+  
+  .v-flex-grow {
+    @extend %v-flex-grow; 
+  }
+
+  
+  .v-flex-shrink {
+    @extend %v-flex-shrink; 
+  }
+
+  
+  .v-align-content-center {
+    @extend %v-align-content-center; 
+  }
+
+  
+  .v-align-content-start {
+    @extend %v-align-content-start; 
+  }
+
+  
+  .v-align-content-end {
+    @extend %v-align-content-end; 
+  }
+
+  
+  .v-align-content-between {
+    @extend %v-align-content-between; 
+  }
+
+  
+  .v-align-content-around {
+    @extend %v-align-content-around; 
+  }
+
+  
+  .v-align-content-evenly {
+    @extend %v-align-content-evenly; 
+  }
+
+  
+  .v-align-items-start {
+    @extend %v-align-items-start; 
+  }
+
+  
+  .v-align-items-end {
+    @extend %v-align-items-end; 
+  }
+
+  
+  .v-align-items-center {
+    @extend %v-align-items-center; 
+  }
+
+  
+  .v-align-items-baseline {
+    @extend %v-align-items-baseline; 
+  }
+
+  
+  .v-align-items-stretch {
+    @extend %v-align-items-stretch; 
+  }
+
+  
+  .v-align-self-start {
+    @extend %v-align-self-start; 
+  }
+
+  
+  .v-align-self-end {
+    @extend %v-align-self-end; 
+  }
+
+  
+  .v-align-self-auto {
+    @extend %v-align-self-auto;
+  }
+
+  
+  .v-align-self-center {
+    @extend %v-align-self-center;
+  }
+
+  
+  .v-align-self-stretch {
+    @extend %v-align-self-stretch;
+  }
+
+  /* 
+    * @name Flex Align Self Baseline
+    * @description Flex align self baseline class 
+    *
+    * @class .v-align-self-baseline
+    *
+    * @markup 
+    * <div class="v-surface v-flex v-flex-row v-gap-4" style="--v-surface-border-size: 2px; block-size: 80px">
+    *   <div class="v-surface v-alternate v-flex v-align-self-baseline">
+    *     self 
+    *   </div>
+    * </div>
+    *
+    * @section Flex
+    */
+  .v-align-self-baseline {
+    @extend %v-align-self-baseline;
+  }
+
+  
+  .v-justify-content-start {
+    @extend %v-justify-content-start; 
+  }
+
+  
+  .v-justify-content-end {
+    @extend %v-justify-content-end; 
+  }
+
+  
+  .v-justify-content-center {
+    @extend %v-justify-content-center;
+  }
+  
+  
+  .v-justify-content-between {
+    @extend %v-justify-content-between; 
+  }
+
+  
+  .v-justify-content-around {
+    @extend %v-justify-content-around; 
+  }
+
+  
+  .v-justify-content-evenly {
+    @extend %v-justify-content-evenly; 
+  }
+  
+  @for $i from 0 through 12 {
+	//for each i create a flex utility class
+	.v-flex-#{$i} {
+	  flex: $i;
+	}
+  }
+
+  @for $i from 0 through 12 {
+	  .v-flex-grow-#{$i} {
+		flex-grow: $i;
+	  }
+  }
+
+  @for $i from 0 through 12 {
+	.v-flex-shrink-#{$i} {
+	  flex-shrink: $i;
+	}
+  }
+
+  // Justify items and justify self is ignored by flex 
+  // (but works with grid layouts) 
+  // restore if requested
+
+  // 
+  // .v-justify-items-start {
+  //   @extend %v-justify-items-start; 
+  // }
+
+  // /* 
+  // * @name Flex Justify Items End
+  // * @description Flex justify items end class 
+  // * @class .v-justify-items-end
+  // * @section Flex
+  // */
+  // .v-justify-items-end {
+  //   @extend %v-justify-items-end; 
+  // }
+
+  // /* 
+  // * @name Flex Justify Items Center
+  // * @description Flex justify items center class 
+  // * @class .v-justify-items-center
+  // * @section Flex
+  // */
+  // .v-justify-items-center {
+  //   @extend %v-justify-items-center; 
+  // }
+
+  // /* 
+  // * @name Flex Justify Items Stretch
+  // * @description Flex justify items stretch class 
+  // * @class .v-justify-items-stretch
+  // * @section Flex
+  // */
+  // .v-justify-items-stretch {
+  //   @extend %v-justify-items-stretch; 
+  // }
+
+  // /* 
+  // * @name Flex Justify Self Auto
+  // * @description Flex justify self auto class 
+  // * @class .v-justify-self-auto
+  // * @section Flex
+  // */
+  // .v-justify-self-auto {
+  //   @extend %v-justify-self-auto; 
+  // }
+
+  // /* 
+  // * @name Flex Justify Self Start
+  // * @description Flex justify self start class 
+  // * @class .v-justify-self-start
+  // * @section Flex
+  // */
+  // .v-justify-self-start {
+  //   @extend %v-justify-self-start; 
+  // }
+
+  // /* 
+  // * @name Flex Justify Self End
+  // * @description Flex justify self end class 
+  // * @class .v-justify-self-end
+  // * @section Flex
+  // */
+  // .v-justify-self-end {
+  //   @extend %v-justify-self-end; 
+  // }
+
+  // /* 
+  // * @name Flex Justify Self Center
+  // * @description Flex justify self center class 
+  // * @class .v-justify-self-center
+  // * @section Flex
+  // */
+  // .v-justify-self-center {
+  //   @extend %v-justify-self-center; 
+  // }
+
+  // /* 
+  // * @name Flex Justify Self Stretch
+  // * @description Flex justify self stretch class 
+  // * @class .v-justify-self-stretch
+  // * @section Flex
+  // */
+  // .v-justify-self-stretch {
+  //   @extend %v-justify-self-stretch; 
+  // }
+}

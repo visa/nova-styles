@@ -1,0 +1,393 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './vars' as *;
+@use '../../base/typography/vars' as *;
+@use '../../base/flex' as *;
+
+@layer components {
+  .v-button {
+    @include typography-button-medium;
+    $root: &;
+    align-items: var(--v-button-default-align-items);
+    background-color: var(--v-button-default-background);
+    block-size: var(--v-button-default-block-size);
+    border: var(--v-button-default-border-size)
+      var(--v-button-default-border-style) var(--v-button-default-border-color);
+    border-radius: var(--v-button-default-border-radius);
+    color: var(--v-button-default-foreground);
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: var(--v-button-default-direction);
+    gap: var(
+      --v-button-default-gap
+    ); // sass-lint:disable-line no-misspelled-properties
+    inline-size: var(--v-button-default-inline-size);
+    justify-content: var(--v-button-default-justify-content);
+    padding-block: var(--v-button-default-padding-block);
+    padding-inline: var(--v-button-default-padding-inline);
+    position: relative;
+    text-transform: var(--v-button-default-text-transform);
+
+    // sass-lint:disable-block no-duplicate-properties
+    #{--v-icon-tiny-height}: var(--v-button-default-icon-size);
+    #{--v-icon-tiny-width}: var(--v-button-default-icon-size);
+    #{--v-icon-low-height}: var(--v-button-default-icon-size);
+    #{--v-icon-low-width}: var(--v-button-default-icon-size);
+    #{--v-icon-high-height}: var(--v-button-default-icon-size);
+    #{--v-icon-high-width}: var(--v-button-default-icon-size);
+
+    @media (prefers-contrast: more) and (forced-colors: active) {
+      #{--v-button-default-border-size}: var(--v-button-secondary-border-size);
+    }
+
+    &,
+    &.v-alternate {
+      // sass-lint:disable-block no-duplicate-properties
+      &:not(.v-icon-two-color) {
+        &:not(:has(.v-icon-two-color)) {
+          #{--v-icon-primary}: currentColor;
+          #{--v-icon-secondary}: currentColor;
+        }
+      }
+
+      &:not(.v-button-secondary) {
+        &:not(.v-button-tertiary) {
+          #{--v-icon-primary}: currentColor;
+        }
+      }
+    }
+
+    &:hover {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-background}: var(
+        --v-button-default-hover-background
+      );
+      #{--v-button-default-border-color}: var(
+        --v-button-default-hover-border-color
+      );
+      #{--v-button-default-foreground}: var(
+        --v-button-default-hover-foreground
+      );
+    }
+
+    &:focus-visible {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-background}: var(
+        --v-button-default-focus-background
+      );
+      #{--v-button-default-border-color}: var(
+        --v-button-default-focus-border-color
+      );
+      #{--v-button-default-foreground}: var(
+        --v-button-default-focus-foreground
+      );
+    }
+
+    &:active {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-background}: var(
+        --v-button-default-active-background
+      );
+      #{--v-button-default-border-color}: var(
+        --v-button-default-active-border-color
+      );
+      #{--v-button-default-foreground}: var(
+        --v-button-default-active-foreground
+      );
+    }
+
+    @at-root a:is(#{$root})[aria-disabled='true'][role='link'], // sass-lint:disable-line force-attribute-nesting
+    &:disabled {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-background}: var(
+        --v-button-default-disabled-background
+      );
+      #{--v-button-default-border-color}: var(
+        --v-button-default-disabled-border-color
+      );
+      #{--v-button-default-foreground}: var(
+        --v-button-default-disabled-foreground
+      );
+      cursor: default;
+      user-select: none; // prevent highlight when clicking on disabled button
+    }
+
+    &-small {
+      @include typography-button-small;
+      #{--typography-text-transform}: var(--v-button-default-text-transform);
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-block-size}: var(
+        --v-button-default-block-size-small
+      );
+      #{--v-button-default-padding-block}: var(
+        --v-button-default-padding-block-small
+      );
+      #{--v-button-default-padding-inline}: var(
+        --v-button-default-padding-inline-small
+      );
+      #{--v-button-default-badge-offset-x}: var(
+        --v-button-default-small-badge-offset-x
+      );
+      #{--v-button-default-icon-size}: var(--v-button-default-small-icon-size);
+    }
+
+    &-large {
+      @include typography-button-large;
+      // sass-lint:disable-block no-duplicate-properties
+      #{--typography-text-transform}: var(--v-button-default-text-transform);
+      #{--v-button-default-block-size}: var(
+        --v-button-default-block-size-large
+      );
+      #{--v-button-default-padding-block}: var(
+        --v-button-default-padding-block-large
+      );
+      #{--v-button-default-padding-inline}: var(
+        --v-button-default-padding-inline-large
+      );
+      #{--v-button-default-icon-size}: var(
+        --v-button-default-large-text-icon-size
+      );
+      #{--v-button-default-badge-offset-x}: var(
+        --v-button-default-large-badge-offset-x
+      );
+    }
+
+    &-secondary {
+      @each $default-token, $default-value in map-get($vars, 'default') {
+        @each $secondary-token, $secondary-value in map-get($vars, 'secondary')
+        {
+          @if $default-token == $secondary-token {
+            #{--v-button-default-#{$default-token}}: var(
+              --v-button-secondary-#{$secondary-token}
+            );
+          }
+        }
+      }
+    }
+
+    &-tertiary {
+      @each $default-token, $default-value in map-get($vars, 'default') {
+        @each $tertiary-token, $tertiary-value in map-get($vars, 'tertiary') {
+          @if $default-token == $tertiary-token {
+            #{--v-button-default-#{$default-token}}: var(
+              --v-button-tertiary-#{$tertiary-token}
+            );
+          }
+        }
+      }
+    }
+
+    &-destructive {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-background}: var(
+        --v-button-default-destructive-background
+      );
+      #{--v-button-default-border-color}: var(
+        --v-button-default-destructive-border-color
+      );
+      #{--v-button-default-foreground}: var(
+        --v-button-default-destructive-foreground
+      );
+      outline-color: var(--v-button-default-destructive-focus-outline);
+
+      &:hover {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-background}: var(
+          --v-button-default-destructive-hover-background
+        );
+        #{--v-button-default-border-color}: var(
+          --v-button-default-destructive-hover-border-color
+        );
+        #{--v-button-default-foreground}: var(
+          --v-button-default-destructive-hover-foreground
+        );
+      }
+
+      &:focus-visible {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-background}: var(
+          --v-button-default-destructive-focus-background
+        );
+        #{--v-button-default-border-color}: var(
+          --v-button-default-destructive-focus-border-color
+        );
+        #{--v-button-default-foreground}: var(
+          --v-button-default-destructive-focus-foreground
+        );
+      }
+
+      &:active {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-background}: var(
+          --v-button-default-destructive-active-background
+        );
+        #{--v-button-default-border-color}: var(
+          --v-button-default-destructive-active-border-color
+        );
+        #{--v-button-default-foreground}: var(
+          --v-button-default-destructive-active-foreground
+        );
+      }
+    }
+
+    // @TODO update disabled label color approach
+
+    // @TODO update disabled label color approach
+
+    // @TODO add/fix small secondary icon button
+
+    &-icon {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-block-size}: fit-content;
+      #{--v-button-default-border-radius}: var(
+        --v-button-default-border-radius-icon
+      );
+      #{--v-button-default-padding-inline}: var(
+        --v-button-default-padding-block
+      );
+      #{--v-button-default-inline-size}: fit-content;
+
+      &.v-button-large {
+        #{--v-button-default-icon-size}: var(
+          --v-button-default-large-icon-size
+        );
+      }
+
+      &:not(.v-button-secondary){
+        #{--v-button-default-border-size}: var(--v-button-default-icon-border-size);
+        #{--v-button-default-border-color}: var(--palette-default-transparent);
+        #{--v-button-default-padding-inline}: var(--v-button-default-icon-padding-block);
+        #{--v-button-default-padding-block}: var(--v-button-default-icon-padding-block);
+      }
+
+      &.v-button-small{
+        #{--v-button-default-padding-block}: calc(var(
+          --v-button-default-padding-block-small
+        ) - var(--v-button-default-border-size));
+        #{--v-button-default-padding-inline}: calc(var(
+          --v-button-default-padding-block-small
+        ) - var(--v-button-default-border-size));
+      }
+    }
+
+    &-subtle {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-background}: var(
+        --v-button-default-icon-subtle-background
+      );
+      #{--v-button-default-border-color}: var(
+        --v-button-default-icon-subtle-border-color
+      );
+      #{--v-button-default-foreground}: var(
+        --v-button-default-icon-subtle-foreground
+      );
+    }
+
+    .v-badge-number {
+      #{--v-badge-number-max-inline}: calc(
+        var(--v-button-default-block-size) *
+          var(--v-button-default-badge-inline-max)
+      );
+      position: absolute;
+
+      &,
+      &.v-badge-top-right {
+        /* @TODO consider changing these badge-offsets to values, not multipliers */
+        right: calc(
+          var(--v-badge-number-size) * -1 *
+            var(--v-button-default-badge-offset-x)
+        );
+        top: calc(
+          var(--v-badge-number-size) * -1 *
+            var(--v-button-default-badge-offset-y)
+        );
+      }
+
+      &.v-badge-top-left {
+        left: calc(
+          var(--v-badge-number-size) * -1 *
+            var(--v-button-default-badge-offset-x)
+        );
+        right: auto;
+      }
+
+      &.v-badge-bottom-right {
+        bottom: calc(
+          var(--v-badge-number-size) * -1 *
+            var(--v-button-default-badge-offset-y)
+        );
+        top: auto;
+      }
+
+      &.v-badge-bottom-left {
+        bottom: calc(
+          var(--v-badge-number-size) * -1 *
+            var(--v-button-default-badge-offset-y)
+        );
+        left: calc(
+          var(--v-badge-number-size) * -1 *
+            var(--v-button-default-badge-offset-x)
+        );
+        right: auto;
+        top: auto;
+      }
+    }
+
+    &:has(.v-avatar) {
+      // @TODO evaluate overriding avatar size here or use .v-avatar-small class in markup
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-avatar-size}: var(--v-avatar-small-size);
+      #{--v-button-default-padding-block}: calc(
+        ((var(--v-button-default-block-size) - var(--v-avatar-size)) / 2) -
+          var(--v-button-default-border-size)
+      );
+
+      &:has(.v-avatar .v-icon),
+      &:has(.v-avatar.v-icon) {
+        #{--v-button-default-padding-block}: calc(
+          (
+              (
+                  var(--v-button-default-block-size) -
+                    var(--v-avatar-small-icon-size)
+                ) / 2
+            ) - var(--v-button-default-border-size)
+        );
+      }
+
+      .v-avatar {
+        @include typography-button-small;
+      }
+    }
+
+    &-stacked {
+      min-inline-size: var(--v-button-default-stacked-min-inline-size);
+      @include typography-label-small;
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-block-size}: var(
+        --v-button-default-stacked-block-size
+      );
+      #{--v-button-default-direction}: column;
+      #{--v-button-default-gap}: var(--v-button-default-stacked-gap);
+      #{--v-button-default-icon-size}: var(
+        --v-button-default-stacked-icon-size
+      );
+      #{--v-button-default-padding-inline}: var(
+        --v-button-default-stacked-padding-inline
+      );
+    }
+  }
+}

@@ -1,0 +1,62 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/typography/vars' as *; 
+
+$vars: (
+  // horizontal
+  active-line-padding: var(--size-scalable-10),
+  border-bottom-size: 0,
+  group-gap: var(--size-scalable-6),
+  padding-inline: var(--size-scalable-12),
+  // vertical
+  vertical-active-line-padding: var(--size-responsive-8),
+  vertical-block-size: var(--size-responsive-40),
+  vertical-padding-block: calc(var(--size-responsive-11) - var(--v-button-default-border-size)),
+  vertical-padding-inline-end: calc(var(--size-responsive-14) - var(--v-button-default-border-size)),
+  vertical-padding-inline-start: calc(var(--size-responsive-10) - var(--v-button-default-border-size)),
+  vertical-nested-count: 0,
+  vertical-tab-indent: var(--size-scalable-14),
+  section-title-padding-block-start: var(--size-scalable-9),
+  section-title-padding-block-end: var(--size-scalable-3),
+  // shared
+  direction: row,
+  foreground-initial: var(--palette-default-text-subtle), // overrides button foreground for initial tabs, active tabs, and horizontal expanded tabs
+  icon-color-initial: var(--palette-default-active),
+  gap: var(--size-scalable-8),
+  icon-size: to-rem(18px),
+  default-highlight: var(--palette-default-transparent),
+  active-foreground: var(--palette-default-text),
+  selected-background: var(--palette-default-surface-3),
+  selected-highlight-border-size: var(--theme-border-size),
+  selected-highlight: var(--palette-default-active-hover),
+  expanded-icon-color: var(--palette-default-active-hover),
+  expanded-background: var(--palette-default-surface-lowlight),
+  expanded-foreground: var(--palette-default-text),
+  suffix-icon-size: to-rem(16px),
+  suffix-icon-color: var(--palette-default-active-subtle),
+  stacked-block-size: calc(var(--v-button-default-stacked-icon-size) + var(--typography-label-large-line-height) + var(--v-tabs-gap) + (var(--v-button-default-padding-block) * 2)),
+  outline-offset: 0px,
+);
+
+@layer components {
+  :root,
+  .v-alternate {
+    @each $token, $value in $vars {
+      #{--v-tabs-#{$token}}: #{$value};
+    }
+  }
+}

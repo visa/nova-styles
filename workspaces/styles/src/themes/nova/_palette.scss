@@ -1,0 +1,88 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@layer theme {
+  :root,
+  ::backdrop {
+    // palette default 
+    --palette-default-active: #1434cb; 
+    --palette-default-active-hover: #173be8;
+    --palette-default-active-pressed: #0f2595;
+    --palette-default-active-subtle: rgba(0, 0, 0, .5); 
+    --palette-default-active-accent: #fcc015;
+    --palette-default-surface-1: #ffffff; 
+    --palette-default-surface-2: #f5f5f5;
+    --palette-default-surface-3: #f0f0f0;
+    --palette-default-surface-highlight: rgba(179, 215, 255, 0.35);
+    --palette-default-surface-lowlight: rgba(179, 215, 255, 0.6);
+    --palette-default-text: #000000;
+    --palette-default-text-subtle: #4a4a4a;
+    --palette-default-text-on-active: #ffffff;
+    --palette-default-border: rgba(0, 0, 0, 0.1);
+    --palette-default-disabled: rgba(0, 0, 0, 0.2);
+    --palette-default-overlay: rgba(20, 34, 57, 0.4);
+    --palette-default-transparent: rgba(255, 255, 255, 0); 
+    // palette messaging success 
+    --palette-messaging-highlight-positive: rgba(214, 242, 196, 0.35);
+    --palette-messaging-lowlight-positive: rgba(214, 242, 196, 0.6);
+    --palette-messaging-surface-positive: #d6f2c4;
+    --palette-messaging-graphics-positive: #40996b;
+    --palette-messaging-text-hover-positive: #36815b;
+    --palette-messaging-text-positive: #2f6f4e;
+    --palette-messaging-text-pressed-positive: #1d4430;
+    // palette messaging warning
+    --palette-messaging-highlight-warning: #ffef99;
+    --palette-messaging-graphics-warning: #c38004;
+    --palette-messaging-text-warning: #875903;
+    // palette messaging negative 
+    --palette-messaging-highlight-negative: rgba(255, 214, 233, 0.35);
+    --palette-messaging-lowlight-negative: rgba(255, 214, 233, 0.6);
+    --palette-messaging-surface-negative: #ffd6e9;
+    --palette-messaging-graphics-negative: #d65151;
+    --palette-messaging-text-hover-negative: #d03939;
+    --palette-messaging-text-negative: #be2d2d;
+    --palette-messaging-text-pressed-negative: #8c2121;
+    // palette messaging info
+    --palette-messaging-highlight-info: #c7edff;
+    --palette-messaging-graphics-info: #0088c7;
+    --palette-messaging-text-info: #005e8a;
+    // brand
+    --palette-accent-app-name: #1434CB;
+  }
+
+  .v-alternate {
+    // palette alternate 
+    --palette-default-active: #fcc015; 
+    --palette-default-active-hover: #fcc936;
+    --palette-default-active-pressed: #d39d03;
+    --palette-default-active-subtle: rgba(255, 255, 255, 0.5);
+    --palette-default-active-accent: #ffffff;
+    --palette-default-surface-1: #1434cb;
+    --palette-default-surface-2: #122fba;
+    --palette-default-surface-3: #112aa7;
+    --palette-default-surface-highlight: rgba(2, 30, 76, 0.35);
+    --palette-default-surface-lowlight: rgba(2, 30, 76, 0.6);
+    --palette-default-text: #ffffff; 
+    --palette-default-text-subtle: #d9d9d9;
+    --palette-default-text-on-active: #021e4c;
+    --palette-default-border: rgba(255, 255, 255, 0.1);
+    --palette-default-disabled: rgba(255, 255, 255, 0.2);
+    --palette-default-overlay: rgba(255, 255, 255, 0.4); 
+    --palette-default-transparent: rgba(0, 0, 0, 0);
+    --palette-accent-app-name: #fff;
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "@visa/nova-styles",
+  "version": "1.6.1",
+  "description": "Visa Product Design System Nova HTML+CSS library",
+  "author": "Visa Product Design System",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.css",
+  "scripts": {
+    "build": "npm-run-all --parallel build:css build:docs",
+    "build:css": "sass src:dist --style compressed --no-source-map",
+    "build:docs": "npm-run-all --serial build:docs:workshop build:docs:api",
+    "build:docs:workshop": "run-node bin/build-docs.js",
+    "build:docs:api": "run-node bin/format-docs.js --dest=dist",
+    "build:watch": "npm-run-all --parallel build:*:watch",
+    "build:css:watch": "sass src:dist --watch",
+    "build:docs:watch": "run-node bin/build-docs.js --watch",
+    "generate:component": "run-node bin/generator.js component",
+    "generate:theme": "run-node bin/generator.js theme",
+    "generate:changelog": "npm-run-all --serial generate:changelog:file generate:changelog:format",
+    "generate:changelog:file": "standard-version --skip.bump --skip.commit --skip.tag",
+    "generate:changelog:format": "run-node bin/format-changelog.js",
+    "release": "standard-version --skip.commit --skip.tag",
+    "release:major": "npm-run-all release -- --release-as major",
+    "release:minor": "npm-run-all release -- --release-as minor",
+    "release:patch": "npm-run-all release -- --release-as patch",
+    "lint": "sass-lint --config ./.sass-lint.yml './src/scss/components/**/*.scss' -q -v",
+    "test": "echo \"Error: no test specified\""
+  },
+  "standard-version": {
+    "commitUrlFormat": "Learn more at: https://design.visa.com/developing/styles/changelog",
+    "compareUrlFormat": "Learn more at: https://design.visa.com/developing/styles/changelog",
+    "issueUrlFormat": "Learn more at: https://design.visa.com/developing/styles/changelog",
+    "userUrlFormat": "Learn more at: https://design.visa.com/developing/styles/changelog"
+  },
+  "keywords": [
+    "visa",
+    "design",
+    "system",
+    "css",
+    "visa product design system",
+    "visa design system",
+    "visa design"
+  ],
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chokidar": "3.6.0",
+    "moment": "2.30.1",
+    "npm-run-all": "4.1.5",
+    "parse-md": "2.0.5",
+    "postcss": "8.4.16",
+    "run-node": "2.0.0",
+    "sass": "1.72.0",
+    "sass-lint": "1.13.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

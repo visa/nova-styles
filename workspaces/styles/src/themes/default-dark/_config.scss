@@ -1,0 +1,54 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+// colors 
+$primary: #dddddd; 
+$secondary: #303033; 
+$lightest: #ffffff; 
+$darkest: #000000; 
+$positive: #148a0a; 
+$warning: #cca002; 
+$negative: #b80600; 
+$info: #1e78a8; 
+
+// font base size  
+$font-size: 12px; 
+
+// focus outline 
+$focus-outline-size: 1px; 
+$focus-outline-offset: 1px; 
+
+// borders 
+$border-size: 1px;
+$border-radius: 4px; 
+
+// responsive sizing factor
+$responsive-factor: 1.25; 
+
+// scaled size factor
+$scale-factor: 1;
+
+
+// exceptions
+@layer overrides {
+  :root,
+  ::backdrop,
+  .v-alternate {
+    --v-logo-color: var(--color-lightest);
+    --v-logo-hc-background: #000;
+    --v-tabs-suffix-icon-color: var(--color-secondary-70)
+  }
+}

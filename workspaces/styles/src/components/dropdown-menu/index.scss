@@ -1,0 +1,121 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../abstracts/action-secondary' as *;
+@use '../../base/typography/vars' as *;
+
+
+@layer components {
+  .v-dropdown {
+    $root: &;
+
+    // don't add margin-block-start within combobox b/c combobox has it's own gap
+    &:not(:has(.v-input[aria-expanded='true'])) {
+      &+.v-surface,
+      &+.v-listbox-container {
+        &:has(.v-listbox) {
+          margin-block-start: var(--v-dropdown-menu-surface-margin-block-start);
+        }
+      }
+    }
+
+    &[aria-expanded='true'],
+    &:has(.v-input[aria-expanded='true']) {
+      &+.v-surface,
+      &+.v-listbox-container {
+        &:has(.v-listbox) {
+          // @TODO explore adding surface elevation
+          box-shadow: var(--elevation-xlarge);
+          display: flex;
+        }
+
+        .v-listbox-item {
+          #{--v-action-secondary-border-size}: var(--v-listbox-border-size);
+
+          @media (prefers-contrast: more) and (forced-colors: active) {
+            border-width: 1px;
+            border-color: transparent;
+          }
+
+          &:not(.v-button-destructive):not(:disabled) {
+            .v-listbox-item-label {
+              color: var(--palette-default-text);
+            }
+            .v-icon {
+              color: var(--palette-default-active-subtle)
+            }
+          }
+
+          &.v-button {
+            #{--v-button-default-justify-content}: start;
+
+            &-destructive {
+              @include typography-label-large-active;
+            }
+          }
+        }
+      }
+
+      &.v-button {
+        &:has(+ .v-surface *:focus-visible),
+        &:has(+ .v-listbox-container *:focus-visible) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-button-default-background}: var(--v-button-default-active-background);
+          #{--v-button-default-border-color}: var(--v-button-default-active-border-color);
+          #{--v-button-default-foreground}: var(--v-button-default-active-foreground);
+        }
+      }
+    }
+    //for custom dropdown menu like subnav
+    &-menu {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-surface-border-color}: var(--palette-default-border);
+      #{--v-surface-border-radius}: var(--size-rounded-large);
+      #{--v-surface-border-size}: 1px;
+      #{--v-surface-padding-block}: 0px;
+      #{--v-surface-padding-inline}: 0px; 
+      box-shadow: var(--elevation-xlarge);
+      display: flex;
+      li.v-listbox-item { // previous examples with list
+        
+        .v-link,
+        .v-button {
+          #{--v-button-default-justify-content}: start;
+          
+          &-destructive {
+            @include typography-label-large-active;
+          }
+        }
+      }
+      li .v-listbox-item { // new examples
+        width: 100%;
+        @include action-secondary(&); // allow hover, focus, active, and disabled states to still apply on selected item
+        @include typography-label-large;
+
+        &.v-button-destructive:not(:disabled) {
+          // @include typography-label-large-active;
+          color: var(--v-button-default-foreground) !important; // getting used but overridden by above
+          &:hover,
+          &:focus {
+            background-color: var(--v-button-default-background);
+          }
+        }
+      }
+    }
+  }
+}

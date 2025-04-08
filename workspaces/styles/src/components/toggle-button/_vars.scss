@@ -1,0 +1,84 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+$vars: (
+
+  // default 
+  background: var(--palette-default-surface-1),
+  foreground: var(--palette-default-text),
+  elevation: var(--elevation-inset),
+  input-appearance: none,
+  input-clip: rect(0, 0, 0, 0),
+  input-position: absolute,
+  padding-block-end: var(--size-responsive-10),
+  padding-block-end-active: calc(var(--size-scalable-10) - var(--v-toggle-indicator-size)),
+  padding-block-start: var(--size-responsive-10),
+  padding-inline-end: var(--size-responsive-8),
+  padding-inline-start: var(--size-responsive-8),
+  padding: var(--v-toggle-padding-block-start) var(--v-toggle-padding-inline-end) var(--v-toggle-padding-block-end) var(--v-toggle-padding-inline-start),
+  icon-padding: var(--size-responsive-6),
+  icon-padding-block-end-active: calc(var(--size-responsive-6) - var(--v-toggle-indicator-size)),
+  text-transform: none,
+  
+  //borders
+  border-none: none, //for last child of toggle
+  border-inline-end: var(--size-responsive-1) solid var(--palette-default-active),
+  //container-border: var(--v-toggle-container-border-size) var(--v-toggle-container-border-style) var(--v-toggle-container-border-color),
+  // container-border-color: var(--palette-default-active),
+  // container-border-size: var(--size-responsive-1),
+  // container-border-style: solid,
+  container-border: 0 0 0 var(--size-responsive-1) var(--palette-default-active),
+  container-border-radius: var(--size-rounded-medium),
+  
+  //hover
+  hover-background: var(--palette-default-surface-highlight),
+  hover-icon-color: var(--palette-default-active-hover),
+  
+  //focus
+  focus-background: var(--palette-default-surface-highlight),
+  focus-icon-color: var(--palette-default-active-hover),
+  focus-offset: calc(-1 * var(--size-responsive-6)),
+  
+  //active or checked
+  indicator-color: var(--palette-default-active),
+  indicator-size: var(--size-responsive-2),
+  indicator-style: solid,
+  active-background: var(--palette-default-surface-3),
+  active-foreground: var(--palette-default-text),
+  active-icon-color: var(--palette-default-active),
+
+  //pressed
+  pressed-background: var(--palette-default-surface-lowlight),
+  pressed-icon-color: var(--palette-default-active-pressed),
+  pressed-indicator-color: var(--palette-default-active-pressed),
+  
+  //disabled
+  disabled-background: var(--palette-default-surface-1),
+  disabled-border-color: var(--palette-default-disabled),
+  disabled-border-inline-end: var(--size-responsive-1) solid var(--palette-default-disabled),
+  disabled-container-border: 0 0 0 var(--size-responsive-1) var(--palette-default-disabled),
+  disabled-foreground: var(--palette-default-disabled),
+  );
+  
+// generate component css variables 
+@layer components {
+  :root,
+  .v-alternate {
+    @each $token, $value in $vars {
+      #{--v-toggle-#{$token}}: #{$value};
+    }
+  }
+}

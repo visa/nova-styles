@@ -1,0 +1,231 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@layer theme {
+  :root,
+  ::backdrop {
+    // palette default 
+    --palette-default-active: #1434cb; 
+    --palette-default-active-hover: #173be8;
+    --palette-default-active-pressed: #0f2595;
+    --palette-default-active-subtle: rgba(0, 0, 0, .5); 
+    --palette-default-active-accent: #fcc015;
+    --palette-default-surface-1: #ffffff; 
+    --palette-default-surface-2: #f5f5f5;
+    --palette-default-surface-3: #f0f0f0;
+    --palette-default-surface-highlight: rgba(179, 215, 255, 0.35);
+    --palette-default-surface-lowlight: rgba(179, 215, 255, 0.6);
+    --palette-default-text: #000000;
+    --palette-default-text-subtle: #4a4a4a;
+    --palette-default-text-on-active: #ffffff;
+    --palette-default-border: rgba(0, 0, 0, 0.1);
+    --palette-default-disabled: rgba(0, 0, 0, 0.2);
+    --palette-default-overlay: rgba(20, 34, 57, 0.4);
+    --palette-default-transparent: rgba(255, 255, 255, 0); 
+    // palette messaging success 
+    --palette-messaging-highlight-positive: rgba(214, 242, 196, 0.35);
+    --palette-messaging-lowlight-positive: rgba(214, 242, 196, 0.6);
+    --palette-messaging-surface-positive: #d6f2c4;
+    --palette-messaging-graphics-positive: #40996b;
+    --palette-messaging-text-hover-positive: #327753;
+    --palette-messaging-text-positive: #2C6849;
+    --palette-messaging-text-pressed-positive: #1A3D2B;
+    // palette messaging warning
+    --palette-messaging-highlight-warning: #ffef99;
+    --palette-messaging-graphics-warning: #c38004;
+    --palette-messaging-text-warning: #875903;
+    // palette messaging negative 
+    --palette-messaging-highlight-negative: rgba(255, 214, 233, 0.35);
+    --palette-messaging-lowlight-negative: rgba(255, 214, 233, 0.6);
+    --palette-messaging-surface-negative: #ffd6e9;
+    --palette-messaging-graphics-negative: #d65151;
+    --palette-messaging-text-hover-negative: #C62F2F;
+    --palette-messaging-text-negative: #AD2929;
+    --palette-messaging-text-pressed-negative: #7C1D1D;
+    // palette messaging info
+    --palette-messaging-highlight-info: #c7edff;
+    --palette-messaging-graphics-info: #0088c7;
+    --palette-messaging-text-info: #005e8a;
+    // brand and logo
+    --palette-accent-app-name: #1434CB;
+  }
+
+  .v-alternate {
+    // palette alternate 
+    --palette-default-active: #fcc015; 
+    --palette-default-active-hover: #fcc936;
+    --palette-default-active-pressed: #d39d03;
+    --palette-default-active-subtle: rgba(255, 255, 255, 0.5);
+    --palette-default-active-accent: #ffffff;
+    --palette-default-surface-1: #1434cb;
+    --palette-default-surface-2: #122fba;
+    --palette-default-surface-3: #112aa7;
+    --palette-default-surface-highlight: rgba(2, 30, 76, 0.35);
+    --palette-default-surface-lowlight: rgba(2, 30, 76, 0.6);
+    --palette-default-text: #ffffff; 
+    --palette-default-text-subtle: #d9d9d9;
+    --palette-default-text-on-active: #021e4c;
+    --palette-default-border: rgba(255, 255, 255, 0.1);
+    --palette-default-disabled: rgba(255, 255, 255, 0.2);
+    --palette-default-overlay: rgba(255, 255, 255, 0.4); 
+    --palette-default-transparent: rgba(0, 0, 0, 0);
+    --palette-accent-app-name: #fff;
+  }
+
+  [data-theme="dark"],
+  .v-dark {
+    // palette default
+    --palette-default-active: #BDEAFF; 
+    --palette-default-active-hover: #DBF4FF; 
+    --palette-default-active-pressed: #80D7FF;
+    --palette-default-active-subtle: #FFFFFF7E;
+    --palette-default-active-accent: #FCC015; 
+    --palette-default-border: #FFFFFF0F;
+    --palette-default-disabled:#FFFFFF1F;
+    --palette-default-surface-1:#0A0A0A;
+    --palette-default-surface-2:#1A1A1A 	;
+    --palette-default-surface-3:#2E2E2E	;
+    --palette-default-surface-highlight:#0000005A; // 35%
+    --palette-default-surface-lowlight:#00000099; // 60%
+    --palette-default-text-on-active:#2E2E2E; 
+    --palette-default-text-subtle:#D9D9D9;
+    --palette-default-text:#FFFFFF;
+    --palette-default-overlay: rgba(0, 0, 0, 0.4);
+    --palette-default-transparent: rgba(0, 0, 0, 0); 
+    // palette messaging success
+    --palette-messaging-highlight-positive:#23533A5A;
+    --palette-messaging-lowlight-positive:#23533A99;
+    --palette-messaging-surface-positive:#23533A;
+    --palette-messaging-graphics-positive:#40996B;
+    --palette-messaging-text-hover-positive:#C2E5D3;
+    --palette-messaging-text-positive:#DFF1E8;
+    --palette-messaging-text-pressed-positive: #81CAA4;
+    // palette messaging warning
+    --palette-messaging-highlight-warning:hsla(39, 96%, 28%, 0.35);
+    --palette-messaging-lowlight-warning:hsla(39, 96%, 28%, 0.6);
+    --palette-messaging-surface-warning:#4B3102; // hsla(39, 96%, 16%, 1);
+    --palette-messaging-graphics-warning:#C38004; // hsla(39, 96%, 28%, 1);
+    --palette-messaging-text-hover-warning:hsla(39, 96%, 68%, 1);
+    --palette-messaging-text-pressed-warning:hsla(39, 96%, 50%, 1);
+    --palette-messaging-text-warning: #FEE8BE; // hsla(39, 96%, 76%, 1)
+    // palette messaging negative 
+    --palette-messaging-highlight-negative: #9D25255A;
+    --palette-messaging-lowlight-negative: #9D252599;
+    --palette-messaging-surface-negative: #9D2525;
+    --palette-messaging-graphics-negative:#D65151;
+    --palette-messaging-text-hover-negative: #FDF7F7;
+    --palette-messaging-text-negative: #F7DEDE;
+    --palette-messaging-text-pressed-negative:#ECACAC;
+    // palette messaging info
+    --palette-messaging-highlight-info:hsla(198, 59%, 25%, 0.35);
+    --palette-messaging-lowlight-info:hsla(198, 59%, 25%, 0.6);
+    --palette-messaging-surface-info: #00344D;
+    --palette-messaging-graphics-info: #0088C7;
+    --palette-messaging-text-hover-info:hsla(198, 59%, 65%, 1);
+    --palette-messaging-text-info: #BDEAFF;
+    --palette-messaging-text-pressed-info:hsla(198, 59%, 47%, 1);
+    // brand
+    --palette-accent-app-name: #fff;
+  }
+
+  [data-theme="dark"] .v-alternate,
+  .v-dark .v-alternate {
+    // palette alternate 
+    --palette-default-active: #BDEAFF; 
+    --palette-default-active-hover: #DBF4FF;
+    --palette-default-active-pressed: #80D7FF;
+    --palette-default-active-accent: #FCC015;
+    --palette-default-surface-1: #2E2E2E;
+    --palette-default-surface-2: #1A1A1A;
+    --palette-default-surface-3: #0A0A0A;
+    --palette-default-text-on-active: #0A0A0A;
+    --palette-default-transparent: rgba(0, 0, 0, 0);
+    // brand and logo
+    --palette-accent-app-name: #fff;
+  }  
+
+  @media (prefers-color-scheme: dark) {
+    :root,
+    ::backdrop {
+      // palette default
+      --palette-default-active: #BDEAFF; 
+      --palette-default-active-hover: #DBF4FF; 
+      --palette-default-active-pressed: #80D7FF;
+      --palette-default-active-subtle: #FFFFFF7E;
+      --palette-default-active-accent: #FCC015; 
+      --palette-default-border: #FFFFFF0F;
+      --palette-default-disabled:#FFFFFF1F;
+      --palette-default-surface-1:#0A0A0A;
+      --palette-default-surface-2:#1A1A1A 	;
+      --palette-default-surface-3:#2E2E2E	;
+      --palette-default-surface-highlight:#0000005A; // 35%
+      --palette-default-surface-lowlight:#00000099; // 60%
+      --palette-default-text-on-active:#2E2E2E; 
+      --palette-default-text-subtle:#D9D9D9;
+      --palette-default-text:#FFFFFF;
+      --palette-default-overlay: rgba(0, 0, 0, 0.4);
+      --palette-default-transparent: rgba(0, 0, 0, 0); 
+      // palette messaging success
+      --palette-messaging-highlight-positive:#23533A5A;
+      --palette-messaging-lowlight-positive:#23533A99;
+      --palette-messaging-surface-positive:#23533A;
+      --palette-messaging-graphics-positive:#40996B;
+      --palette-messaging-text-hover-positive:#C2E5D3;
+      --palette-messaging-text-positive:#DFF1E8;
+      --palette-messaging-text-pressed-positive: #81CAA4;
+      // palette messaging warning
+      --palette-messaging-highlight-warning:hsla(39, 96%, 28%, 0.35);
+      --palette-messaging-lowlight-warning:hsla(39, 96%, 28%, 0.6);
+      --palette-messaging-surface-warning:#4B3102; // hsla(39, 96%, 16%, 1);
+      --palette-messaging-graphics-warning:#C38004; // hsla(39, 96%, 28%, 1);
+      --palette-messaging-text-hover-warning:hsla(39, 96%, 68%, 1);
+      --palette-messaging-text-pressed-warning:hsla(39, 96%, 50%, 1);
+      --palette-messaging-text-warning: #FEE8BE; // hsla(39, 96%, 76%, 1)
+      // palette messaging negative 
+      --palette-messaging-highlight-negative: #9D25255A;
+      --palette-messaging-lowlight-negative: #9D252599;
+      --palette-messaging-surface-negative: #9D2525;
+      --palette-messaging-graphics-negative:#D65151;
+      --palette-messaging-text-hover-negative: #FDF7F7;
+      --palette-messaging-text-negative: #F7DEDE;
+      --palette-messaging-text-pressed-negative:#ECACAC;
+      // palette messaging info
+      --palette-messaging-highlight-info:hsla(198, 59%, 25%, 0.35);
+      --palette-messaging-lowlight-info:hsla(198, 59%, 25%, 0.6);
+      --palette-messaging-surface-info: #00344D;
+      --palette-messaging-graphics-info: #0088C7;
+      --palette-messaging-text-hover-info:hsla(198, 59%, 65%, 1);
+      --palette-messaging-text-info: #BDEAFF;
+      --palette-messaging-text-pressed-info:hsla(198, 59%, 47%, 1);
+      // brand and logo
+      --palette-accent-app-name: #fff;
+    }
+
+    .v-alternate {
+      // palette alternate 
+      --palette-default-active: #BDEAFF; 
+      --palette-default-active-hover: #DBF4FF;
+      --palette-default-active-pressed: #80D7FF;
+      --palette-default-active-accent: #FCC015;
+      --palette-default-surface-1: #2E2E2E;
+      --palette-default-surface-2: #1A1A1A;
+      --palette-default-surface-3: #0A0A0A;
+      --palette-default-text-on-active: #0A0A0A;
+      --palette-default-transparent: rgba(0, 0, 0, 0);
+    }
+  }
+}

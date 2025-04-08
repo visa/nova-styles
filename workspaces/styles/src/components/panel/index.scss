@@ -1,0 +1,136 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+
+@layer components {
+  .v-panel {
+    $root: &;
+    block-size: var(--v-panel-block-size);
+    inline-size: var(--v-panel-inline-size);
+    max-block-size: 100vh;
+    max-inline-size: fit-content;
+    min-block-size: var(--v-panel-block-size);
+    min-inline-size: var(--v-panel-inline-size);
+
+    /* responsive panel */
+    &:not(dialog) {
+      display: var(--v-panel-display);
+      overflow: visible; // needed to see toggle button which is absolutely positioned outside of panel
+      position: var(--v-panel-position);
+    }
+
+    /* modal panel */ 
+    @at-root dialog#{$root} {
+      background-color: var(--palette-default-transparent);
+      border: 0;
+      display: none;
+      filter: var(--v-panel-drop-shadow);
+      margin: 0;
+      margin-inline-start: auto;
+      margin-inline-end: 0;
+      padding: 0;
+  
+      &[open] {
+        display: var(--v-panel-display);
+      }
+
+      &::backdrop {
+        background-color: var(--palette-default-transparent); 
+      }
+
+      &#{$root}-skrim {
+        &::backdrop {
+          background-color: var(--palette-default-overlay); 
+        }
+      }
+    }
+
+    &-body {
+      padding-block-end: var(--v-panel-padding);
+      padding-inline: var(--v-panel-padding);
+    }
+    
+    header,
+    &-header {
+      margin-block-end: var(--v-panel-header-margin-block-end);
+      padding-block-start: var(--v-panel-padding);
+      padding-inline: var(--v-panel-padding);
+    }
+    
+    &-content {
+      min-block-size: 100%;
+      overflow-y: auto;
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-surface-border-radius}: var(--size-rounded-none); 
+      #{--v-surface-border-size}: var(--size-scalable-0); 
+      #{--v-surface-padding-block}: var(--size-scalable-0); 
+      #{--v-surface-padding-inline}: var(--size-scalable-0);
+    }
+    
+    &-expandable,
+    &-responsive {
+      .v-panel-content {
+        border-color: var(--v-panel-border-color);
+        border-width: var(--v-panel-border-width);
+      }
+    }
+
+    // responsive expandable with toggle expanded 
+    @at-root #{&}-expandable:has(.v-panel-toggle:not([aria-expanded='true'])) {
+      #{--v-panel-inline-size}: 0;
+    }
+
+    &-responsive {
+      #{--v-panel-drop-shadow}: drop-shadow();
+    }
+
+    &-tabs {
+      padding-block-start: var(--v-panel-padding);
+      padding-inline: var(--v-panel-padding);
+    }
+
+    &-toggle {
+      border-width: var(--v-panel-toggle-border-width) 0 var(--v-panel-toggle-border-width) var(--v-panel-toggle-border-width);
+      margin-block-start: var(--v-panel-toggle-margin-block-start);
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-padding-block}: var(--v-panel-toggle-padding);
+      #{--v-button-default-padding-inline}: var(--v-panel-toggle-padding);
+      // #{--v-button-default-border-color}: var(--v-panel-toggle-border-color); // @TODO evaluate removal of variable 
+      #{--v-button-default-border-radius}: var(--v-panel-toggle-border-radius);
+    }
+
+    // @at-root .v-panel-expandable[open] .v-panel-toggle {
+    //   margin-inline-end: -1px; 
+    // }
+
+    @at-root .v-panel-expandable:not(.v-panel[open]) .v-panel-toggle {
+      inset-inline-start: calc(-1 * (var(--v-button-default-icon-size) + (2 * var(--v-button-default-padding-inline)))); // @TODO: address if we enable having panel come from any direction
+      position: absolute;
+    }
+  
+  }
+
+  @media (max-width: 360px) { 
+    .v-panel {
+      min-inline-size: 0;
+      &.v-panel-responsive.v-panel-expandable {
+        max-inline-size: calc(100% - (var(--v-button-default-icon-size) + (2 * var(--v-button-default-padding-inline))));
+      }
+    }
+  }
+}

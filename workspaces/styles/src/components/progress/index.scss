@@ -1,0 +1,256 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+
+
+
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+
+@layer components {
+  .v-progress {
+    $root: &;
+    animation-play-state: inherit;
+    position: relative;
+
+    @media (preference-reduced-motion) {
+      #{--theme-animation-factor}: 0;
+    }
+
+    &-complete {
+      & + .v-progress-label {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-icon-primary}: var(--v-progress-icon-complete-color);
+        #{--v-icon-secondary}: var(--v-progress-icon-complete-color);
+      }
+    }
+    
+    &-error {
+      & + .v-progress-label {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-progress-label-default-color}: var(--v-progress-label-error-color);
+        #{--v-icon-primary}: var(--v-progress-icon-error-color);
+        #{--v-icon-secondary}: var(--v-progress-icon-error-color);
+      }
+    }
+
+    & + .v-progress-label {
+      @include typography-label;
+      color: var(--v-progress-label-default-color);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    &-bar {
+      
+      @media (prefers-contrast: more) and (forced-colors: active) {
+        border: var(--v-progress-bar-high-contrast-border);
+      }
+      
+      block-size: var(--v-progress-bar-thickness);
+      border-radius: var(--v-progress-bar-border-radius);
+
+      inline-size: var(--v-progress-bar-inline-size);
+      overflow: hidden;
+      
+      &::-webkit-progress-bar {
+        background-color: var(--v-progress-bar-background-color);
+        border-radius: var(--v-progress-bar-border-radius);
+      }
+      &::-moz-progress-bar {
+        background-color: var(--v-progress-bar-background-color);
+        border-radius: var(--v-progress-bar-border-radius);
+      }
+
+      &::-webkit-progress-value {
+        background-color: var(--v-progress-bar-foreground-color);
+        block-size: var(--v-progress-bar-width);
+        border-radius: var(--v-progress-bar-border-radius);
+
+        @media (prefers-contrast: more) and (forced-colors: active) {
+          outline: 2px solid transparent;
+          outline-offset: -2px;
+        }
+      }
+    
+      &:not([value]) {
+        &::after {
+          -webkit-animation: progress-bar-animation-indeterminate calc(3s * var(--v-progress-animation-factor)) infinite linear;
+          animation: progress-bar-animation-indeterminate calc(3s * var(--v-progress-animation-factor)) infinite linear;
+          animation-play-state: inherit;
+          background-color: var(--v-progress-bar-foreground-color);
+          block-size: var(--v-progress-bar-width);
+          border-radius: var(--v-progress-bar-border-radius);
+          content: '';
+          inline-size: var(--v-progress-bar-indeterminate-width);
+          margin-block-start: calc(var(--v-progress-bar-thickness) * -1);
+          position: absolute;
+          
+          @media (prefers-contrast: more) and (forced-colors: active) {
+            border-block-start: var(--v-progress-bar-thickness) solid currentColor;
+            height: var(--v-progress-bar-thickness);
+          }
+        }
+      }
+    }
+
+    &-circular {
+
+      &-track {
+        block-size: var(--v-progress-circular-size);
+        display: var(--v-progress-display);
+        inline-size: var(--v-progress-circular-size);
+      }
+
+      &-background {
+        cx: calc(var(--v-progress-circular-size) / 2);
+        cy: calc(var(--v-progress-circular-size) / 2);
+        fill: transparent;
+        r: calc((var(--v-progress-circular-size) - var(--v-progress-bar-thickness)) / 2);
+        stroke: var(--v-progress-bar-background-color);
+        stroke-linecap: var(--v-progress-circular-line-cap);
+        stroke-width: var(--v-progress-bar-thickness);
+        @media (prefers-contrast: more) and (forced-colors: active) {
+          stroke: Canvas;
+        }
+      }
+
+      &-bar {
+        -webkit-transform: var(--v-progress-circular-transform);
+        -webkit-transform-origin: var(--v-progress-circular-origin);
+        cx: calc(var(--v-progress-circular-size) / 2);
+        cy: calc(var(--v-progress-circular-size) / 2);
+        fill: transparent;
+        r: calc((var(--v-progress-circular-size) - var(--v-progress-bar-thickness)) / 2);
+        stroke: var(--v-progress-bar-foreground-color);
+        stroke-linecap: var(--v-progress-circular-line-cap);
+        stroke-width: var(--v-progress-bar-thickness);
+        transform: var(--v-progress-circular-transform);
+        transform-origin: var(--v-progress-circular-origin);
+        @media (prefers-contrast: more) and (forced-colors: active) {
+          stroke: currentColor;
+        }
+      }
+
+      .v-progress-label {
+        align-items: center;
+        block-size: var(--v-progress-circular-size);
+        display: grid;
+        inline-size: var(--v-progress-circular-size);
+        inset-block-start: var(--v-progress-circular-label-inset-block-start);
+        justify-content: center;
+        position: absolute;
+      }
+
+      &:is(.v-progress-indeterminate) {
+
+        .v-progress-circular-track {
+          animation: progress-spinner-animation-background-indeterminate calc(5s * var(--v-progress-animation-factor)) infinite linear;
+          animation-play-state: inherit;
+        }
+        
+        .v-progress-circular-background {
+          animation: progress-spinner-animation-background-indeterminate calc(3s * var(--v-progress-animation-factor)) infinite linear;
+          animation-play-state: inherit;
+          stroke-dasharray: var(--v-progress-circular-background-dasharray);
+          stroke-dashoffset: var(--v-progress-circular-background-dashoffset);
+        }
+        .v-progress-circular-bar {
+          animation: progress-spinner-animation-foreground-indeterminate calc(3s * var(--v-progress-animation-factor)) infinite linear;
+          animation-play-state: inherit;
+          stroke-dasharray: var(--v-progress-circular-bar-dasharray);
+          stroke-dashoffset: var(--v-progress-circular-bar-dashoffset);
+        }
+      }
+
+      &:is(.v-progress-circular-small) {
+        .v-progress-circular-track {
+          #{--v-progress-circular-size}: var(--v-progress-circular-size-small);
+        }
+  
+        .v-progress-label {
+          #{--v-progress-circular-size}: var(--v-progress-circular-size-small);
+        }
+      }
+    }
+  }
+
+
+
+  // Animation Styles
+
+  @keyframes progress-bar-animation-indeterminate {
+    0% {
+      inline-size: 20%;
+      inset-inline-start: -20%;
+    }
+
+    50% {
+      inline-size: 20%;
+    }
+
+    100% {
+      inline-size: 20%;
+      inset-inline-start: 100%;
+    }
+  }
+
+  @keyframes progress-spinner-animation-foreground-indeterminate {
+    0% {
+      stroke-dashoffset: 241.41;
+      transform: rotate(0deg);
+      transform-origin: 50% 50%;
+    }
+  
+    65% {
+      stroke-dashoffset: 280.76;
+    }
+  
+    80% {
+      stroke-dashoffset: 280.76;
+    }
+  
+    100% {
+      stroke-dashoffset: 241.41;
+      transform: rotate(720deg);
+      transform-origin: 50% 50%;
+    }
+  
+  }
+  
+  @keyframes progress-spinner-animation-background-indeterminate {
+    0% {
+      stroke-dashoffset: 137.37;
+      transform: rotate(0deg);
+      transform-origin: 50% 50%;
+    }
+  
+    65% {
+      stroke-dashoffset: 326.76;
+    }
+  
+    80% {
+      stroke-dashoffset: 266.41;
+    }
+  
+    100% {
+      stroke-dashoffset: 137.37;
+      transform: rotate(720deg);
+      transform-origin: 50% 50%;
+    }
+  }
+}

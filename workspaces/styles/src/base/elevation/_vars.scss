@@ -1,0 +1,74 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+$elevation-properties: (
+  none: (
+    offset-x: 0,
+    offset-y: 0,
+    blur-radius: 0,
+    spread: 0,
+    color: var(--palette-default-transparent)
+  ),
+  inset: (
+    offset-x: 0, 
+    offset-y: 0,
+    blur-radius: 4px,
+    spread: 0,
+    color: var(--palette-default-disabled)
+  ),
+  xsmall: (
+    offset-x: 0,
+    offset-y: 1px,
+    blur-radius: 3px,
+    spread: 0,
+    color: var(--palette-default-disabled)
+  ),
+  small: (
+    offset-x: 0, 
+    offset-y: 2px, 
+    blur-radius: 6px,
+    spread: -1px,
+    color: var(--palette-default-disabled)
+  ),
+  medium: (
+    offset-x: 0,
+    offset-y: 4px,
+    blur-radius: 15px,
+    spread: -1px,
+    color: var(--palette-default-disabled)
+  ),
+  large: (
+    offset-x: 0,
+    offset-y: 10px,
+    blur-radius: 18px,
+    spread: -3px,
+    color: var(--palette-default-disabled)
+  ),
+  xlarge: (
+    offset-x: 0,
+    offset-y: 20px,
+    blur-radius: 25px,
+    spread: -5px,
+    color: var(--palette-default-disabled)
+  ),
+  xxlarge: (
+    offset-x: 0, 
+    offset-y: 25px, 
+    blur-radius: 50px,
+    spread: -12px,
+    color: var(--palette-default-disabled)
+  )
+); 

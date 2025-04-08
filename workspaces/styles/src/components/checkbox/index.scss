@@ -1,0 +1,246 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+ 
+@use './vars' as *; 
+@use '../../base/accessibility' as *;
+
+
+
+@layer components {
+  .v-checkbox {    
+    
+    $root: &;
+    align-items: center;
+    appearance: none;
+    background-color: var(--v-checkbox-indicator-background);
+    block-size: var(--v-checkbox-indicator-block-size); 
+    border-color: var(--v-checkbox-color); 
+    border-radius: var(--v-checkbox-border-radius); 
+    border-style: var(--v-checkbox-border-style); 
+    border-width: var(--v-checkbox-border-size); 
+    box-shadow: 0px 0px 0px var(--v-checkbox-glow-offset) var(--v-checkbox-glow-color);
+    box-sizing: border-box; 
+    color: var(--v-checkbox-indicator-foreground); 
+    cursor: pointer;
+    direction: ltr; // ensure checkmark before and after don't swap on dir="rtl"
+    display: inline-flex;
+    flex-shrink: 0;
+    inline-size: var(--v-checkbox-indicator-block-size); 
+    justify-content: center;
+    margin: var(--v-checkbox-glow-offset);
+    outline-offset: var(--v-checkbox-glow-offset);
+    position: relative;
+
+    &:hover {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-checkbox-glow-color}: var(--v-checkbox-hover-glow-color);
+      #{--v-checkbox-color}: var(--v-checkbox-hover-color); 
+    }
+
+    &:focus-visible {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-checkbox-glow-color}: var(--v-checkbox-focus-glow-color);
+      #{--v-checkbox-color}: var(--v-checkbox-focus-color);
+      &::after {
+        transform: scale(1);
+      }
+    }
+
+    &:not(.v-radio) {
+      &:focus-visible {
+        outline: none; 
+      }
+    }
+
+    &:active,
+    &:has(+ .v-label:active) {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-checkbox-glow-color}: var(--v-checkbox-active-glow-color);
+      #{--v-checkbox-color}: var(--v-checkbox-active-color);  
+    }
+
+    @at-root .v-label {
+      &:not(.v-chip-selection) {
+        &:active {
+          .v-checkbox,
+          & + .v-checkbox {
+            // sass-lint:disable-block no-duplicate-properties
+            #{--v-checkbox-glow-color}: var(--v-checkbox-active-glow-color);
+            #{--v-checkbox-color}: var(--v-checkbox-active-color);
+          }
+        }
+      }
+    }
+
+    &::before {
+      block-size: calc((6/9 * var(--v-checkbox-indicator-block-size)) - (var(--v-checkbox-border-size)/2));
+      border-block-end: var(--size-responsive-2) solid var(--v-checkbox-indicator-foreground);
+      border-inline-end: var(--size-responsive-2) solid var(--v-checkbox-indicator-foreground);
+      content: '';
+      inline-size: calc((3/9 * var(--v-checkbox-indicator-block-size)) - (var(--v-checkbox-border-size)/2));
+      rotate: 45deg;
+      transform: scale(0);
+      translate: 0 -1px;
+    }
+
+    &::after {
+      block-size: calc(var(--v-checkbox-indicator-block-size) + (var(--v-checkbox-glow-offset) * 2) + var(--v-checkbox-border-size));
+      border-color: var(--palette-default-active-pressed); 
+      border-radius: var(--v-checkbox-outline-radius);
+      border-style: dashed;
+      border-width: var(--theme-focus-outline-size); 
+      content: '';
+      inline-size: calc(var(--v-checkbox-indicator-block-size) + (var(--v-checkbox-glow-offset) * 2) + var(--v-checkbox-border-size));
+      position: absolute;
+      transform: scale(0);
+    }
+
+    
+
+    &.checked,
+    &:checked {
+      #{--v-checkbox-indicator-background}: var(--v-checkbox-color);
+
+      &::before {
+        transform: scale(1);
+      }
+    }
+
+    
+
+    &[aria-invalid='true'] {
+      &:not(:disabled) {
+        #{--v-checkbox-color}: var(--v-checkbox-error-color); 
+      }
+    }
+
+    
+
+    &:disabled {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-checkbox-color}: var(--v-checkbox-disabled-color);
+      #{--v-checkbox-glow-color}: var(--palette-default-transparent);
+      cursor: default;
+
+      // @media screen and (forced-colors: active) {
+      //   appearance: auto;
+      //   &::before {
+      //     display: none;
+      //   }
+      // }
+
+      &:checked {
+        &:not(.v-radio) {
+          border-color: var(--palette-default-transparent); // this allows the border to not be noticeable unless in HC mode.
+        }
+      }
+
+      & + .v-label {
+        #{--v-label-color}: var(--v-checkbox-disabled-color);
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+
+    
+
+    @at-root fieldset {
+      & > .v-flex-col,
+      & > .v-flex-row {
+        gap: var(--v-checkbox-group-gap); // sass-lint:disable-line no-misspelled-properties
+        margin-block: var(--v-checkbox-group-gap);
+
+        &:has(.v-checkbox-panel) {
+          #{--v-checkbox-group-gap}: var(--v-checkbox-panel-group-gap);
+        }
+      }
+    }
+
+    
+    &.mixed,
+    &[aria-checked='mixed'],
+    &[type='checkbox']:indeterminate {  // sass-lint:disable-line force-pseudo-nesting
+      #{--v-checkbox-active-indicator-foreground}: var(--v-checkbox-active-color);
+
+      &:not(:checked) {
+        &::before {
+          align-self: center;
+          block-size: 0px; 
+          border-block-end: 0;
+          border-inline-end: 0;
+          border-radius: var(--v-checkbox-border-radius); 
+          border-top-color: var(--v-checkbox-color); 
+          border-top-style: solid; 
+          border-top-width: var(--v-checkbox-border-size); 
+          display: inline-flex;
+          inline-size: 10px; 
+          rotate: none;
+          transform: scale(1);
+          translate: none;
+        }
+      }
+    }
+
+    
+
+    &-panel {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-checkbox-glow-offset}: var(--v-checkbox-panel-glow-offset);
+      #{--v-action-secondary-border-color}: var(--v-checkbox-panel-border-color);
+      #{--v-action-secondary-padding-block}: calc(var(--v-checkbox-panel-padding-block) - var(--v-action-secondary-border-size));
+      #{--v-action-secondary-padding-inline}: calc(var(--v-checkbox-panel-padding-inline) - var(--v-checkbox-panel-glow-offset) - var(--v-action-secondary-border-size)) calc(var(--v-checkbox-panel-padding-inline) - var(--v-action-secondary-border-size));
+
+      .v-input-message {
+        user-select: none;
+      }
+
+      &:has(.v-radio:only-of-type:hover),
+      &:has(.v-checkbox:only-of-type:hover),
+      &:hover {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-action-secondary-border-color}: var(--v-checkbox-panel-border-color-hover);
+        #{--v-action-secondary-border-size}: var(--v-checkbox-panel-border-size-highlight);
+      }
+      &:has(.v-radio:only-of-type:focus-visible),
+      &:has(.v-checkbox:only-of-type:focus-visible),
+      &:focus-visible {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-action-secondary-border-color}: var(--v-checkbox-panel-border-color-focus);
+        #{--v-action-secondary-border-size}: var(--v-checkbox-panel-border-size-highlight);
+      }
+      &:has(.v-radio:only-of-type:active),
+      &:has(.v-checkbox:only-of-type:active),
+      &:active {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-action-secondary-border-color}: var(--v-checkbox-panel-border-color-active);
+        #{--v-action-secondary-border-size}: var(--v-checkbox-panel-border-size-highlight);
+      }
+
+      &:has(.v-radio:only-of-type:disabled),
+      &:has(.v-checkbox:only-of-type:disabled),
+      &:disabled {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-action-secondary-border-color}: var(--v-checkbox-panel-border-color-disabled);
+        pointer-events: none;
+      }
+    }
+    @at-root .v-checkbox-panel.v-label .v-input-message { // backwards compatible with panel as label. #VDS-6919
+      white-space: normal;
+    }
+  }
+}
+

@@ -1,0 +1,117 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@layer theme {
+  :root,
+  ::backdrop {    
+    // primary 
+    --color-primary-h: 230;
+    --color-primary-s: 82%;
+    --color-primary-l: 44%;
+    // secondary 
+    --color-secondary-h: 44;
+    --color-secondary-s: 97%;
+    --color-secondary-l: 54%;
+    // lightest
+    --color-lightest-h: 0;
+    --color-lightest-s: 0%;
+    --color-lightest-l: 100%;
+    // darkest 
+    --color-darkest-h: 0;
+    --color-darkest-s: 0%;
+    --color-darkest-l: 0%;
+    // positive 
+    --color-positive-h: 149;
+    --color-positive-s: 41%;
+    --color-positive-l: 43%;
+    // warning
+    --color-warning-h: 39;
+    --color-warning-s: 96%;
+    --color-warning-l: 39%;
+    // negative
+    --color-negative-h: 0;
+    --color-negative-s: 62%;
+    --color-negative-l: 58%;
+    // info
+    --color-info-h: 222;
+    --color-info-s: 55%;
+    --color-info-l: 42%;
+    // palette default 
+    --palette-default-active: hsla(var(--color-primary-h) var(--color-primary-s) var(--color-primary-l));
+    --palette-default-active-hover: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) + 10%));
+    --palette-default-active-pressed: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) - 5%));
+    --palette-default-active-subtle: hsla(var(--color-lightest-h) var(--color-lightest-s) 50%);
+    --palette-default-active-accent: hsla(var(--color-secondary-h) var(--color-secondary-s) var(--color-secondary-l));
+    --palette-default-surface-1: hsla(var(--color-lightest-h) var(--color-lightest-s) var(--color-lightest-l));
+    --palette-default-surface-2: hsla(var(--color-lightest-h) var(--color-lightest-s) calc(var(--color-lightest-l) - 5%)); 
+    --palette-default-surface-3: hsla(var(--color-lightest-h) var(--color-lightest-s) calc(var(--color-lightest-l) - 10%)); 
+    --palette-default-surface-highlight: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) + 45%));
+    --palette-default-surface-lowlight: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) + 35%));
+    --palette-default-text: hsla(var(--color-darkest-h) var(--color-darkest-s) var(--color-darkest-l));
+    --palette-default-text-subtle: hsla(var(--color-darkest-h) var(--color-darkest-s) 30%);
+    --palette-default-text-on-active: hsla(var(--color-lightest-h) var(--color-lightest-s) var(--color-lightest-l));
+    --palette-default-border: hsla(var(--color-lightest-h) var(--color-lightest-s) calc(var(--color-lightest-l) - 10%));
+    --palette-default-disabled: hsla(var(--color-lightest-h) var(--color-lightest-s) calc(var(--color-lightest-l) - 20%));
+    --palette-default-overlay: hsla(var(--color-darkest-h) var(--color-darkest-s) calc(var(--color-darkest-l) + 20%) / 40%);
+    --palette-default-transparent: hsla(var(--color-lightest-h) var(--color-lightest-s) var(--color-lightest-l) / 0);
+    // palette messaging success 
+    --palette-messaging-highlight-positive: hsla(var(--color-positive-h) var(--color-positive-s) calc(var(--color-positive-l) + 45%));
+    --palette-messaging-lowlight-positive: hsla(var(--color-positive-h) var(--color-positive-s) calc(var(--color-positive-l) + 35%));
+    --palette-messaging-surface-positive: hsla(var(--color-positive-h) var(--color-positive-s) calc(var(--color-positive-l) + 25%));
+    --palette-messaging-graphics-positive: hsla(var(--color-positive-h) var(--color-positive-s) var(--color-positive-l));
+    --palette-messaging-text-hover-positive: hsla(var(--color-positive-h) var(--color-positive-s) calc(var(--color-positive-l) - 10%));
+    --palette-messaging-text-positive: hsla(var(--color-positive-h) var(--color-positive-s) calc(var(--color-positive-l) - 20%));
+    --palette-messaging-text-pressed-positive: hsla(var(--color-positive-h) var(--color-positive-s) calc(var(--color-positive-l) - 30%));
+    // palette messaging warning
+    --palette-messaging-highlight-warning: hsla(var(--color-warning-h) var(--color-warning-s) calc(var(--color-warning-l) + 45%));
+    --palette-messaging-graphics-warning: hsla(var(--color-warning-h) var(--color-warning-s) var(--color-warning-l));
+    --palette-messaging-text-warning: hsla(var(--color-warning-h) var(--color-warning-s) calc(var(--color-warning-l) - 20%));
+    // palette messaging negative 
+    --palette-messaging-highlight-negative: hsla(var(--color-negative-h) var(--color-negative-s) calc(var(--color-negative-l) + 40%));
+    --palette-messaging-lowlight-negative: hsla(var(--color-negative-h) var(--color-negative-s) calc(var(--color-negative-l) + 35%));
+    --palette-messaging-surface-negative: hsla(var(--color-negative-h) var(--color-negative-s) calc(var(--color-negative-l) + 25%));
+    --palette-messaging-graphics-negative: hsla(var(--color-negative-h) var(--color-negative-s) var(--color-negative-l));
+    --palette-messaging-text-hover-negative: hsla(var(--color-negative-h) var(--color-negative-s) calc(var(--color-negative-l) - 10%));
+    --palette-messaging-text-negative: hsla(var(--color-negative-h) var(--color-negative-s) calc(var(--color-negative-l) - 20%));
+    --palette-messaging-text-pressed-negative: hsla(var(--color-negative-h) var(--color-negative-s) calc(var(--color-negative-l) - 30%));
+    // palette messaging info 
+    --palette-messaging-highlight-info: hsla(var(--color-info-h) var(--color-info-s) calc(var(--color-info-l) + 45%));
+    --palette-messaging-graphics-info: hsla(var(--color-info-h) var(--color-info-s) var(--color-info-l));
+    --palette-messaging-text-info: hsla(var(--color-info-h) var(--color-info-s) calc(var(--color-info-l) - 20%));
+  }
+
+  .v-alternate {
+    // palette alternate 
+    --palette-default-active: hsla(var(--color-secondary-h) var(--color-secondary-s) var(--color-secondary-l));
+    --palette-default-active-hover: hsla(var(--color-secondary-h) var(--color-secondary-s) calc(var(--color-secondary-l) + 10%));
+    --palette-default-active-pressed: hsla(var(--color-secondary-h) var(--color-secondary-s) calc(var(--color-secondary-l) - 5%));
+    --palette-default-active-subtle: hsla(var(--color-lightest-h) var(--color-lightest-s) 70%);
+    --palette-default-active-accent: hsla(var(--color-lightest-h) var(--color-lightest-s) var(--color-lightest-l));
+    --palette-default-surface-1: hsla(var(--color-primary-h) var(--color-primary-s) var(--color-primary-l));
+    --palette-default-surface-2: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) - 10%));
+    --palette-default-surface-3: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) - 20%));
+    --palette-default-surface-highlight: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) + 10%));
+    --palette-default-surface-lowlight: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) - 5%));
+    --palette-default-text: hsla(var(--color-secondary-h) var(--color-secondary-s) var(--color-secondary-l));
+    --palette-default-text-subtle: hsla(var(--color-lightest-h) var(--color-lightest-s) calc(var(--color-lightest-l) - 10%));
+    --palette-default-text-on-active: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l)));
+    --palette-default-border: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) + 10%));
+    --palette-default-disabled: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) + 20%));
+    --palette-default-overlay: hsla(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) + 10%) / 40%);
+    --palette-default-transparent: hsla(var(--color-primary-h) var(--color-primary-s) var(--color-primary-l) / 0);
+  }
+}

@@ -1,0 +1,43 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+@use '../../base/flex' as *;
+
+@layer components {
+  .v-skip-link {
+    border: var(--v-skip-link-border-width) solid var(--v-skip-link-border-color);
+    background: var(--v-skip-link-background-color);
+    inline-size: var(--v-skip-link-inline-size);
+    margin-inline: auto;
+    padding-block: var(--v-skip-link-padding-block);
+    padding-inline: var(--v-skip-link-padding-inline);
+    place-content: center;
+    z-index: var(--v-skip-link-z-index);
+    top: -99999px;
+    position: absolute;
+
+    &:focus-visible {
+      top: 0;
+      position: relative;
+      outline-width: var(--v-skip-link-outline-width);
+      outline-style: var(--v-skip-link-outline-style);
+      outline-color: var(--v-skip-link-outline-color);
+      outline-offset: var(--v-skip-link-outline-offset);
+    }
+  }
+}

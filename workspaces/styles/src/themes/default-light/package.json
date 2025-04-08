@@ -1,0 +1,8 @@
+{
+  "name": "nova-styles/themes/default-light",
+  "version": "0.0.1",
+  "description": "Default Light description",
+  "keywords": [],
+  "project": "vpds-styles",
+  "library": "themes"
+}

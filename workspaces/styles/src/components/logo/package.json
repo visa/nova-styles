@@ -1,0 +1,9 @@
+{
+  "name": "vpds-styles/logo",
+  "version": "0.0.1",
+  "description": "Brand logo",
+  "keywords": ["logo","brand","Visa","svg"],
+  "template": "blank",
+  "project": "vpds-styles",
+  "library": "styles"
+}

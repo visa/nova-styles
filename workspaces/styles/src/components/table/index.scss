@@ -1,0 +1,243 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+
+
+@layer components {
+
+  %border {
+    border-block-end: var(--v-table-border-block-end-size-default) var(--v-table-border-block-end-style-default) var(--v-table-border-block-end-color-default);
+    border-block-start: var(--v-table-border-block-start-size-default) var(--v-table-border-block-start-style-default) var(--v-table-border-block-start-color-default);
+    border-inline-end: var(--v-table-border-inline-end-size-default) var(--v-table-border-inline-end-style-default) var(--v-table-border-inline-end-color-default);
+    border-inline-start: var(--v-table-border-inline-start-size-default) var(--v-table-border-inline-start-style-default) var(--v-table-border-inline-start-color-default);
+
+    &:empty {
+      &:is(:not(.v-td)) {
+        border: 0;
+      }
+    }
+  }
+
+  %th {
+    @extend %border;
+    background-color: var(--v-table-header-bg-color);
+    block-size: var(--v-table-header-block);
+    color: var(--v-table-header-text-color);
+    padding-block: var(--v-table-header-padding-block);
+    padding-inline: var(--v-table-header-padding-inline);
+    text-align: var(--v-table-data-text-align);
+    vertical-align: var(--v-table-header-block-alignment);
+    white-space: nowrap;
+
+    // sass-lint:disable-block no-duplicate-properties 
+    #{--v-table-border-block-end-size-default}: var(--v-table-header-border-block-end-size);
+    #{--v-table-border-block-end-color-default}: var(--v-table-header-border-block-end-color);
+  }
+
+  
+
+  .v-table {
+    $root: &;
+    border-collapse: var(--v-table-border-collapse);
+    display: var(--v-table-display);
+    inline-size: var(--v-table-inline-size);
+
+    thead {
+      @include typography-label-large-active;
+    }
+
+    tbody {
+      @include typography-label-large;
+    }
+
+    tr {
+      background-color: var(--v-table-background);
+    }
+
+    &-alt {
+      tr {
+        &:nth-child(even) {
+          #{--v-table-background}: var(--v-table-background-alt);
+        }
+      }
+    }
+
+    //Default stacked header vertical border styling.
+    &:has(.v-th-alt) {
+      .v-th,
+      .v-th-alt {
+        // sass-lint:disable-block no-duplicate-properties 
+        #{--v-table-border-inline-end-color-default}: var(--v-table-header-border-inline-color-alt);
+        #{--v-table-border-inline-end-size-default}: var(--v-table-border-inline-end-size);
+        #{--v-table-border-inline-start-color-default}: var(--v-table-header-border-inline-color-alt);
+
+        //Remove horizontal edge header borders
+        #{--v-table-border-block-start-color-default}: var(--v-table-border-none);
+
+        //Remove vertical edge header borders
+        &:first-child {
+          #{--v-table-border-inline-start-color-default}: var(--v-table-border-none);
+        }
+
+        &:last-child {
+          #{--v-table-border-inline-end-color-default}: var(--v-table-border-none);
+        }
+      }
+    }
+
+    @at-root .v-td {
+      @extend %border;
+      block-size: var(--v-table-data-block-default);
+      padding-block: var(--v-table-data-padding-block-default);
+      padding-inline: var(--v-table-data-padding-inline);
+      vertical-align: middle;
+
+      &:has(.v-badge) {
+        #{--v-table-data-padding-block-default}: var(--v-table-data-padding-block-badge);
+      }
+    }
+
+    &-large {
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-table-data-padding-block-default}: var(--v-table-data-padding-block-large); 
+      #{--v-table-data-block-default}: var(--v-table-data-block-large);
+    }
+
+
+    
+    &-small {
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-table-data-padding-block-default}: var(--v-table-data-padding-block-small);
+      #{--v-table-data-block-default}: var(--v-table-data-block-small);
+    }
+
+    
+
+    &-border {
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-table-border-block-end-color-default}: var(--v-table-border-block-end-color);
+      #{--v-table-border-block-start-color-default}: var(--v-table-border-block-start-color);
+      #{--v-table-border-inline-end-color-default}: var(--v-table-border-inline-end-color);
+      #{--v-table-border-inline-start-color-default}: var(--v-table-border-inline-start-color);
+
+      &-inline {
+        // sass-lint:disable-block no-duplicate-properties 
+        #{--v-table-border-inline-end-color-default}: var(--v-table-border-inline-end-color);
+        #{--v-table-border-inline-start-color-default}: var(--v-table-border-inline-start-color);
+      }
+
+      &-block {
+        // sass-lint:disable-block no-duplicate-properties 
+        #{--v-table-border-block-end-color-default}: var(--v-table-border-block-end-color);
+
+        //Remove default vertical header borders
+        .v-th,
+        .v-th-alt {
+          #{--v-table-header-border-inline-color-alt}: var(--v-table-border-none);
+        }
+      }
+    }
+
+    
+
+    &-subtle { 
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-table-header-text-color}: var(--v-table-text-color);
+      #{--v-table-header-border-block-end-size}: var(--v-table-border-block-end-size-default);
+      #{--v-table-header-border-block-end-color}: var(--v-table-border-block-end-color);
+
+    }
+
+    &-wrapper {
+      border: var(--v-table-wrapper-border);
+      border-radius: var(--size-scalable-8);
+      max-block-size: var(--v-table-wrapper-block-size);
+      max-inline-size: var(--v-table-wrapper-inline-size);
+      overflow: auto;
+
+      tr {
+        #{--v-table-border-block-start-size-default}: var(--v-table-border-none);
+
+        th {
+          &:first-of-type {
+            #{--v-table-border-inline-start-size-default}: var(--v-table-border-none);
+          }
+        }
+        td { 
+          &:last-of-type {
+            #{--v-table-border-inline-end-size-default}: var(--v-table-border-none);
+          }
+        }
+      }
+
+      tbody {
+        & > tr {
+          &:last-of-type {
+            #{--v-table-border-block-end-size-default}: var(--v-table-border-none);
+          }
+        }
+      }
+
+      .v-table {
+        &:is(:not(.v-table-key-value)) { // sass-lint:disable-line force-pseudo-nesting
+          th {
+            &:last-of-type {
+              #{--v-table-border-inline-end-size-default}: var(--v-table-border-none);
+            }
+          }
+          td {
+            &:first-of-type {
+              #{--v-table-border-inline-start-size-default}: var(--v-table-border-none);
+            }
+          }
+        }
+      }
+    }
+
+    
+
+    @at-root .v-th {
+      @extend %th;
+
+      &-alt {
+        @extend %th;
+        #{--v-table-data-text-align}: var(--v-table-header-text-align-alt);
+        // sass-lint:disable-block no-duplicate-properties 
+        #{--v-table-header-bg-color}: var(--v-table-header-bg-color-alt);
+        #{--v-table-header-padding-block}: var(--v-table-header-padding-block-alt);
+        #{--v-table-header-padding-inline}: var(--v-table-header-padding-inline-alt);
+
+        &:empty {
+          #{--v-table-header-bg-color}: none;
+        }
+      }
+    }
+
+    
+
+    &-key-value {
+      tr>th {
+        &:first-child {
+          @include typography-label-large-active;
+          text-align: var(--v-table-data-text-align);
+        }
+      }
+    }
+  }
+}

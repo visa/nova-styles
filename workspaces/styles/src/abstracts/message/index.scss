@@ -1,0 +1,179 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/flex' as *;
+@use '../../base/typography/vars' as *;
+
+
+$message-vars: (
+  border-style: solid,
+  border-block-end-size: calc(var(--theme-border-size) * 1.5),
+  border-block-start-size: calc(var(--theme-border-size) * 1.5),
+  border-inline-end-size: calc(var(--theme-border-size) * 1.5),
+  border-inline-start-size: calc(var(--theme-border-size) * 1.5),
+  border-radius: var(--size-rounded-none),
+  display: flex,
+  elevation: var(--elevation-none),
+  gap: var(--size-scalable-8),
+  max-inline-size: none,
+  padding-block-end: var(--size-scalable-16),
+  padding-block-start: var(--size-scalable-16),
+  padding-inline-end: var(--size-scalable-16),
+  padding-inline-start: var(--size-scalable-16),
+  icon-size: to-rem(22px),
+  icon-color: var(--palette-messaging-graphics-info),
+  // default
+  background: var(--palette-messaging-highlight-info),
+  border-color: var(--palette-messaging-graphics-info),
+  graphics: var(--palette-messaging-graphics-info),
+  text: var(--palette-messaging-text-info),
+  // info
+  background-info: var(--palette-messaging-highlight-info),
+  border-color-info: var(--palette-messaging-graphics-info),
+  graphics-info: var(--palette-messaging-graphics-info),
+  text-info: var(--palette-messaging-text-info),
+  // positive
+  background-success: var(--palette-messaging-surface-positive),
+  border-color-success: var(--palette-messaging-graphics-positive),
+  graphics-success: var(--palette-messaging-graphics-positive),
+  text-success: var(--palette-messaging-text-positive),
+  // warning
+  background-warning: var(--palette-messaging-highlight-warning),
+  border-color-warning: var(--palette-messaging-graphics-warning),
+  graphics-warning: var(--palette-messaging-graphics-warning),
+  text-warning: var(--palette-messaging-text-warning),
+  // negative
+  background-error: var(--palette-messaging-surface-negative),
+  border-color-error: var(--palette-messaging-graphics-negative),
+  graphics-error: var(--palette-messaging-graphics-negative),
+  text-error: var(--palette-messaging-text-negative),
+);
+
+// generate component css variables
+@layer abstracts {
+  :root,
+  .v-alternate {
+    @each $token, $value in $message-vars {
+      #{--v-message-#{$token}}: #{$value};
+    }
+  }
+}
+
+
+@mixin message-default() {
+  background-color: var(--v-message-background);
+  border-block-end-width: var(--v-message-border-block-end-size);
+  border-block-start-width: var(--v-message-border-block-start-size);
+  border-color: var(--v-message-border-color);
+  border-inline-end-width: var(--v-message-border-inline-end-size);
+  border-inline-start-width: var(--v-message-border-inline-start-size);
+  border-radius: var(--v-message-border-radius);
+  border-style: var(--v-message-border-style);
+  box-shadow: var(--v-message-elevation);
+  display: var(--v-message-display);
+  gap: var(--v-message-gap); // sass-lint:disable-line no-misspelled-properties
+  max-inline-size: var(--v-message-max-inline-size);
+  overflow: hidden;
+  padding-block-end: var(--v-message-padding-block-end);
+  padding-block-start: var(--v-message-padding-block-start);
+  padding-inline-end: var(--v-message-padding-inline-end);
+  padding-inline-start: var(--v-message-padding-inline-start);
+
+  .v-message-content {
+    color: var(--v-message-text);
+    flex-grow: 1;
+  }
+
+  .v-message-icon {
+    #{--v-icon-primary}: var(--v-message-icon-color);
+    #{--v-icon-secondary}: var(--v-message-icon-color);
+  }
+}
+
+@layer abstracts {
+  %message-default,
+  .v-message {
+    @include message-default();
+  }
+}
+
+
+@mixin message-info() {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--v-message-background}: var(--v-message-background-info);
+  #{--v-message-border-color}: var(--v-message-border-color-info);
+  #{--v-message-graphics}: var(--v-message-graphics-info);
+  #{--v-message-text}: var(--v-message-text-info);
+  #{--v-message-icon-color}: var(--v-message-graphics-info);
+}
+
+@layer abstracts {
+  %message-info,
+  .v-message-info {
+    @include message-info();
+  }
+}
+
+
+@mixin message-success() {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--v-message-background}: var(--v-message-background-success);
+  #{--v-message-border-color}: var(--v-message-border-color-success);
+  #{--v-message-graphics}: var(--v-message-graphics-success);
+  #{--v-message-text}: var(--v-message-text-success);
+  #{--v-message-icon-color}: var(--v-message-graphics-success);
+}
+
+@layer abstracts {
+  %message-success,
+  .v-message-success {
+    @include message-success();
+  }
+}
+
+
+@mixin message-warning() {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--v-message-background}: var(--v-message-background-warning);
+  #{--v-message-border-color}: var(--v-message-border-color-warning);
+  #{--v-message-graphics}: var(--v-message-graphics-warning);
+  #{--v-message-text}: var(--v-message-text-warning);
+  #{--v-message-icon-color}: var(--v-message-graphics-warning);
+}
+
+@layer abstracts {
+  %message-warning,
+  .v-message-warning {
+    @include message-warning();
+  }
+}
+
+
+@mixin message-error() {
+  // sass-lint:disable-block no-duplicate-properties
+  #{--v-message-background}: var(--v-message-background-error);
+  #{--v-message-border-color}: var(--v-message-border-color-error);
+  #{--v-message-graphics}: var(--v-message-graphics-error);
+  #{--v-message-text}: var(--v-message-text-error);
+  #{--v-message-icon-color}: var(--v-message-graphics-error);
+}
+
+@layer abstracts {
+  %message-error,
+  .v-message-error {
+    @include message-error();
+  }
+}

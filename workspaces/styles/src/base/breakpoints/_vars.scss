@@ -1,0 +1,86 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../math' as *;
+
+$breakpoint-min: 0px;
+$breakpoint-xs: 320px;
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1440px;
+$breakpoint-xxl: 1600px;
+$breakpoint-max: pow(10, 10) * 1px;
+
+// Responsive Breakpoints
+$breakpoints: (
+  min: $breakpoint-min,
+  xs: $breakpoint-xs,
+  sm: $breakpoint-sm,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl,
+  xxl: $breakpoint-xxl,
+  max: $breakpoint-max
+);
+
+$queries: (
+  xs: 'only screen and (max-width: #{$breakpoint-sm - 1})',
+  sm: 'only screen and (min-width: #{$breakpoint-sm}) and (max-width: #{$breakpoint-md - 1})',
+  md: 'only screen and (min-width: #{$breakpoint-md}) and (max-width: #{$breakpoint-lg - 1})',
+  lg: 'only screen and (min-width: #{$breakpoint-lg}) and (max-width: #{$breakpoint-xl - 1})',
+  xl: 'only screen and (min-width: #{$breakpoint-xl}) and (max-width: #{$breakpoint-xxl - 1})',
+  xxl: 'only screen and (min-width: #{$breakpoint-xxl})',
+  mobile: 'only screen and (max-width: #{$breakpoint-md - 1})',
+  desktop: 'only screen and (min-width: #{$breakpoint-md})'
+); 
+
+$container-queries: (
+  xs: '(max-width: #{$breakpoint-sm - 1})',
+  sm: '((min-width: #{$breakpoint-sm}) and (max-width: #{$breakpoint-md - 1}))',
+  md: '((min-width: #{$breakpoint-md}) and (max-width: #{$breakpoint-lg - 1}))',
+  lg: '((min-width: #{$breakpoint-lg}) and (max-width: #{$breakpoint-xl - 1}))',
+  xl: '((min-width: #{$breakpoint-xl}) and (max-width: #{$breakpoint-xxl - 1}))',
+  xxl: '(min-width: #{$breakpoint-xxl})',
+  mobile: '(max-width: #{$breakpoint-md - 1})',
+  desktop: '(min-width: #{$breakpoint-md})'
+);
+
+// media query utility 
+@mixin media($key) {
+  @media #{map-get($queries, $key)} {
+    @content;
+  }
+}
+
+// container query utility 
+@mixin container($key) {
+  @container #{map-get($container-queries, $key)} {
+    @content;
+  }
+}
+
+@mixin container-display($bp, $prop) {
+  @include container($bp) {
+    display: $prop;
+  }
+}
+
+@mixin media-display($bp, $prop) {
+  @include media($bp) {
+    display: $prop;
+  }
+}

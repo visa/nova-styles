@@ -1,0 +1,61 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/typography/vars' as *; 
+
+$vars: (
+  display: inline-flex,
+  padding-block: var(--size-scalable-0),
+  padding-inline: var(--size-scalable-0),
+  icon-gap: to-rem(4px), // left as rem unit to align with font size/spacing
+  icon-top: 3px,
+  icon-transformation: translateY(3px),
+  text-decoration: underline,
+  
+  // default 
+  background: var(--palette-default-transparent),
+  border-color: var(--palette-default-transparent),
+  border-radius: var(--size-rounded-none),
+  border-size: calc(var(--theme-border-size) * 0),
+  border-style: solid,
+  foreground: var(--palette-default-active),
+  // 
+  hover-background: var(--palette-default-surface-highlight),
+  hover-border-color: var(--palette-default-transparent),
+  hover-foreground: var(--palette-default-active-hover),
+  //  
+  focus-background: var(--palette-default-surface-highlight),
+  focus-border-color: var(--palette-default-transparent),
+  focus-foreground: var(--palette-default-active-hover),
+  //  
+  active-background: var(--palette-default-surface-lowlight),
+  active-border-color: var(--palette-default-transparent),
+  active-foreground: var(--palette-default-active-pressed),
+  //  
+  disabled-background: var(--palette-default-surface-1),
+  disabled-border-color: var(--palette-default-transparent),
+  disabled-foreground: var(--palette-default-disabled),
+);
+
+// generate component css variables 
+@layer components {
+  :root,
+  .v-alternate {
+    @each $token, $value in $vars {
+      #{--v-link-#{$token}}: #{$value};
+    }
+  }
+}

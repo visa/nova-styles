@@ -1,0 +1,313 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+@use '../../abstracts/action-secondary' as *;
+@use '../../abstracts/action-primary' as *;
+
+@layer components {
+  .v-chip {
+    &:not(.v-chip-compact) {
+      @include typography-label-large;
+    }
+    $root: &;
+    align-items: var(--v-chip-align-items);
+    background-color: var(--v-chip-background-color);
+    border-color: var(--v-chip-border-color);
+    border-radius: var(--v-chip-border-radius);
+    border-style: var(--v-chip-border-style);
+    border-width: var(--v-chip-border-width);
+    
+    display: var(--v-chip-display);
+    gap: var(--v-chip-gap); // sass-lint:disable-line no-misspelled-properties
+    inline-size: var(--v-chip-inline-size);
+    padding-block: var(--v-chip-padding-block);
+    padding-inline: var(--v-chip-padding-inline-start) var(--v-chip-padding-inline-end);
+    --theme-focus-outline-offset: var(--size-scalable-2);
+
+    &:has(.v-avatar) {
+      #{--v-chip-padding-inline-start}: var(--v-chip-lead-inline-start-padding);
+    }
+
+    &>.v-icon {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-icon-height}: var(--v-chip-icon-size);
+      #{--v-icon-width}: var(--v-chip-icon-size);
+    }
+
+    .v-avatar {
+      // @TODO evaluate overriding avatar size here or use .v-avatar-small class in markup 
+      #{--v-avatar-size}: var(--v-chip-avatar-size);
+    }
+
+    // static chip
+    &:not(:has(.v-button)) {
+      &:not(:has(input)) {
+        --v-chip-border-color: var(--v-chip-static-border-color); 
+      }
+    }
+
+    &:has(.v-button-icon) {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-chip-padding-block}: var(--v-chip-delete-padding-block);
+      #{--v-chip-padding-inline-end}: var(--v-chip-delete-padding-inline-end);
+    }
+
+    &:has(.v-button[disabled]) {
+      cursor: var(--v-chip-disabled-cursor);
+      pointer-events: none;
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-chip-border-color}: var(--v-action-secondary-disabled-border-color);
+      #{--v-label-color}: var(--v-action-secondary-disabled-foreground);
+    }
+
+    .v-button-icon {
+      flex-shrink: 0;
+      inline-size: var(--v-chip-button-size);
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-button-default-block-size}: var(--v-chip-button-size);
+      #{--v-button-default-padding-block}: var(--v-chip-button-padding);
+      #{--v-button-default-padding-inline}: var(--v-chip-button-padding);
+    }
+
+    
+    &-selection {
+      @extend %action-secondary;
+      @include typography-label-large;
+      cursor: var(--v-chip-selection-cursor);
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-label-color}: var(--v-chip-selection-text-color);
+      #{--v-action-secondary-font-size}: var(--typography-label-large-font-size);
+      #{--v-action-secondary-font-weight}: var(--typography-label-large-font-weight);
+      #{--v-action-secondary-letter-spacing}: var(--typography-label-large-letter-spacing);
+      #{--v-action-secondary-line-height}: var(--typography-label-large-line-height);
+      #{--v-chip-gap}: var(--v-chip-selection-gap);
+
+      .v-checkbox {
+        appearance: var(--v-chip-checkbox-appearance);
+        clip: var(--v-chip-checkbox-clip);
+        margin: var(--v-chip-checkbox-margin);
+        position: var(--v-chip-checkbox-position);
+        #{--v-checkbox-color}: var(--palette-default-transparent);
+        &:checked {
+          display: flex;
+          position: relative;
+          &::before {
+            background-color: initial;
+            block-size: 100%;
+            border-block-end: var(--size-scalable-2) solid var(--v-checkbox-indicator-foreground);
+            border-inline-end: var(--size-scalable-2) solid var(--v-checkbox-indicator-foreground);
+            border-radius: var(--size-rounded-none);
+            content: '';
+            inline-size: calc(var(--v-checkbox-indicator-block-size)*.44444 - var(--v-checkbox-border-size)/2);
+            rotate: 45deg;
+            translate: 0 -2px;
+          }
+          &::after {
+            display: none;
+          }
+        }
+        &:hover {
+          #{--v-checkbox-glow-color}: var(--palette-default-transparent);
+        }
+
+        &:active {
+          #{--v-checkbox-glow-color}: var(--palette-default-transparent);
+        }
+      }
+
+      &:hover,
+      &:has(.v-checkbox:only-of-type:hover) {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-chip-background-color}: var(--v-action-secondary-hover-background);
+        #{--v-chip-border-color}: var(--v-action-secondary-hover-border-color);
+        #{--v-label-color}: var(--v-action-secondary-hover-foreground);
+      }
+
+      &:has(.v-checkbox:only-of-type:focus-visible) {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-chip-background-color}: var(--v-action-secondary-focus-background);
+        #{--v-chip-border-color}: var(--v-action-secondary-focus-border-color);
+        #{--v-label-color}: var(--v-action-secondary-focus-foreground);
+      }
+      
+      &:active,
+      &:has(.v-checkbox:only-of-type:active:not(:disabled)) {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-chip-background-color}: var(--v-action-secondary-active-background);
+        #{--v-chip-border-color}: var(--v-action-secondary-active-border-color);
+        #{--v-label-color}: var(--v-action-secondary-active-foreground);
+
+        &:has(.v-checkbox:only-of-type:hover) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-chip-background-color}: var(--v-action-secondary-active-background);
+          #{--v-chip-border-color}: var(--v-action-secondary-active-border-color);
+          #{--v-label-color}: var(--v-action-secondary-active-foreground);
+        }
+        
+      }
+
+      &[readonly],
+      &:has(.v-checkbox:only-of-type[readonly]) {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-chip-border-color}: var(--v-chip-readonly-border-color);
+        #{--v-label-color}: var(--v-chip-readonly-label-color);
+        cursor: var(--v-chip-disabled-cursor);
+        pointer-events: none;
+
+        &:hover,
+        &:has(.v-checkbox:only-of-type:hover),
+        &:has(.v-checkbox:only-of-type:focus-visible) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-chip-background-color}: var(--v-chip-readonly-background-color);
+          #{--v-chip-border-color}: var(--v-chip-readonly-border-color);
+          #{--v-label-color}: var(--v-chip-readonly-label-color);
+        }
+      }
+
+      &[disabled],
+      &:has(.v-checkbox:only-of-type:disabled) {
+        cursor: var(--v-chip-disabled-cursor);
+        pointer-events: none;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-chip-border-color}: var(--v-action-secondary-disabled-border-color);
+        #{--v-label-color}: var(--v-action-secondary-disabled-foreground);
+      }
+
+      
+      &:has(.v-checkbox:checked) {
+        @extend %action;
+        @include typography-label-large-active;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-chip-background-color}: var(--v-action-primary-background);
+        #{--v-label-color}: var(--palette-default-text-on-active);
+        #{--v-action-primary-font-size}: var(--typography-label-large-active-font-size);
+        #{--v-action-primary-font-weight}: var(--typography-label-large-active-font-weight);
+        #{--v-action-primary-letter-spacing}: var(--typography-label-large-active-letter-spacing);
+        #{--v-action-primary-line-height}: var(--typography-label-large-active-line-height);
+        
+        &:hover,
+        &:has(.v-checkbox:only-of-type:hover) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-chip-background-color}: var(--v-action-primary-hover-background);
+          #{--v-chip-border-color}: var(--v-action-primary-hover-border-color);
+          #{--v-label-color}: var(--palette-default-text-on-active);
+        }
+
+        &:has(.v-checkbox:only-of-type:focus-visible) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-chip-background-color}: var(--v-action-primary-focus-background);
+          #{--v-chip-border-color}: var(--v-action-primary-focus-border-color);
+          #{--v-label-color}: var(--v-action-primary-focus-foreground);
+        }
+        
+        &:active,
+        &:has(.v-checkbox:only-of-type:active) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-chip-background-color}: var(--v-action-primary-active-background);
+          #{--v-chip-border-color}: var(--v-action-primary-active-border-color);
+          #{--v-label-color}: var(--palette-default-text-on-active);
+
+          &:has(.v-checkbox:only-of-type:hover) {
+            // sass-lint:disable-block no-duplicate-properties
+            #{--v-chip-background-color}: var(--v-action-primary-active-background);
+            #{--v-chip-border-color}: var(--v-action-primary-active-border-color);
+            #{--v-label-color}: var(--palette-default-text-on-active);
+          }
+        }
+
+        &[readonly],
+        &:has(.v-checkbox:only-of-type[readonly]) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-chip-background-color}: var(--v-chip-readonly-background-color);
+          #{--v-chip-border-color}: var(--v-chip-readonly-border-color);
+          #{--v-label-color}: var(--v-chip-readonly-label-color);
+          cursor: var(--v-chip-disabled-cursor);
+          pointer-events: none;
+          .v-checkbox {
+            &::before {
+              #{--v-checkbox-indicator-foreground}: var(--v-chip-readonly-label-color);
+            }
+          }
+
+          &:hover,
+          &:has(.v-checkbox:only-of-type:hover),
+          &:has(.v-checkbox:only-of-type:focus-visible) {
+            #{--v-chip-background-color}: var(--v-chip-readonly-background-color);
+            #{--v-chip-border-color}: var(--v-chip-readonly-border-color);
+            #{--v-label-color}: var(--v-chip-readonly-label-color);
+          }
+        }
+
+        &[disabled],
+        &:has(.v-checkbox:only-of-type:disabled) {
+          cursor: var(--v-chip-disabled-cursor);
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-chip-background-color}: var(--v-action-secondary-disabled-background);
+          #{--v-chip-border-color}: var(--v-action-secondary-disabled-border-color);
+          #{--v-label-color}: var(--v-action-secondary-disabled-foreground);
+          .v-checkbox {
+            &::before {
+              #{--v-checkbox-indicator-foreground}: var(--v-action-secondary-disabled-foreground);
+            }
+          }
+        }
+      }
+    }
+
+    
+    &-compact {
+      @include typography-label;
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-chip-border-color}: var(--v-chip-compact-border-color);
+      #{--v-chip-border-radius}: var(--v-chip-compact-border-radius);
+      #{--v-chip-padding-block}: var(--v-chip-compact-padding-block);
+      #{--v-chip-padding-inline-end}: var(--v-chip-compact-padding-inline);
+      #{--v-chip-padding-inline-start}: var(--v-chip-compact-padding-inline-start);
+
+      &:has(.v-avatar),
+      &:has(>.v-icon) {
+        #{--v-chip-padding-inline-start}: var(--v-chip-compact-padding-inline);
+      }
+
+      &>.v-icon {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-icon-height}: var(--v-chip-compact-icon-size);
+        #{--v-icon-width}: var(--v-chip-compact-icon-size);
+      }
+
+      .v-avatar {
+        #{--v-avatar-size}: var(--v-chip-compact-avatar-size);
+      }
+
+      .v-button-icon {
+        flex-shrink: 0;
+        inline-size: var(--v-chip-compact-button-size);
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-block-size}: var(--v-chip-compact-button-size);
+        #{--v-button-default-padding-block}: var(--v-chip-compact-button-padding);
+        #{--v-button-default-padding-inline}: var(--v-chip-compact-button-padding);
+      }
+      
+    }
+  }
+}
+
+
+
+// @TODO add font color variable for chips in general 

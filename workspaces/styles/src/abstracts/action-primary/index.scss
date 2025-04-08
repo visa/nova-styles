@@ -1,0 +1,202 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/accessibility' as *;
+
+ 
+
+$action-stateless-vars: (
+  block-size: var(--size-scalable-38),
+  font-size: var(--typography-label-font-size),
+  font-weight: 600,
+  letter-spacing: .25px,
+  line-height: var(--typography-label-line-height),
+  padding-block: calc(var(--size-scalable-10) - var(--v-action-primary-border-size)),
+  padding-inline: calc(var(--size-scalable-14) - var(--v-action-primary-border-size)),
+  // default 
+  background: var(--palette-default-active),
+  border-color: var(--palette-default-active),
+  border-radius: var(--size-rounded-medium),
+  border-size: var(--theme-border-size),
+  border-style: solid,
+  foreground: var(--palette-default-text-on-active),
+); 
+
+$action-vars: (
+  // default 
+  // 
+  hover-background: var(--palette-default-active-hover),
+  hover-border-color: var(--palette-default-active-hover),
+  hover-foreground: var(--palette-default-text-on-active),
+  // 
+  focus-background: var(--palette-default-active-hover),
+  focus-border-color: var(--palette-default-active-hover),
+  focus-foreground: var(--palette-default-text-on-active),
+  //  
+  active-background: var(--palette-default-active-pressed),
+  active-border-color: var(--palette-default-active-pressed),
+  active-foreground: var(--palette-default-text-on-active),
+  //  
+  disabled-background: var(--palette-default-disabled),
+  disabled-border-color: var(--palette-default-transparent),
+  disabled-foreground: var(--palette-default-text-on-active),
+);
+
+// generate component css variables 
+@layer abstracts {
+  :root,
+  .v-alternate {
+    @each $token, $value in $action-stateless-vars {
+      #{--v-action-primary-#{$token}}: #{$value};
+    }
+
+    @each $token, $value in $action-vars {
+      #{--v-action-primary-#{$token}}: #{$value};
+    }
+  }
+}
+
+
+@mixin action-stateless($root) {
+  background-color: var(--v-action-primary-background);
+  border-color: var(--v-action-primary-border-color);
+  border-radius: var(--v-action-primary-border-radius);
+  border-style: var(--v-action-primary-border-style); 
+  border-width:var(--v-action-primary-border-size);
+  color: var(--v-action-primary-foreground);
+  font-size: var(--v-action-primary-font-size);
+  font-weight: var(--v-action-primary-font-weight);
+  letter-spacing: var(--v-action-primary-letter-spacing); 
+  line-height: var(--v-action-primary-line-height); 
+}
+
+@layer abstracts {
+  %action-stateless,
+  .v-action-stateless {
+    @include action-stateless(&); 
+  }
+}
+
+
+
+@mixin action($root) {
+  @include action-stateless($root); 
+
+  block-size: var(--v-action-primary-block-size);
+  cursor: pointer;
+  padding-block: var(--v-action-primary-padding-block); 
+  padding-inline: var(--v-action-primary-padding-inline); 
+  
+  &:hover {
+    // sass-lint:disable-block no-duplicate-properties 
+    #{--v-action-primary-background}: var(--v-action-primary-hover-background);
+    #{--v-action-primary-border-color}: var(--v-action-primary-hover-border-color);
+    #{--v-action-primary-foreground}: var(--v-action-primary-hover-foreground);
+  }
+
+  &:focus-visible {
+    // sass-lint:disable-block no-duplicate-properties
+    #{--v-action-primary-background}: var(--v-action-primary-focus-background);
+    #{--v-action-primary-border-color}: var(--v-action-primary-focus-border-color);
+    #{--v-action-primary-foreground}: var(--v-action-primary-focus-foreground);
+  }
+
+  &:active {
+    #{--v-action-primary-background}: var(--v-action-primary-active-background);
+    #{--v-action-primary-border-color}: var(--v-action-primary-active-border-color);
+    #{--v-action-primary-foreground}: var(--v-action-primary-active-foreground);
+  }
+
+  &:has(.v-checkbox:only-of-type),
+  &:has(.v-radio:only-of-type) {
+    #{--v-action-primary-block-size}: 100%;
+
+    &:has(.v-checkbox:focus-visible),
+    &:has(.v-radio:focus-visible) {
+      @include state-focus;
+    }
+
+    .v-label:only-of-type {      
+      inline-size: 100%;
+    }
+
+    .v-checkbox,
+    .v-radio {
+      &:focus-visible {
+        outline: none;
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  
+  &[disabled],
+  &:has(.v-checkbox:only-of-type:disabled),
+  &:has(.v-radio:only-of-type:disabled) {
+    #{--v-action-primary-background}: var(--v-action-primary-disabled-background);
+    #{--v-action-primary-border-color}: var(--v-action-primary-disabled-border-color);
+    #{--v-action-primary-foreground}: var(--v-action-primary-disabled-foreground);
+    #{--v-input-label}: var(--v-action-primary-disabled-foreground);
+    #{--v-input-message}: var(--v-action-primary-disabled-foreground);
+    cursor: default;
+  }
+}
+
+@layer abstracts {
+  %action,
+  .v-action {
+    @include action(&); 
+  }
+}
+
+@mixin action-primary-inputs($root) {
+  &:has(.v-checkbox:only-of-type),
+  &:has(.v-radio:only-of-type) {
+    .v-radio,
+    .v-checkbox {
+      &,
+      &:hover,
+      &:focus-visible,
+      &:active {
+        #{--v-checkbox-glow-color}: transparent;
+      }
+    }
+
+    &:hover {
+      #{--v-checkbox-color}: var(--v-checkbox-hover-color); 
+    }
+
+    &:focus-visible {
+      #{--v-checkbox-color}: var(--v-checkbox-focus-color); 
+    }
+
+    &:active {
+      #{--v-checkbox-color}: var(--v-checkbox-active-color); 
+    }
+  }
+}
+
+@layer components {
+  %action-primary,
+  .v-action-primary {
+    &:not(.v-action-stateless) {
+      @include action-primary-inputs(&); 
+    }
+  }
+}
+

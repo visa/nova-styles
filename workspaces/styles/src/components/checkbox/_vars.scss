@@ -1,0 +1,73 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+$vars: (
+  alignment: middle,
+  gap: var(--size-scalable-2),
+  group-gap: var(--size-scalable-4),
+  outline-radius: calc(var(--v-checkbox-border-radius) * 4),
+  // indicator square
+  indicator-background: var(--palette-default-surface-1),
+  indicator-block-size: var(--size-responsive-18),
+  // indicator border
+  color: var(--palette-default-active),
+  border-radius: calc(var(--size-rounded-small) / 2), 
+  border-size: var(--theme-border-size),
+  border-style: solid,
+  // checkmark
+  indicator-foreground: var(--palette-default-surface-1),
+  // focus glow
+  glow-color: var(--palette-default-transparent),
+  glow-offset: var(--size-scalable-10),
+  // label
+  label-color: var(--palette-default-text),
+  // message 
+  message-color: var(--palette-default-text-subtle),
+  // panel
+  panel-border-color: var(--palette-default-active-subtle),
+  panel-border-color-hover: var(--palette-default-active-hover),
+  panel-border-color-focus: var(--palette-default-active-hover),
+  panel-border-color-active: var(--palette-default-active-pressed),
+  panel-border-color-disabled: var(--palette-default-disabled),
+  panel-glow-offset: var(--size-responsive-8), 
+  panel-padding-inline: var(--size-responsive-18),
+  panel-padding-block: var(--size-scalable-10),
+  panel-border-size-highlight: var(--size-scalable-2),
+  panel-group-gap: var(--size-scalable-8),
+  
+  // states
+  hover-color: var(--palette-default-active-hover),
+  hover-glow-color: var(--palette-default-surface-highlight),
+  // 
+  focus-color: var(--palette-default-active-hover),
+  focus-glow-color: var(--palette-default-surface-highlight),
+  //  
+  active-color: var(--palette-default-active-pressed),
+  active-glow-color: var(--palette-default-surface-lowlight),
+  //  
+  disabled-color: var(--palette-default-disabled),
+  //
+  error-color: var(--palette-messaging-graphics-negative),
+);
+
+@layer components {
+  :root,
+  .v-alternate {
+    @each $token, $value in $vars {
+      #{--v-checkbox-#{$token}}: #{$value};
+    }
+  }
+}

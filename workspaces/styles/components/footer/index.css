@@ -1,0 +1,17 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@layer components{:root,.v-alternate{--v-footer-background-color:var(--palette-default-surface-2);--v-footer-flex-wrap:wrap;--v-footer-padding-inline:var(--size-scalable-24);--v-footer-padding-block:var(--size-scalable-15);--v-footer-grid-columns-md:2;--v-footer-grid-columns-sm:1}}@layer components{.v-footer{background-color:var(--v-footer-background-color);display:flex;flex-wrap:var(--v-footer-flex-wrap);padding-block:var(--v-footer-padding-block);padding-inline:var(--v-footer-padding-inline)}.v-footer-container{display:grid;grid-auto-flow:column;column-gap:var(--size-scalable-24);row-gap:var(--size-scalable-30);flex:1 1 auto}@media(max-width: 767px){.v-footer-container{grid-template-columns:repeat(var(--v-footer-grid-columns-md), 1fr);grid-auto-flow:row}}@media(max-width: 480px){.v-footer-container{grid-template-columns:repeat(var(--v-footer-grid-columns-sm), 1fr)}}.v-footer-column{display:flex;flex-direction:column;gap:var(--size-scalable-24)}@media(max-width: 767px){.v-footer-column{gap:var(--size-scalable-16)}}@media(max-width: 480px){.v-footer-links{flex-direction:column}}}

@@ -1,0 +1,201 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@layer utilities {
+  %v-flex {
+    display: flex;
+  }
+
+  %v-flex-inline {
+    display: inline-flex;
+  }
+
+  %v-flex-col {
+    flex-direction: column;
+  }
+
+  %v-flex-col-reverse {
+    flex-direction: column-reverse;
+  }
+
+  %v-flex-row {
+    flex-direction: row;
+  }
+
+  %v-flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  %v-flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  %v-flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+
+  %v-flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  %v-flex-grow {
+    flex-grow: 1;
+  }
+
+  %v-flex-grow-0 {
+    flex-grow: 0;
+  }
+
+  %v-flex-shrink {
+    flex-shrink: 1;
+  }
+
+  %v-flex-shrink-0 {
+    flex-shrink: 0;
+  }
+
+  %v-align-content-center {
+    align-content: center;
+  }
+
+  %v-align-content-start {
+    align-content: flex-start;
+  }
+
+  %v-align-content-end {
+    align-content: flex-end;
+  }
+
+  %v-align-content-between {
+    align-content: space-between;
+  }
+
+  %v-align-content-around {
+    align-content: space-around;
+  }
+
+  %v-align-content-evenly {
+    align-content: space-evenly;
+  }
+
+  %v-align-items-start {
+    align-items: flex-start;
+  }
+
+  %v-align-items-end {
+    align-items: flex-end;
+  }
+
+  %v-align-items-center {
+    align-items: center;
+  }
+
+  %v-align-items-baseline {
+    align-items: baseline;
+  }
+
+  %v-align-items-stretch {
+    align-items: stretch;
+  }
+
+  %v-align-self-start {
+    align-self: flex-start;
+  }
+
+  %v-align-self-end {
+    align-self: flex-end;
+  }
+
+  %v-align-self-auto {
+    align-self: auto;
+  }
+
+  %v-align-self-center {
+    align-self: center;
+  }
+
+  %v-align-self-stretch {
+    align-self: stretch;
+  }
+
+  %v-align-self-baseline {
+    align-self: baseline;
+  }
+
+  %v-justify-content-start {
+    justify-content: flex-start;
+  }
+
+  %v-justify-content-end {
+    justify-content: flex-end;
+  }
+
+  %v-justify-content-center {
+    justify-content: center;
+  }
+
+  %v-justify-content-between {
+    justify-content: space-between;
+  }
+
+  %v-justify-content-around {
+    justify-content: space-around;
+  }
+
+  %v-justify-content-evenly {
+    justify-content: space-evenly;
+  }
+
+  // Justify items and justify self is ignored by flex 
+  // (but works with grid layouts) 
+  // restore if requested
+
+  // %v-justify-items-start {
+  //   justify-items: start;
+  // }
+
+  // %v-justify-items-end {
+  //   justify-items: end;
+  // }
+
+  // %v-justify-items-center {
+  //   justify-items: center;
+  // }
+
+  // %v-justify-items-stretch {
+  //   justify-items: stretch;
+  // }
+
+  // %v-justify-self-auto {
+  //   justify-self: auto;
+  // }
+
+  // %v-justify-self-start {
+  //   justify-self: start;
+  // }
+
+  // %v-justify-self-end {
+  //   justify-self: end;
+  // }
+
+  // %v-justify-self-center {
+  //   justify-self: center;
+  // }
+
+  // %v-justify-self-stretch {
+  //   justify-self: stretch;
+  // }
+}

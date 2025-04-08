@@ -1,0 +1,95 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+// colors 
+$primary: #555555; 
+$secondary: #dddddd; 
+$lightest: #ffffff; 
+$darkest: #000000; 
+$positive: #148a0a; 
+$warning: #cca002; 
+$negative: #b80600; 
+$info: #1e78a8; 
+
+// font base size  
+$font-size: 12px; 
+
+// focus outline 
+$focus-outline-size: 1px; 
+$focus-outline-offset: 1px; 
+
+// borders 
+$border-size: 1px;
+$border-radius: 2px; 
+
+// responsive sizing factor
+$responsive-factor: 1.25; 
+
+// scaled size factor
+$scale-factor: 1;
+
+// DARK 
+// colors 
+$primaryDark: #dddddd; 
+$secondaryDark: #303033; 
+$lightestDark: #ffffff; 
+$darkestDark: #000000; 
+$positiveDark: #148a0a; 
+$warningDark: #cca002; 
+$negativeDark: #b80600; 
+$infoDark: #1e78a8; 
+
+
+// exceptions
+@layer overrides {
+  :root,
+  ::backdrop {
+    --v-logo-color: var(--color-darkest);
+    --v-logo-hc-background: var(--color-lightest);
+  }
+  .v-alternate {
+    --v-logo-color: var(--color-lightest);
+    --v-logo-hc-background: #000;
+  }
+
+  [data-theme="dark"],
+  .v-dark {
+    --v-logo-color: var(--color-lightest);
+    --v-logo-hc-background: #000;
+
+    .v-alternate.v-nav,
+      .v-alternate .v-nav {
+        --v-badge-number-foreground: var(--palette-default-surface-1);
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    .v-logo {
+      --v-logo-color: var(--color-lightest);
+      --v-logo-hc-background: #000;
+    }
+
+    .v-alternate.v-nav,
+      .v-alternate .v-nav {
+        --v-badge-number-foreground: var(--palette-default-surface-1);
+    }
+  }
+  @media (forced-colors: active) {
+    svg.v-icon {
+      #{--v-icon-primary}: currentColor !important; 
+      #{--v-icon-secondary}: currentColor !important; 
+    }
+ }
+}

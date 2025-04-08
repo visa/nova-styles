@@ -1,0 +1,8 @@
+{
+  "name": "nova-styles/themes/vault",
+  "version": "0.0.1",
+  "description": "Nova theme for legacy version VaultKey+",
+  "keywords": [],
+  "project": "vpds-styles",
+  "library": "themes"
+}

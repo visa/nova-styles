@@ -1,0 +1,82 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+$vars: (
+
+  label-color: var(--palette-default-text),
+  label-disabled-color: var(--palette-default-disabled),
+  
+  node-active-border-color: var(--palette-default-active-pressed),
+  node-background-color: var(--palette-default-surface-1),
+  node-block-size: var(--size-scalable-18),
+  node-border-color: var(--palette-default-active-subtle),
+  node-border-radius: var(--size-rounded-complete),
+  node-border-style: solid,
+  node-border-width: var(--size-scalable-1),
+  node-margin-inline-start: 0px,
+  
+  node-checked-border-color: var(--palette-default-surface-1),
+  node-checked-margin-inline-start: calc(100% - var(--v-switch-track-padding) - var(--v-switch-node-inline-size)),
+
+  node-disabled-border-color: var(--palette-default-disabled),
+  node-disabled-border-width: var(--size-scalable-1),
+  node-focus-outline-glow-color: var(--palette-default-surface-highlight),
+  node-focus-outline-offset: var(--size-scalable-7),
+  node-focus-outline-width: var(--size-scalable-1),
+  
+  node-hover-border-color: var(--palette-default-active-hover),
+  node-hover-border-width: var(--size-scalable-2),
+  
+  node-inline-size: var(--size-scalable-18),
+  
+  track-active-background-color: var(--palette-default-surface-lowlight),
+  track-active-border-color: var(--palette-default-active-pressed),
+  track-background-color: var(--palette-default-surface-3),
+  track-block-size: var(--size-scalable-24),
+  track-border-color: var(--palette-default-active-subtle),
+  track-border-radius: var(--size-rounded-pill),
+  track-border-size: var(--size-scalable-1),
+  track-border-style: solid,
+
+  track-checked-border-color: var(--palette-default-transparent),
+  track-checked-border-radius: var(--size-rounded-pill),
+
+  track-disabled-border-color: var(--palette-default-disabled),
+  track-disabled-background-color: var(--palette-default-surface-3),
+
+  track-hover-background-color: var(--palette-default-surface-highlight),
+  track-hover-border-color: var(--palette-default-active-hover),
+
+  track-inline-size: var(--size-scalable-44),
+  track-inset-inline-end: 0,
+
+  track-margin: 0,
+  track-padding: var(--size-scalable-2),
+  track-start-position: 0,
+  
+  transition: margin-inline-start .25s ease,
+
+);
+
+// generate component css variables 
+@layer components {
+  :root,
+  .v-alternate {
+    @each $token, $value in $vars {
+      #{--v-switch-#{$token}}: #{$value};
+    }
+  }
+}

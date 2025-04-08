@@ -1,0 +1,394 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+
+@layer components {
+  .v-badge {
+    $root: &;
+    @include typography-label-small;
+    align-items: center;
+    background-color: var(--v-badge-background);
+    border-color: var(--v-badge-border-color);
+    border-radius: var(--v-badge-border-radius);
+    border-style: solid;
+    border-width: var(--v-badge-border-width);
+    color: var(--v-badge-foreground);
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--v-badge-gap); // sass-lint:disable-line no-misspelled-properties
+    min-block-size: var(--v-badge-block-size);
+    padding-block: var(--v-badge-padding-block);
+    padding-inline: var(--v-badge-padding-inline);
+
+    // sass-lint:disable-block no-duplicate-properties
+    #{--v-icon-primary}: var(--v-badge-icon-color);
+    #{--v-icon-secondary}: var(--v-badge-icon-color);
+
+    @media (forced-colors: active) {
+      &:not(.v-badge-clear) {
+        border-width: 1px;
+        border-color: transparent;
+      }
+
+      .v-badge-ellipse {
+        outline: 1px solid currentColor;
+        outline-offset: -1px;
+        border-radius: 50%;
+        margin-inline: -1px 1px;
+      }
+    }
+
+    &:has(.v-icon) {
+      .v-icon {
+        #{--v-icon-height}: var(--v-badge-icon-size);
+        #{--v-icon-width}: var(--v-badge-icon-size);
+      }
+    }
+
+    &-critical {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-background}: var(--v-badge-error-background);
+      #{--v-badge-ellipse-color}: var(--v-badge-error-icon-color);
+      #{--v-icon-primary}: var(--v-badge-error-icon-color);
+      #{--v-icon-secondary}: var(--v-badge-error-icon-color);
+    }
+
+    &-neutral {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-background}: var(--v-badge-neutral-background);
+      #{--v-badge-ellipse-color}: var(--v-badge-neutral-icon-color);
+      #{--v-icon-primary}: var(--v-badge-neutral-icon-color);
+      #{--v-icon-secondary}: var(--v-badge-neutral-icon-color);
+    }
+
+    &-stable {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-background}: var(--v-badge-stable-background);
+      #{--v-badge-ellipse-color}: var(--v-badge-stable-icon-color);
+      #{--v-icon-primary}: var(--v-badge-stable-icon-color);
+      #{--v-icon-secondary}: var(--v-badge-stable-icon-color);
+    }
+
+    &-warning {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-background}: var(--v-badge-warning-background);
+      #{--v-badge-ellipse-color}: var(--v-badge-warning-icon-color);
+      #{--v-icon-primary}: var(--v-badge-warning-icon-color);
+      #{--v-icon-secondary}: var(--v-badge-warning-icon-color);
+    }
+
+    &-subtle {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-background}: var(--v-badge-subtle-background);
+      #{--v-badge-ellipse-color}: var(--v-badge-subtle-icon-color);
+      #{--v-icon-primary}: var(--v-badge-subtle-icon-color);
+      #{--v-icon-secondary}: var(--v-badge-subtle-icon-color);
+    }
+
+    @at-root a[href], // sass-lint:disable-line force-attribute-nesting
+    button {
+      &:is(#{$root}) {
+        cursor: pointer;
+
+        &:hover {
+          #{--v-badge-background}: var(--v-badge-neutral-hover-background);
+        }
+
+        &:active {
+          #{--v-badge-background}: var(--v-badge-neutral-active-background);
+        }
+
+        &.v-badge-critical {
+          &:hover {
+            #{--v-badge-background}: var(--v-badge-error-hover-background);
+          }
+
+          &:active {
+            #{--v-badge-background}: var(--v-badge-error-active-background);
+          }
+        }
+
+        &.v-badge-neutral {
+          &:hover {
+            #{--v-badge-background}: var(--v-badge-neutral-hover-background);
+          }
+
+          &:active {
+            #{--v-badge-background}: var(--v-badge-neutral-active-background);
+          }
+        }
+
+        &.v-badge-stable {
+          &:hover {
+            #{--v-badge-background}: var(--v-badge-stable-hover-background);
+          }
+
+          &:active {
+            #{--v-badge-background}: var(--v-badge-stable-active-background);
+          }
+        }
+
+        &.v-badge-warning {
+          &:hover {
+            #{--v-badge-background}: var(--v-badge-warning-hover-background);
+          }
+
+          &:active {
+            #{--v-badge-background}: var(--v-badge-warning-active-background);
+          }
+        }
+
+        &.v-badge-subtle {
+          &:hover {
+            #{--v-badge-background}: var(--v-badge-subtle-hover-background);
+          }
+
+          &:active {
+            #{--v-badge-background}: var(--v-badge-subtle-active-background);
+          }
+        }
+      }
+    }
+
+    @at-root a[href] {
+      // sass-lint:disable-line force-attribute-nesting
+      &:is(#{$root}) {
+        &:hover {
+          #{--typography-text-decoration}: var(--v-link-text-decoration);
+        }
+
+        &:disabled {
+          #{--v-badge-background}: var(--v-badge-disabled-background);
+        }
+      }
+    }
+
+    @at-root a:not([href]),
+      button:disabled,
+      .v-link:not([href]),
+      .v-button[disabled] {
+      .v-badge {
+        &:not(.v-badge-clear) {
+          #{--v-badge-background}: var(--v-badge-disabled-background);
+        }
+
+        &.v-badge-clear {
+          #{--v-badge-border-color}: var(--v-badge-disabled-background);
+          #{--v-badge-ellipse-color}: var(--v-badge-disabled-background);
+          #{--v-badge-foreground}: var(--v-badge-disabled-background);
+          #{--v-badge-icon-color}: var(--v-badge-disabled-background);
+        }
+      }
+    }
+
+    @at-root .v-alternate.v-nav,
+      .v-alternate .v-nav {
+      --v-badge-number-foreground: var(--palette-default-active-accent);
+    }
+
+    // @TODO refactor
+    // FIRST, the default number color should be neutral or subtle
+    // but currently, number's default color is speced as critical/negative/red
+    // SECOND, the messaging color names were updated without notifying dev
+    // thus potentially introducing breaking change
+    // THIRD, number and icon could be the same variant, specifying differences
+    // if .v-badge-round > .v-icon (or whatever name is given) has icon or not
+    // FOURTH, this component could follow another pattern introduced by buttons/actions
+    // of plain (default, or tertiary button), filled, and outlined. currently,
+    // regular badge only has filled and plain, and number/icon has filled and outlined
+    // can we expand the definitions to be more generic and flexible?
+    // FIFTH, this would lead to a refactor of the buttons/actions and messaging
+    // though enabling a more consistent and flexible system
+    // FINALLY, consider refactoring for dev classes regardless of what is speced and provide
+    // examples to match that spec.
+    &-number,
+    &-icon {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-border-radius}: var(--v-badge-number-radius);
+      #{--v-badge-padding-block}: none;
+      #{--v-badge-padding-inline}: var(--v-badge-number-padding-inline);
+      #{--v-badge-block-size}: var(--v-badge-number-block-size);
+      box-sizing: content-box;
+      inline-size: fit-content;
+      justify-content: center;
+      max-inline-size: var(--v-badge-number-max-inline);
+      min-inline-size: calc(var(--v-badge-number-size) - (var(--v-badge-number-padding-inline) * 2));
+      overflow: hidden;
+      text-align: center;
+
+      &.v-badge-clear {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-badge-block-size}: calc(var(--v-badge-number-block-size) - (var(--v-badge-icon-clear-border-width) * 2));
+        #{--v-badge-border-width}: var(--v-badge-icon-clear-border-width);
+      }
+
+      &.v-badge-subtle {
+        &:not(.v-badge-clear) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-background}: var(--v-badge-subtle-icon-color);
+          #{--v-badge-foreground}: var(--v-badge-icon-foreground);
+        }
+
+        &.v-badge-clear {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-foreground}: var(--v-badge-subtle-icon-color);
+          #{--v-badge-border-color}: var(--v-badge-subtle-icon-color);
+        }
+      }
+
+      &.v-badge-neutral {
+        &:not(.v-badge-clear) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-background}: var(--v-badge-neutral-icon-color);
+          #{--v-badge-foreground}: var(--v-badge-icon-foreground);
+        }
+
+        &.v-badge-clear {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-foreground}: var(--v-badge-neutral-icon-color);
+          #{--v-badge-border-color}: var(--v-badge-neutral-icon-color);
+        }
+      }
+
+      &.v-badge-stable {
+        &:not(.v-badge-clear) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-background}: var(--v-badge-stable-icon-color);
+          #{--v-badge-foreground}: var(--v-badge-icon-foreground);
+        }
+
+        &.v-badge-clear {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-foreground}: var(--v-badge-stable-icon-color);
+          #{--v-badge-border-color}: var(--v-badge-stable-icon-color);
+        }
+      }
+
+      &.v-badge-warning {
+        &:not(.v-badge-clear) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-background}: var(--v-badge-warning-icon-color);
+          #{--v-badge-foreground}: var(--v-badge-icon-foreground);
+        }
+
+        &.v-badge-clear {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-foreground}: var(--v-badge-warning-icon-color);
+          #{--v-badge-border-color}: var(--v-badge-warning-icon-color);
+        }
+      }
+
+      &.v-badge-critical {
+        &:not(.v-badge-clear) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-background}: var(--v-badge-error-icon-color);
+          #{--v-badge-foreground}: var(--v-badge-icon-foreground);
+        }
+
+        &.v-badge-clear {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-foreground}: var(--v-badge-error-icon-color);
+          #{--v-badge-border-color}: var(--v-badge-error-icon-color);
+        }
+      }
+
+      &.v-badge-active {
+        &:not(.v-badge-clear) {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-background}: var(--v-badge-icon-active-icon-color);
+          #{--v-badge-foreground}: var(--v-badge-icon-foreground);
+        }
+
+        &.v-badge-clear {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-badge-foreground}: var(--v-badge-icon-active-icon-color);
+          #{--v-badge-border-color}: var(--v-badge-icon-active-icon-color);
+        }
+      }
+    }
+
+    &-number {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-background}: var(--v-badge-number-background);
+      #{--v-badge-foreground}: var(--v-badge-number-foreground);
+
+      &.v-badge-clear {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-badge-foreground}: var(--v-badge-number-background);
+        #{--v-badge-border-color}: var(--v-badge-number-background);
+      }
+    }
+
+    &-icon {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-padding-inline}: 0px;
+      #{--v-badge-foreground}: var(--v-badge-icon-foreground);
+      block-size: var(--v-badge-block-size);
+      inline-size: var(--v-badge-block-size);
+      max-block-size: var(--v-badge-block-size);
+      max-inline-size: var(--v-badge-block-size);
+      #{--v-icon-primary}: var(#{--v-badge-foreground});
+      #{--v-icon-secondary}: var(#{--v-badge-foreground});
+
+      .v-icon {
+        #{--v-badge-icon-size}: var(#{--v-badge-icon-only-size});
+      }
+    }
+
+    // @TODO flip for class .v-badge-filled
+    // currently, badges are colored by default
+    // design has introduced several badges without background color
+    // previously, the background color overriden in the example inline styles
+    // providing this class as variant to the default badge
+    // however, ideally this style would be default and the filled badge would be a variant
+    // keeping as-is to prevent breaking changes, but something to consider for v2
+    // NOTE, see refactor "TODO" note above
+    &-clear {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-badge-background}: var(--palette-default-transparent);
+    }
+
+    @media (forced-colors: active) {
+      &.v-badge-icon {
+        &:not(.v-badge-clear) {
+          #{--v-badge-background}: CanvasText;
+          #{--v-badge-foreground}: Canvas;
+          outline: 1px solid currentColor;
+        }
+      }
+      &.v-badge-number {
+        &:not(.v-badge-clear) {
+          #{--v-badge-background}: #fff;
+          #{--v-badge-foreground}: #000;
+          outline: 1px solid #000;
+          forced-color-adjust: none;
+        }
+      }
+    }
+    @media (forced-colors: active) and (prefers-color-scheme: light) {
+      // light MS High Contrast theme
+      &.v-badge-number {
+        &:not(.v-badge-clear) {
+          #{--v-badge-background}: #000;
+          #{--v-badge-foreground}: #fff;
+          outline: 1px solid #fff;
+        }
+      }
+    }
+  }
+}

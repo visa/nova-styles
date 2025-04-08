@@ -1,0 +1,407 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/breakpoints/vars' as *; // @TODO move to separate from base 
+@use '../../base/typography/vars' as *; // @TODO move to separate from base 
+
+// exemptions: add theme overrides here
+@layer overrides {
+  :root,
+  ::backdrop,
+  .v-alternate {
+    --elevation-inset: inset 0 0 4px 0 rgba(0,0,0,0.1), inset 0 0 4px 1px rgba(0,0,0,0.2); 
+    --elevation-xsmall: 0 1px 3px 0 rgba(0,0,0,0.05); 
+    --elevation-small: 0 1px 2px -1px rgba(0,0,0,0.1), 0 1px 3px 0 rgba(0,0,0,0.1); 
+    --elevation-medium: 0 4px 15px -1px rgba(0,0,0,0.08), 0 4px 2px -2px rgba(0,0,0,0.1); 
+    --elevation-large: 0 10px 18px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); 
+    --elevation-xlarge: 0 20px 25px -5px rgba(0,0,0,0.1), 0 4px 10px 2px rgba(0,0,0,0.1); 
+    --elevation-xxlarge: 0 25px 50px -12px rgba(0,0,0,0.25);  
+    --v-logo-color: var(--palette-accent-app-name);
+    --v-logo-hc-background: #000;
+  }
+
+  .v-label:has(+ .v-input-container),
+  .v-label:has(+ * .v-input-container),
+  .v-input-container .v-label {
+    @include typography-label;
+  }
+
+  .v-input-container {
+    &:has(.v-checkbox),
+    &:has(.v-radio) {
+      .v-label {
+        @include typography-label-large;
+      }
+    }
+  }
+
+  @container nav-container (max-width: 768px) {
+    .v-nav {
+      &:has(.v-tabs:not(.v-tabs-vertical)),
+      &:has(.v-tabs-horizontal),
+      &-horizontal {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-nav-horizontal-padding-inline-end}: 16px;
+        #{--v-nav-horizontal-padding-inline-start}: 16px;
+      }
+    }
+  }
+
+  @include media(mobile) {
+    :root,
+    ::backdrop,
+    .v-alternate {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-accordion-badge-margin}: 15px;
+      #{--v-accordion-icon-size}: to-rem(23px);
+      #{--v-accordion-toggle-icon-size}: to-rem(16px);
+      #{--v-button-default-block-size}: 46px;
+      #{--v-button-default-icon-size}: to-rem(18px);
+      #{--v-tabs-vertical-block-size}: 48px;
+    }
+
+    .v-button {
+      &-tertiary {
+        &.v-button-icon {
+          #{--v-button-default-block-size}: 42px;
+
+          &.v-button-small {
+            #{--v-button-default-block-size}: 36px;
+          }
+
+          &.v-button-large {
+            #{--v-button-default-block-size}: 52px;
+          }
+        }
+      }
+
+      &-stacked {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-block-size}: 72px;
+        #{--v-button-default-gap}: 4px;
+      }
+
+      &-small {
+        #{--v-button-default-block-size}: 36px;
+      }
+
+      &-large {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-block-size}: 58px;
+        #{--v-button-default-icon-size}: 22px;
+
+        &.v-button-icon {
+          &:not(.v-panel-toggle) {
+            // sass-lint:disable-block no-duplicate-properties
+            #{--v-button-default-block-size}: 72px;
+            #{--v-button-default-padding-block}: 24px;
+          }
+        }
+      }
+    }
+
+    .v-tabs-vertical {
+      #{--v-tabs-icon-size}: 20px;
+      #{--v-tabs-suffix-icon-size}: 16px;
+    }
+
+    .v-nav {
+      &:has(.v-tabs:not(.v-tabs-vertical)),
+      &:has(.v-tabs-horizontal),
+      &-horizontal {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-nav-horizontal-padding-inline-end}: 16px;
+        #{--v-nav-horizontal-padding-inline-start}: 16px;
+      }
+    }
+  }
+
+  .v-avatar {
+    &.v-avatar-small {
+      &:has(.v-icon) {
+        #{--v-avatar-background}: var(--palette-default-transparent);
+        #{--v-avatar-foreground}: var(--palette-default-active);
+      }
+    }
+
+    // @TODO remove if/when dropping support for .v-avatar.v-icon 
+    // keeping for backwards compatibility 
+    // when using avatar class along-side icon. 
+    // IE/ <svg class="v-avatar v-icon">
+    // not recommended for a11y (svg's are unfocused) 
+    &.v-icon {
+      #{--v-avatar-background}: var(--palette-default-transparent);
+      // #{--v-avatar-foreground}: var(--palette-default-active);
+    }
+  }
+
+  .v-button {
+    &-tertiary {
+      #{--v-button-default-padding-inline}: calc(var(--size-scalable-8) - var(--v-button-default-border-size));
+
+      // Nova UI Icon Buttons
+      &.v-button-icon {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-block-size}: 38px;
+        #{--v-button-default-padding-block}: calc(((var(--v-button-default-block-size) - var(--v-button-default-icon-size)) / 2) - var(--v-button-default-border-size));
+        #{--v-button-default-padding-inline}: var(--v-button-default-padding-block);
+
+        &.v-button-small {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-button-default-block-size}: 32px;
+          #{--v-button-default-padding-block}: calc(((var(--v-button-default-block-size) - var(--v-button-default-icon-size)) / 2) - var(--v-button-default-border-size));
+          #{--v-button-default-padding-inline}: var(--v-button-default-padding-block);
+        }
+
+        &.v-button-large {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-button-default-block-size}: 46px;
+          #{--v-button-default-padding-block}: calc(((var(--v-button-default-block-size) - var(--v-button-default-icon-size)) / 2) - var(--v-button-default-border-size));
+          #{--v-button-default-padding-inline}: var(--v-button-default-padding-block);
+        }
+
+        &:has(.v-avatar) {
+          #{--v-button-default-padding-block}: calc(((var(--v-button-default-block-size) - var(--v-avatar-profile-size)) / 2) - var(--v-button-default-border-size));
+
+          &:has(.v-avatar .v-icon),
+          &:has(.v-avatar.v-icon) {
+            #{--v-button-default-padding-block}: calc(((var(--v-button-default-block-size) - var(--v-avatar-icon-size)) / 2) - var(--v-button-default-border-size));
+          }
+        }
+      }
+    }
+  }
+
+  .v-tab {
+    .v-button-tertiary {
+      #{--v-button-default-padding-inline}: calc(var(--v-tabs-padding-inline) - var(--v-button-default-border-size)); // restore inline padding for tertiary button within tabs
+    }
+  }
+
+  .v-pagination {
+    .v-button-tertiary {
+      #{--v-button-default-padding-inline}: var(--v-pagination-padding-inline);
+
+      &[aria-current='page'], &[aria-current='true'] {
+        #{--v-button-default-padding-inline}: var(--v-pagination-selected-padding-inline);
+      }
+    }
+  }
+
+  .v-panel {
+    &:not(.v-panel-responsive) {
+      --v-panel-drop-shadow: drop-shadow(0 10px 18px rgba(0,0,0,0.1)) drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+    }
+
+    &-toggle {
+      #{--v-button-default-icon-size}: to-rem(20px);
+    }
+  }
+
+  .v-action-secondary {
+    &:has(.v-checkbox:only-of-type:not(:disabled)),
+    &:has(.v-radio:only-of-type:not(:disabled)) {
+      .v-label:only-of-type {
+        #{--v-label-color}: var(--palette-default-text);
+      }
+    }
+  }
+  
+  .v-checkbox,
+  .v-radio {
+    &:not(:disabled) {
+      & + .v-label,
+      & + *:has(.v-label) {
+        #{--v-label-color}: var(--palette-default-text); 
+      }
+    }
+  }
+
+  // .v-label {
+  //   &:not(.v-chip-selection) {
+  //     &:has(+ .v-checkbox:not(:disabled)),
+  //     &:has(+ .v-radio:not(:disabled)),    
+  //     &:has(.v-checkbox:not(:disabled)),
+  //     &:has(.v-radio:not(:disabled)) {
+  //       #{--v-label-color}: var(--palette-default-text);
+  //     }
+  //   }
+  // }
+
+  .v-chip {
+    .v-button-icon {
+      inline-size: var(--v-chip-button-size);
+      #{--v-button-default-block-size}: var(--v-chip-button-size);
+      #{--v-button-default-padding-block}: var(--v-chip-button-padding);
+      #{--v-button-default-padding-inline}: var(--v-chip-button-padding);
+    }
+    
+    &-compact {
+      .v-button-icon {
+        inline-size: var(--v-chip-compact-button-size);
+        #{--v-button-default-block-size}: var(--v-chip-compact-button-size);
+        #{--v-button-default-padding-block}: var(--v-chip-compact-button-padding);
+        #{--v-button-default-padding-inline}: var(--v-chip-compact-button-padding);
+      }
+    }
+  }
+
+  .v-icon-two-color {
+    &, 
+    &.v-icon-visa,
+    & .v-icon-visa {
+      #{--v-icon-primary}: var(--palette-default-active);
+      #{--v-icon-secondary}: var(--palette-default-active-accent);
+    }
+  }
+
+  .v-button {
+    &:not(.v-button-secondary) {
+      &:not(.v-button-tertiary) {
+        &:not(.v-button-subtle) {
+          &:not(.v-button-destructive) {
+            &.v-icon-two-color {
+              .v-icon-visa {
+                // #{--v-icon-primary}: var(--palette-default-active); 
+                // #{--v-icon-secondary}: var(--palette-default-active-accent); 
+                #{--v-icon-primary}: var(--v-button-default-foreground);
+              }
+            }
+
+            .v-icon-two-color {
+              &.v-icon-visa {
+                // #{--v-icon-primary}: var(--palette-default-active); 
+                // #{--v-icon-secondary}: var(--palette-default-active-accent); 
+                #{--v-icon-primary}: var(--v-button-default-foreground);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.v-icon-two-color,
+    & .v-icon-two-color {
+      #{--v-icon-primary}: var(--palette-default-text-on-active);
+      #{--v-icon-secondary}: var(--palette-default-active-accent);
+    }
+    
+    &:disabled {
+      &.v-icon-two-color,
+      & .v-icon-two-color {
+        #{--v-icon-primary}: currentColor;
+        #{--v-icon-secondary}: currentColor;
+      }
+    }
+
+    &-subtle {
+      &.v-icon-two-color,
+      & .v-icon-two-color {
+        #{--v-icon-secondary}: var(--v-icon-primary);
+      }
+    }
+
+    &-secondary,
+    &-tertiary {
+      &.v-icon-two-color,
+      & .v-icon-two-color {
+        #{--v-icon-primary}: var(--palette-default-active);
+        #{--v-icon-secondary}: var(--palette-default-active-accent);
+      }
+    }
+  }
+
+  .v-link {
+    &.v-icon-two-color,
+    & > .v-icon-two-color {
+      #{--v-icon-primary}: var(--palette-default-active); 
+      #{--v-icon-secondary}: var(--palette-default-active-accent); 
+    }
+  }
+
+  .v-icon-two-color .v-tabs .v-tab .v-button .v-icon-visa,
+  .v-tabs.v-icon-two-color .v-tab .v-button .v-icon-visa,
+  .v-tabs .v-tab .v-button.v-icon-two-color .v-icon-visa,
+  .v-tabs .v-tab.v-icon-two-color .v-button .v-icon-visa {
+    #{--v-icon-primary}: var(--palette-default-active); 
+    #{--v-icon-secondary}: var(--palette-default-active-accent); 
+  }
+
+  .v-nav {
+    &:has(.v-tabs) {
+      .v-tab {
+        .v-button-tertiary {
+          &[aria-expanded="true"] {
+            &:not([aria-selected="true"]) {
+              --v-button-secondary-background: var(--palette-default-transparent);
+              --v-button-tertiary-background: var(--palette-default-transparent); 
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .v-wizard {
+    &:not(.v-accordion) {
+      .v-badge {
+        scale: calc(18/16);
+      }
+    }
+
+    &.v-accordion {
+      .v-badge {
+        scale: calc(22/16);
+      }
+    }
+  }
+
+  .v-alternate {
+    &.v-button-secondary,
+    & .v-button-secondary,
+    &.v-button-tertiary,
+    & .v-button-tertiary,
+    &.v-button-subtle,
+    & .v-button-subtle,
+    &.v-tab,
+    & .v-tab {
+      &:hover,
+      &:focus-visible,
+      &:active {
+        &:not(:disabled) {
+          &.v-icon-two-color,
+          & .v-icon-two-color {
+            #{--v-icon-primary}: var(--palette-default-active-accent);
+            #{--v-icon-secondary}: var(--palette-default-active);
+          }
+        }
+      }
+    }
+  
+    .v-nav,
+    &.v-nav {
+      #{--v-nav-foreground}: var(--palette-default-active-accent);
+      #{--v-badge-number-foreground}: var(--palette-default-surface-1);
+    }
+  }
+
+  @media (forced-colors: active) {
+    svg.v-icon {
+      #{--v-icon-primary}: currentColor !important; 
+      #{--v-icon-secondary}: currentColor !important; 
+    }
+ }
+}

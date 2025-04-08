@@ -1,0 +1,88 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+$vars: (
+  align-items: center,
+  
+  active-border-color: var(--palette-default-active-pressed),
+  
+  avatar-size: var(--v-avatar-icon-size),
+  
+  background-color: var(--palette-default-surface-1),
+  
+  border-color: var(--palette-default-active),
+  border-radius: calc(var(--size-rounded-large) * 2),
+  border-style: solid,
+  border-width: 1px,
+  
+  button-padding: 0,
+  button-size: var(--size-scalable-30),
+
+  checkbox-appearance: none,
+  checkbox-clip: rect(0, 0, 0, 0),
+  checkbox-margin: 0,
+  checkbox-position: fixed,
+  
+  compact-border-color: var(--palette-default-active-subtle),
+  compact-border-radius: var(--size-rounded-small),
+  compact-button-padding: 0,
+  compact-icon-size: var(--size-scalable-16),
+  compact-padding-block: var(--size-scalable-3),
+  compact-padding-inline: var(--size-scalable-3),
+  compact-padding-inline-start: var(--size-scalable-5),
+  compact-avatar-size: var(--size-scalable-22),
+  compact-button-size: var(--size-scalable-28),
+  
+  delete-padding-block: var(--size-scalable-0),
+  delete-padding-inline-end: var(--size-scalable-0),
+  
+  disabled-border-color: var(--palette-default-disabled),
+  disabled-cursor: default,
+  
+  display: inline-flex,
+  gap: var(--size-scalable-4),
+  hover-border-color: var(--palette-default-active-hover),
+  
+  icon-size: var(--size-scalable-18),
+  
+  inline-size: fit-content,
+  
+  lead-inline-start-padding: var(--size-scalable-3),
+  
+  padding-block: var(--size-scalable-6),
+  padding-inline-end: var(--size-scalable-7),
+  padding-inline-start: var(--v-chip-padding-inline-end),
+  
+  readonly-background-color: var(--palette-default-surface-1),
+  readonly-border-color: var(--palette-default-border),
+  readonly-label-color: var(--palette-default-text-subtle),
+  
+  selection-cursor: pointer,
+  selection-gap: var(--size-scalable-6),
+  selection-text-color: var(--palette-default-active),
+  
+  static-border-color: var(--palette-default-border)
+);
+
+// generate component css variables 
+@layer components {
+  :root,
+  .v-alternate {
+    @each $token, $value in $vars {
+      #{--v-chip-#{$token}}: #{$value};
+    }
+  }
+}

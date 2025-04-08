@@ -1,0 +1,81 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+@use '../../base/flex' as *; 
+
+
+@layer components {
+  .v-link {
+    @include typography-body-2-link;
+    $root: &; 
+
+    align-items: baseline;
+    background-color: var(--v-link-background);
+    border-color: var(--v-link-border-color);
+    border-radius: var(--v-link-border-radius); 
+    border-style: var(--v-link-border-style);
+    border-width: var(--v-link-border-size);
+    color: var(--v-link-foreground);
+    cursor: pointer;
+    display: var(--v-link-display);
+    gap: var(--v-link-icon-gap); // sass-lint:disable-line no-misspelled-properties
+    padding-block: var(--v-link-padding-block); 
+    padding-inline: var(--v-link-padding-inline); 
+    text-decoration: var(--v-link-text-decoration); 
+    
+    &:hover {
+      background-color: var(--v-link-hover-background);
+      border-color: var(--v-link-hover-border-color); 
+      color: var(--v-link-hover-foreground);
+    }
+
+    &:focus-visible {
+      background-color: var(--v-link-focus-background);
+      border-color: var(--v-link-focus-border-color); 
+      color: var(--v-link-focus-foreground);
+    }
+
+    &:active {
+      background-color: var(--v-link-active-background);
+      border-color: var(--v-link-active-border-color); 
+      color: var(--v-link-active-foreground);
+    }
+
+    
+    @at-root button#{&}[disabled],
+    &[role='link'][aria-disabled='true'] {
+      #{--v-link-foreground}: var(--palette-default-disabled); 
+      pointer-events: none;
+    }
+
+    
+    &-no-underline {
+      text-decoration: none; 
+    }
+
+    & > .v-icon {
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-icon-primary}: var(--v-link-foreground); 
+      #{--v-icon-secondary}: var(--v-link-foreground); 
+      top: var(--v-link-icon-top); 
+      transform: var(--v-link-icon-transformation); 
+    }
+  }
+}
+

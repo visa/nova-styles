@@ -1,0 +1,17 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@layer components{:root,.v-alternate{--v-tooltip-border-radius:var(--size-rounded-none);--v-tooltip-border-size:0px;--v-tooltip-elevation:var(--elevation-small);--v-tooltip-padding:var(--size-scalable-4);--v-tooltip-position:absolute;--v-tooltip-surface-size:fit-content}}@layer components{.v-tooltip{--typography-font-family:var(--typography-label-font-family);--typography-font-size:var(--typography-label-font-size);--typography-font-weight:var(--typography-label-font-weight);--typography-letter-spacing:var(--typography-label-letter-spacing);--typography-line-height:var(--typography-label-line-height);--typography-text-decoration:var(--typography-label-text-decoration);--typography-text-transform:var(--typography-label-text-transform);font-family:var(--typography-font-family);font-size:var(--typography-font-size);font-weight:var(--typography-font-weight);letter-spacing:var(--typography-letter-spacing);line-height:var(--typography-line-height);text-decoration:var(--typography-text-decoration);text-transform:var(--typography-text-transform);--v-surface-border-radius:var(--v-tooltip-border-radius);--v-surface-border-size:var(--v-tooltip-border-size);--v-surface-inline-size:var(--v-tooltip-surface-size);box-shadow:var(--v-tooltip-elevation);padding:var(--v-tooltip-padding);position:var(--v-tooltip-position)}}

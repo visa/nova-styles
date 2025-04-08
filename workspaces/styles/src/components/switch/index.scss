@@ -1,0 +1,147 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './_vars' as *;
+@use '../../base/accessibility' as *;
+@use '../../abstracts/action-primary' as *;
+@use '../../abstracts/action-secondary' as *;
+
+@layer components {
+  .v-switch {
+    @extend %action-secondary;
+    $root: &;
+
+    // sass-lint:disable-block no-duplicate-properties
+    #{--v-action-secondary-background}: var(--v-switch-track-background-color);
+    #{--v-action-secondary-border-color}: var(--v-switch-track-border-color);
+    #{--v-action-secondary-border-radius}: var(--v-switch-track-border-radius);
+    #{--v-action-secondary-border-size}: var(--v-switch-track-border-size);
+    #{--v-action-secondary-padding-block}: var(--v-switch-track-padding);
+    #{--v-action-secondary-padding-inline}: var(--v-switch-track-padding);
+    #{--theme-focus-outline-size}: 0;
+    align-items: center;
+    appearance: none;
+    block-size: var(--v-switch-track-block-size);
+    border-style: var(--v-switch-track-border-style);
+    content: '';
+    display: inline-flex;
+    flex-shrink: 0;
+    inline-size: var(--v-switch-track-inline-size);
+    inset-inline-end: var(--v-switch-track-inset-inline-end);
+    margin: var(--v-switch-track-margin);
+    position: relative;
+
+    &::after {
+      background-color: var(--v-switch-node-background-color);
+      block-size: var(--v-switch-node-block-size);
+      border-color: var(--v-switch-node-border-color);
+      border-radius: var(--v-switch-node-border-radius);
+      border-style: var(--v-switch-node-border-style);
+      border-width: var(--v-switch-node-border-width);
+      content: '';
+      display: block;
+      inline-size: var(--v-switch-node-inline-size);
+      margin-inline-start: var(--v-switch-node-margin-inline-start);
+      transition: var(--v-switch-transition);
+      position: absolute;
+    }
+
+    &:hover,
+    &:focus-visible {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-switch-track-background-color}: var(--v-switch-track-hover-background-color);
+      #{--v-switch-track-border-color}: var(--v-switch-track-hover-border-color);
+
+      &::after {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-switch-node-border-color}: var(--v-switch-node-hover-border-color);
+        #{--v-switch-node-border-width}: var(--v-switch-node-hover-border-width);
+      }
+    }
+
+    &:active {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-switch-track-background-color}: var(--v-switch-track-active-background-color);
+      #{--v-switch-track-border-color}: var(--v-switch-track-active-border-color);
+
+      &::after {
+        #{--v-switch-node-border-color}: var(--v-switch-node-active-border-color);
+      }
+    }
+
+    &:focus-visible {
+      &::after {
+        @include state-focus;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--theme-focus-outline-offset}: var(--v-switch-node-focus-outline-offset); // customize ring offset
+        #{--theme-focus-outline-size}: var(--v-switch-node-focus-outline-width); // provide new outline size, by design
+        box-shadow: 0px 0px 0px var(--v-switch-node-focus-outline-offset) var(--v-switch-node-focus-outline-glow-color);
+      }
+    }
+
+    &:disabled {
+      // sass-lint:disable-block no-duplicate-properties
+      #{--v-switch-track-background-color}: var(--v-switch-track-disabled-background-color);
+      #{--v-switch-track-border-color}: var(--v-switch-track-disabled-border-color);
+
+      &::after {
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-switch-node-border-color}: var(--v-switch-node-disabled-border-color);
+        #{--v-switch-node-border-width}: var(--v-switch-node-disabled-border-width);
+      }
+    }
+
+    &:only-of-type {
+      &:checked {
+        @extend %action;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-action-primary-border-color}: var(--v-switch-track-checked-border-color);
+        #{--v-action-primary-border-radius}: var(--v-switch-track-checked-border-radius);
+        #{--v-action-primary-padding-block}: calc(
+          var(--v-switch-track-padding) - (var(--v-action-primary-border-size) - var(--v-switch-track-border-size))
+        );
+        #{--v-action-primary-padding-inline}: calc(
+          var(--v-switch-track-padding) - (var(--v-action-primary-border-size) - var(--v-switch-track-border-size))
+        );
+
+        &::after {
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-switch-node-border-color}: var(--v-switch-node-checked-border-color);
+          #{--v-switch-node-margin-inline-start}: var(--v-switch-node-checked-margin-inline-start);
+          transition: var(--v-switch-transition);
+        }
+
+        @media (forced-colors: active) {
+          background-color: currentColor;
+          &::after {
+            // forced-color-adjust: preserve-parent-color;
+            border-width: calc(var(--v-switch-track-border-size) * 2);
+            border: calc(var(--v-switch-node-block-size) / 4) solid var(--v-switch-track-checked-border-color);
+          }
+        }
+      }
+    }
+
+    &-label {
+      color: var(--v-switch-label-color);
+
+      &:has(+ .v-switch:disabled) {
+        #{--v-switch-label-color}: var(--v-switch-label-disabled-color);
+        cursor: default;
+      }
+    }
+  }
+}

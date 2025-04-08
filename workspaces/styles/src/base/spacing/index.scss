@@ -1,0 +1,67 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use './vars' as *; 
+
+
+
+ @layer utilities {
+  // generate spacing css variables 
+  @for $i from 0 through 48 {
+
+    @each $prefix, $prop in $spacing-properties {
+      @if $prefix == "gap" {
+         
+
+        .v-#{$prefix}-#{$i} {
+          #{$prop}: var(--size-scalable-#{$i});
+        }
+        .-v-#{$prefix}-#{$i} {
+          #{$prop}: -#{$i}px;
+        }
+      }
+      @else {
+
+        
+        .v-#{$prefix}-#{$i} {
+          #{$prop}: var(--size-scalable-#{$i});
+        }
+        .-v-#{$prefix}-#{$i} {
+          #{$prop}: calc(var(--size-scalable-#{$i}) * -1);
+        }
+      }
+    }
+  }
+
+  @each $prefix, $prop in $spacing-properties {
+    // Add inherit for all spacing utilities (v-gap-inherit, v-px-inherit, v-m-inherit etc.)
+    .v-#{$prefix}-inherit {
+      #{$prop}: inherit;
+    }
+    // Add normal for gap utilities (v-gap-normal, v-col-gap-normal, etc.)
+    @if str-index($prop, 'gap') {
+      .v-#{$prefix}-normal {
+        #{$prop}: normal;
+      }
+    }
+    // Add auto for margin utilities (v-mx-auto, v-ml-auto, etc.)
+    @if str-index($prop, 'margin') {
+      .v-#{$prefix}-auto {
+        #{$prop}: auto;
+      }
+    }
+  }
+}

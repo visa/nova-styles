@@ -1,0 +1,66 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../base/typography/vars' as *;
+
+
+@layer components {
+  .v-pagination {
+    $root: &;
+    overflow-x: var(--v-pagination-overflow);
+    padding: var(--size-scalable-2); //temporary solution for focus overflow issue
+    flex-wrap: wrap;
+
+    ul {
+      list-style: none;
+    }
+
+    .v-button {
+      &:active {
+        #{--v-pagination-selected-border-color}: var(--palette-default-transparent);
+      }
+
+      &:not(.v-button-icon) {
+        @include typography-body-2;
+        // sass-lint:disable-block no-duplicate-properties
+        #{--v-button-default-block-size}: var(--v-pagination-block-size);
+        #{--v-button-default-border-radius}: var(--v-pagination-border-radius);
+        #{--v-button-default-padding-block}: var(--v-pagination-padding-block);
+        #{--v-button-default-padding-inline}: var(--v-pagination-padding-inline);
+        inline-size: auto;
+        min-inline-size: var(--v-pagination-inline-size);
+
+        &[aria-current='page'],
+        &[aria-current='true'] {
+          @include typography-body-2-bold;
+          // sass-lint:disable-block no-duplicate-properties
+          #{--v-button-default-border-size}: var(--v-pagination-selected-border-size);
+          #{--v-button-default-border-color}: var(--v-pagination-selected-border-color);
+          #{--v-button-default-padding-block}: var(--v-pagination-selected-padding-block);
+          #{--v-button-default-padding-inline}: var(--v-pagination-selected-padding-inline);
+        }
+      }
+    }
+
+    &-overflow {
+      padding: var(--v-pagination-overflow-padding);
+    }
+
+     
+  }
+}

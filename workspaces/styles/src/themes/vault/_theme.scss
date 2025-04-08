@@ -1,0 +1,59 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+// @use '../../base/color' as *; // @TODO move to separate from base 
+// @use '../../base/sizes' as *; // @TODO move to separate from base 
+@use './config' as *; 
+@use './palette' as *;
+
+$theme: (
+  // colors 
+  primary: $primary,
+  secondary: $secondary,
+  lightest: $lightest,
+  darkest: $darkest,
+  success: $positive,
+  warning: $warning,
+  error: $negative,
+  info: $info,
+
+  // font base size 
+  font-size: $font-size,
+
+  // focus outline 
+  focus-outline-size: $focus-outline-size, 
+  focus-outline-offset: $focus-outline-offset,
+
+  // borders 
+  border-size: $border-size, 
+  border-radius: $border-radius, 
+
+  // responsive sizing ratio  
+  responsive-factor: $responsive-factor,
+
+  // scaled size ratio 
+  scale-factor: $scale-factor
+);
+
+@layer theme {
+  :root,
+  .v-alternate {
+    // generate Theme's css variables 
+    @each $prop, $value in $theme{
+      --theme-#{$prop}: #{$value};
+    }
+  }
+}

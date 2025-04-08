@@ -1,0 +1,131 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../abstracts/surface';
+@use '../../base/breakpoints/vars' as *; 
+
+@layer components {
+  .v-nav {
+    @extend %surface-default;
+    $root: &; 
+
+    align-items: var(--v-nav-horizontal-align);
+    box-shadow: var(--v-nav-elevation);
+    display: flex;
+    min-block-size: var(--v-nav-horizontal-min-block-size);
+    padding-block-end: var(--v-nav-horizontal-padding-block-end); 
+    padding-block-start: var(--v-nav-horizontal-padding-block-start); 
+    padding-inline-end: var(--v-nav-horizontal-padding-inline-end); 
+    padding-inline-start: var(--v-nav-horizontal-padding-inline-start); 
+
+    // sass-lint:disable-block no-duplicate-properties
+    #{--v-surface-background}: var(--v-nav-background); 
+    #{--v-surface-foreground}: var(--v-nav-foreground);
+    #{--v-surface-padding-block}: var(--v-nav-horizontal-padding-block-start) var(--v-nav-horizontal-padding-block-end); 
+    #{--v-surface-padding-inline}: var(--v-nav-horizontal-padding-inline-start) var(--v-nav-horizontal-padding-inline-end); 
+    // defining here w/o component variable since probability of nav with border is low
+    // we can add later if requested as feature 
+    #{--v-surface-border-color}: var(--v-surface-background); 
+    #{--v-surface-border-radius}: var(--size-rounded-none);
+    #{--v-surface-border-size}: var(--size-scalable-0);
+
+    @at-root {
+      :has(> .v-nav:not(.v-nav-vertical)),
+      :has(> .v-nav .v-tabs-horizontal),
+      :has(> .v-nav .v-tabs:not(.v-tabs-vertical)) {
+        container: nav-container / inline-size; // sass-lint:disable-line no-misspelled-properties
+      }
+    }
+
+    .v-nav-app-name {
+      color: var(--v-nav-app-name);
+    }
+
+    &:has(.v-tabs:not(.v-tabs-vertical)),
+    &:has(.v-tabs-horizontal),
+    &-horizontal {
+      flex-direction: row;
+      #{--v-tabs-active-line-padding}: var(--v-nav-horizontal-active-line-padding);
+
+      .v-tabs {
+        padding-block-start: var(--v-tabs-active-line-padding);
+        #{--v-tabs-group-gap}: var(--v-nav-horizontal-tabs-group-gap);
+
+        .v-tab {
+          &:only-of-type {
+            padding-block-start: 0;
+          }
+        }
+      }
+
+      & > * {
+        align-items: var(--v-nav-horizontal-align);
+      }
+
+      .v-tab {
+        &:only-of-type {
+          &:not(li) {
+            padding-block-start: var(--v-tabs-active-line-padding);
+          }
+        }
+      }
+    }
+
+    
+    
+    // @TODO: see if removing has(tabs-vertical) affected anything
+    &-vertical {
+      flex-direction: column;
+      overflow-y: auto;
+
+      // sass-lint:disable-block no-duplicate-properties 
+      #{--v-nav-horizontal-align}: var(--v-nav-vertical-align);
+      #{--v-nav-horizontal-min-block-size}: var(--v-nav-vertical-block-size);
+      #{--v-nav-horizontal-padding-block-end}: var(--v-nav-vertical-padding-block-end); 
+      #{--v-nav-horizontal-padding-block-start}: var(--v-nav-vertical-padding-block-start);
+      #{--v-nav-horizontal-padding-inline-end}: var(--v-nav-vertical-padding-inline-end);
+      #{--v-nav-horizontal-padding-inline-start}: var(--v-nav-vertical-padding-inline-start); 
+
+      nav {
+        inline-size: 100%;
+      }
+
+      // sass-lint:disable-block force-pseudo-nesting
+      .v-tabs,
+      .v-tab:only-of-type { // use case: avatar
+        padding-inline-end: var(--v-nav-vertical-tabs-padding-inline-end);
+
+        // the padding-inline-end should only be present at the top level
+        // so remove for nested tabs/avatar(single tab)
+        .v-tabs,
+        .v-tab:only-of-type {
+          padding-inline-end: 0;
+        }
+      }
+
+      &:has(.v-avatar) {
+        container-type: inline-size; // sass-lint:disable-line no-misspelled-properties
+      }
+    }
+
+    
+    &-drawer {
+      #{--v-nav-elevation}: var(--v-nav-elevation-drawer);
+    }
+  }
+}

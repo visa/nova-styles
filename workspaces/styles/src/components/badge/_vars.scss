@@ -1,0 +1,95 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+@use '../../base/typography/vars' as *;
+
+$vars: (
+  background: var(--palette-default-transparent),
+  block-size: fit-content,
+  border-radius: var(--size-rounded-small),
+  border-width: 0px,
+  border-color: var(--palette-default-border),
+  ellipse-color: var(--palette-messaging-graphics-info),
+  foreground: var(--palette-default-text),
+  gap: var(--size-scalable-2),
+  icon-color: var(--palette-messaging-graphics-info),
+  icon-size: var(--size-scalable-14),
+  icon-only-size: var(--size-scalable-10),
+  padding-block: var(--size-scalable-4),
+  padding-inline: var(--size-scalable-4),
+  // states
+  hover-background: var(--palette-default-surface-highlight),
+  active-background: var(--palette-messaging-lowlight-negative),
+  disabled-background: var(--palette-default-disabled),
+  //ellipse
+  ellipse-border-radius: var(--size-rounded-pill),
+  ellipse-size: var(--size-scalable-8),
+  // info/neutral
+  neutral-background: var(--palette-messaging-highlight-info),
+  neutral-icon-color: var(--palette-messaging-text-info),
+  neutral-hover-background: var(--palette-default-surface-highlight),
+  neutral-active-background: var(--palette-default-surface-lowlight),
+  // success/stable
+  stable-background: var(--palette-messaging-surface-positive),
+  stable-icon-color: var(--palette-messaging-text-positive),
+  stable-hover-background: var(--palette-messaging-highlight-positive),
+  stable-active-background: var(--palette-messaging-lowlight-positive),
+  // warning
+  warning-background: var(--palette-messaging-highlight-warning),
+  warning-icon-color: var(--palette-messaging-text-warning),
+  warning-hover-background: var(--palette-messaging-highlight-warning),
+  warning-active-background: var(--palette-messaging-highlight-warning),
+  // error/critical
+  error-background: var(--palette-messaging-surface-negative),
+  error-icon-color: var(--palette-messaging-text-negative),
+  error-hover-background: var(--palette-messaging-highlight-negative),
+  error-active-background: var(--palette-messaging-lowlight-negative),
+  // subtle
+  subtle-background: var(--palette-default-border),
+  subtle-icon-color: var(--palette-default-text-subtle),
+  subtle-hover-background: var(--palette-default-disabled),
+  subtle-active-background: var(--palette-default-overlay),
+  // active
+  icon-active-background: var(--palette-messaging-highlight-info),
+  icon-active-icon-color: var(--palette-default-active),
+  icon-active-hover-background: var(--palette-default-surface-highlight),
+  icon-active-active-background: var(--palette-default-surface-lowlight),
+  // number
+  number-background: var(--palette-messaging-text-negative),
+  number-block-size: var(--v-badge-number-size),
+  number-foreground: var(--palette-default-surface-1),
+  number-max-inline: fit-content,
+  number-padding-inline: var(--size-scalable-4),
+  // @TODO add padding block
+  number-radius: var(--size-rounded-pill),
+  number-size: to-rem(16px),
+  number-clean-border-width: 1px,
+  // var(--theme-border-size);
+  // icon
+  icon-foreground: var(--palette-default-text-on-active),
+  icon-clear-border-width: 1px,
+  // var(--theme-border-size);
+);
+
+// generate component css variables
+@layer components {
+  :root,
+  .v-alternate {
+    @each $token, $value in $vars {
+      #{--v-badge-#{$token}}: #{$value};
+    }
+  }
+}

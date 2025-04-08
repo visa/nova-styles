@@ -1,0 +1,9 @@
+{
+  "name": "vpds-styles/date-and-time-selectors",
+  "version": "0.0.1",
+  "description": "Input field with date and time type attribute",
+  "keywords": [],
+  "template": "blank",
+  "project": "vpds-styles",
+  "library": "styles"
+}

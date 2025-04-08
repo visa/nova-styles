@@ -1,0 +1,88 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+$vars: (
+  background: var(--palette-default-surface-1),
+  border-collapse: collapse,
+  display: table,
+  foreground: var(--palette-default-text),
+  inline-size: 100%,
+  wrapper-block-size: auto,
+  wrapper-inline-size: auto,
+  overflow: scroll,
+  
+  //header
+  header-bg-color: var(--palette-default-surface-1),
+  header-bg-color-alt: var(--palette-default-surface-highlight),
+  header-block: var(--size-scalable-34),
+  header-block-alignment: middle,
+  header-block-alt: var(--size-scalable-34),
+  header-border-block-end-color: var(--palette-default-active),
+  header-border-block-end-size: var(--theme-border-size),
+  header-border-inline-color-alt: var(--palette-default-border),
+  header-border-inline-size-alt: var(--size-scalable-1),
+  header-padding-block: var(--size-scalable-8) var(--size-scalable-6),
+  header-padding-block-alt: var(--size-scalable-10) var(--size-scalable-9),
+  header-padding-inline: var(--size-scalable-15),
+  header-padding-inline-alt: var(--size-scalable-15),
+  header-text-color: var(--palette-default-active),
+  header-text-align-alt: center,
+  
+  //data
+  data-block-default: var(--size-scalable-40), //medium
+  data-block-large: var(--size-scalable-56),
+  data-block-small: var(--size-scalable-26),
+  data-padding-block-default: var(--size-scalable-10),
+  data-padding-block-large: var(--size-scalable-17),
+  data-padding-block-small: var(--size-scalable-3),
+  data-padding-block-badge: calc(var(--v-table-data-padding-block) - var(--size-scalable-2)),
+  data-padding-inline: var(--size-scalable-15),
+  data-text-align: start,
+  
+  //banded
+  background-alt: var(--palette-default-surface-2),
+  
+  //borders
+  wrapper-border:  var(--size-scalable-1) solid var(--palette-default-border),
+  border-none: 0,
+  border-block-end-color: var(--palette-default-border),
+  border-block-end-color-default: transparent,
+  border-block-end-size-default: var(--size-scalable-1),
+  border-block-end-style-default: solid,
+  border-block-start-color: var(--palette-default-border),
+  border-block-start-color-default: transparent,
+  border-block-start-size-default: var(--size-scalable-1),
+  border-block-start-style-default: solid,
+  border-inline-end-color: var(--palette-default-border),
+  border-inline-end-color-default: transparent,
+  border-inline-end-size-default: var(--size-scalable-1),
+  border-inline-end-style-default: solid,
+  border-inline-start-color: var(--palette-default-border),
+  border-inline-start-color-default: transparent,
+  border-inline-start-size-default: var(--size-scalable-1),
+  border-inline-start-style-default: solid,
+  border-radius: var(--size-rounded-pill),
+);
+
+// generate component css variables 
+@layer components {
+  :root,
+  .v-alternate {
+    @each $token, $value in $vars {
+      #{--v-table-#{$token}}: #{$value};
+    }
+  }
+}

@@ -1,0 +1,66 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+@use './_vars' as *;
+@use '../../base/breakpoints/vars' as *; 
+
+@layer components {
+  // @TODO update footer to be just a surface variant with the surface-2 background color (nova v2) 
+  .v-footer {
+    $root: &;
+
+    background-color: var(--v-footer-background-color);
+    display: flex;
+    flex-wrap: var(--v-footer-flex-wrap);
+
+    padding-block: var(--v-footer-padding-block);
+    padding-inline: var(--v-footer-padding-inline);
+    
+    &-container {
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: var(--size-scalable-24);
+      row-gap: var(--size-scalable-30);
+      flex: 1 1 auto;
+
+      @media (max-width: #{$breakpoint-md - 1}) {
+        grid-template-columns: repeat(var(--v-footer-grid-columns-md), 1fr);
+        grid-auto-flow: row;
+      }
+
+      @media (max-width: #{$breakpoint-sm}) {
+        grid-template-columns: repeat(var(--v-footer-grid-columns-sm), 1fr);
+      }
+    }
+
+    &-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--size-scalable-24);
+
+      @media (max-width: #{$breakpoint-md - 1}) {
+        gap:  var(--size-scalable-16);;
+      }
+    }
+
+    &-links {
+      @media (max-width: #{$breakpoint-sm}) {
+        flex-direction: column;
+      }
+    }
+  }
+}
