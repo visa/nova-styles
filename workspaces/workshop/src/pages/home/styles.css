@@ -1,0 +1,59 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+.w-home-area {
+  max-inline-size: 960px; 
+  margin-inline: auto; 
+}
+
+.w-home-content {
+  --v-surface-padding-block: 20px;
+  --v-surface-padding-inline: 20px;
+  max-inline-size: 750px;
+}
+
+@media only screen and (max-width: 1242px) {
+  .w-home-area {
+    max-inline-size: 100%;
+    margin-inline: 20px; 
+  }
+  
+  .w-home-content {
+    max-inline-size: calc(100% - 200px);
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .w-home-content {
+    max-inline-size: 100%;
+  }
+}
+
+ol.w-list {
+  list-style: decimal;
+}
+
+.w-list {
+  margin-inline-start: 1rem; 
+}
+
+.w-list li {
+  margin-inline-start: 1rem;
+}
+
+.w-caption {
+  color: 	var(--palette-default-active-text-subtle); 
+}

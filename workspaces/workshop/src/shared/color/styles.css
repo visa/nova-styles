@@ -1,0 +1,92 @@
+/**
+ *              Copyright (c) 2025 Visa, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+.w-color {
+  display: flex; 
+  flex-direction: column;
+  /* border-radius: 10px; */
+  border: 1px solid var(--palette-default-surface-3);
+  overflow: 'hidden'
+}
+
+.w-color-token {
+  align-items: center;
+  border-bottom: 1px solid var(--palette-default-surface-3);
+  display: flex; 
+  flex-grow: 1;
+  flex-direction: row;
+  padding: 4px;
+}
+
+.w-color-head {
+  display: inline-flex;
+  flex: 0 0 20px;
+  margin-right: 5px;
+}
+
+.w-color-box {
+  width: 30px;
+  height: 30px;
+  background-image: url('../../assets/images/transparent.png');
+  background-size: 10px 10px;
+  background-position: center center;
+  background-repeat: repeat;
+  /* border-radius: 100%; */
+  border: 1px solid var(--palette-default-surface-3);
+}
+
+.w-color-box-value {
+  width: 30px;
+  height: 30px;
+  /* border-radius: 100%; */
+}
+
+.w-color-variable {
+  padding: 4px;
+  font-size: 1rem;
+  font-weight: 600
+}
+
+.w-color-definition {
+  align-items: center;
+  background-color: var(--palette-default-surface-2); 
+  border-bottom: 1px solid var(--palette-default-surface-3);
+  display: flex;
+  font-weight: 400; 
+  justify-content: space-between;
+  padding: 6px;
+}
+
+.w-color-definition.w-color-copyable .v-button {
+  --v-button-primary-block-size: 24px;
+}
+
+.w-color-definition.w-color-copyable:hover {
+  background-color: #e8e8e8; 
+}
+
+.w-color-definition.w-color-last {
+  font-weight: 600;
+  font-family: monospace;
+  background-color: var(--palette-default-surface-3); 
+  border-bottom: 0px;
+  color: var(--palette-default-text);
+}
+
+/* .w-color-definition:last-of-type {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+} */
