@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  -->
-# Visa Product Design System - Nova styles
+# Visa Product Design System - Nova Styles CSS
 
 - [About](#about)
 - [Security](#security)
