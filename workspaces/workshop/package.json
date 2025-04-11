@@ -35,7 +35,7 @@
     "@types/react-dom": "^18.2.19",
     "@uiw/react-codemirror": "4.5.3",
     "@visa/charts-react": "4.1.0",
-    "@visa/nova-icons-sprite": "^1.4.0",
+    "@visa/nova-icons-sprite": "^2.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "axios": "1.6.8",
     "babel-preset-react-app": "10.0.1",
