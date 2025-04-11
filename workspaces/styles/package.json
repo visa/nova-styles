@@ -1,6 +1,6 @@
 {
   "name": "@visa/nova-styles",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Visa Product Design System Nova HTML+CSS library",
   "author": "Visa Product Design System",
   "publishConfig": {
@@ -18,9 +18,8 @@
     "build:docs:watch": "run-node bin/build-docs.js --watch",
     "generate:component": "run-node bin/generator.js component",
     "generate:theme": "run-node bin/generator.js theme",
-    "generate:changelog": "npm-run-all --serial generate:changelog:file generate:changelog:format",
+    "generate:changelog": "npm-run-all --serial generate:changelog:file",
     "generate:changelog:file": "standard-version --skip.bump --skip.commit --skip.tag",
-    "generate:changelog:format": "run-node bin/format-changelog.js",
     "release": "standard-version --skip.commit --skip.tag",
     "release:major": "npm-run-all release -- --release-as major",
     "release:minor": "npm-run-all release -- --release-as minor",

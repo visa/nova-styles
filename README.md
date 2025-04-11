@@ -1,5 +1,5 @@
 <!--
- *              Copyright (c) 2025 Visa, Inc.
+ *              © 2025 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  -->
-# Visa Product Design System - Nova Styles CSS
+# Visa Product Design System - Nova styles
 
 - [About](#about)
 - [Security](#security)

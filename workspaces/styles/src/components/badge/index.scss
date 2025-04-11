@@ -1,5 +1,5 @@
 /**
- *              Copyright (c) 2025 Visa, Inc.
+ *              © 2025 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -341,7 +341,7 @@
       block-size: var(--v-badge-block-size);
       inline-size: var(--v-badge-block-size);
       max-block-size: var(--v-badge-block-size);
-      max-inline-size: var(--v-badge-block-size);
+      min-inline-size: var(--v-badge-block-size);
       #{--v-icon-primary}: var(#{--v-badge-foreground});
       #{--v-icon-secondary}: var(#{--v-badge-foreground});
 

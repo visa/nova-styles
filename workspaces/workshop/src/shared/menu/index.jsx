@@ -1,5 +1,5 @@
 /**
- *              Copyright (c) 2025 Visa, Inc.
+ *              © 2025 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -219,16 +219,6 @@ const Menu = ({ selectedType, selectedItem, ...props }) => {
                   </li>
                 ) : null
               )}
-              <li className="v-tab">
-                <Link
-                  route={'changelog'}
-                  className="v-button v-button-tertiary"
-                  aria-current={selectedType === 'changelog' ? 'page' : null}
-                  onClick={() => closeOnClick()}
-                >
-                  Changelog
-                </Link>
-              </li>
           </>
         )}
       </ul>
