@@ -14,15 +14,15 @@
  * limitations under the License.
  *
  **/
-import axios from 'axios'; 
+import axios from "axios";
 
 const getVersions = async () => {
   try {
-    return import.meta.NODE_ENV === "development" 
-      ? ['1.2.1', '1.2.2', '1.2.3']
-      : await axios.get('https://productdesignsystem.visa.com/versions/styles'); 
-  } catch(error) {
-    console.error(error); 
+    return import.meta.NODE_ENV === "development"
+      ? ["1.2.1", "1.2.2", "1.2.3"]
+      : await axios.get("");
+  } catch (error) {
+    console.error(error);
   }
 
   return [];
@@ -30,18 +30,15 @@ const getVersions = async () => {
 
 const getVersionsProduction = async () => {
   const filter = /v?\d+\.\d+\.\d+/i;
-  const versions = await getVersions(); 
+  const versions = await getVersions();
 
   try {
-    return versions.data.filter(version => filter.test(version)).reverse(); 
+    return versions.data.filter((version) => filter.test(version)).reverse();
   } catch (error) {
-    console.error(error); 
+    console.error(error);
   }
 
-  return []; 
-}
+  return [];
+};
 
-export {
-  getVersions,
-  getVersionsProduction
-}; 
+export { getVersions, getVersionsProduction };

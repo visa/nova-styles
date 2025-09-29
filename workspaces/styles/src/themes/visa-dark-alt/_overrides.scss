@@ -48,7 +48,7 @@
     }
   }
 
-  @container nav-container (max-width: 768px) {
+  @container nav-container (max-width: 767px) {
     .v-nav {
       &:has(.v-tabs:not(.v-tabs-vertical)),
       &:has(.v-tabs-horizontal),

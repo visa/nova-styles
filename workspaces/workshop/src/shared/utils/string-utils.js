@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  **/
-// Preserve hyphens  
+// Preserve hyphens, casing, and commas
 const phraseMap = {
     'multi page': 'multi-page',
     'single page': 'single-page',
@@ -24,6 +24,10 @@ const phraseMap = {
     'right to left': 'right-to-left',
     'two color': 'two-color',
     'ui': 'UI',
+    'one line two column': 'one-line, two-column',
+    'one line': 'one-line',
+    'two line': 'two-line',
+    'three line': 'three-line',
 }
   
 export const sentenceCaseHelper = (text) => {

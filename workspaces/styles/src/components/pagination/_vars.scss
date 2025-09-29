@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  **/
+@use '../../base/typography/vars' as *;
+
 $vars: (
   //pagination button
   border-radius: var(--size-rounded-pill),
@@ -26,7 +28,7 @@ $vars: (
   //selected
   selected-background-color: var(--palette-default-surface-highlight),
   selected-border-color: var(--palette-default-active-hover),
-  selected-border-size: var(--size-scalable-1),
+  selected-border-size: to-rem(1px),
   selected-padding-block: calc(var(--v-pagination-padding-block) - var(--v-pagination-selected-border-size)),
   selected-padding-inline: calc(var(--v-pagination-padding-inline) - var(--v-pagination-selected-border-size)),
   

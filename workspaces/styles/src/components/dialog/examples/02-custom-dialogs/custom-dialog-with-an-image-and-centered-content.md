@@ -14,16 +14,19 @@
  * limitations under the License.
  *
  -->
+
 ---
+
 title: Custom dialog with an image and centered content
-description: Custom dialog with an image and centered content. 
+description: Custom dialog with an image and centered content.
 classes: ['.v-dialog', '.v-dialog-default', '.v-flex', '.v-flex-col', '.v-dialog.v-dialog-default.v-flex.v-flex-col', '.v-content-card-image']
 tags: ['custom']
 order: 6
+
 ---
 
 <style>
-  .my-dialog { --v-message-padding-block-end: var(--size-scalable-8); --v-message-padding-block-start: 0px; --v-message-padding-inline-end: 0px; --v-message-padding-inline-start: 0px; --v-dialog-content-padding-block: var(--size-scalable-8); --v-dialog-content-padding-inline: var(--size-scalable-8); } .my-dialog[open] { display: flex; flex-direction: column;} .my-dialog-close { position: absolute; right: 22px; top: 24px;}
+  .my-dialog { --v-message-padding-block-end: var(--size-scalable-8); --v-message-padding-block-start: 0px; --v-message-padding-inline-end: 0px; --v-message-padding-inline-start: 0px; --v-dialog-content-padding-block: var(--size-scalable-8); --v-dialog-content-padding-inline: var(--size-scalable-8); } .my-dialog[open] { display: flex; flex-direction: column;} .my-dialog-close { position: absolute; right: var(--size-scalable-22); top: var(--size-scalable-24);}
 </style>
 <button class="v-button v-button-primary" onclick="window.myCustomDialog.showModal();">
   Open custom dialog with image

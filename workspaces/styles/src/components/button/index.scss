@@ -124,6 +124,13 @@
       );
       cursor: default;
       user-select: none; // prevent highlight when clicking on disabled button
+      pointer-events: none;
+
+      img {
+        filter: grayscale(100%) brightness(0.8);
+        opacity: 0.5;
+        pointer-events: none;
+      }
     }
 
     &-small {

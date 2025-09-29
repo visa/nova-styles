@@ -17,17 +17,17 @@
 $vars: (
   background-color: var(--palette-default-surface-1),
   header-padding-block: 0 var(--size-scalable-8),
-  inline-size: calc(100% - (2 * var(--v-dialog-margin))),
-  content-padding-block: 0, 
-  content-padding-inline: 0, 
+  content-padding-block: 0,
+  content-padding-inline: 0,
   content-word-break: normal,
   padding: var(--size-scalable-24),
-  padding-inline-end: var(--size-scalable-22), // @TODO fix padding for focus
+  padding-inline-end: var(--size-scalable-22),
+  // @TODO fix padding for focus
   padding-block-end: var(--size-scalable-19),
   margin: var(--size-scalable-16),
 );
 
-// generate component css variables 
+// generate component css variables
 @layer components {
   :root,
   .v-alternate {

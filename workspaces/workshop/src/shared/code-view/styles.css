@@ -26,6 +26,11 @@
   --w-background-darker: #434343; 
 }
 
+.w-code-box-pattern {
+  margin-bottom: 0;
+  background: var(--palette-default-surface-3, #f0f0f0) none !important;
+}
+
 [data-theme="dark"],
 .v-dark,
 [data-theme="dark"] .w-code-box,

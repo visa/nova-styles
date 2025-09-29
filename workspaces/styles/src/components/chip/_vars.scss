@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  **/
+@use '../../base/typography/vars' as *;
+
 $vars: (
   align-items: center,
   
@@ -39,11 +41,11 @@ $vars: (
   compact-border-color: var(--palette-default-active-subtle),
   compact-border-radius: var(--size-rounded-small),
   compact-button-padding: 0,
-  compact-icon-size: var(--size-scalable-16),
+  compact-icon-size: to-rem(16px),
   compact-padding-block: var(--size-scalable-3),
   compact-padding-inline: var(--size-scalable-3),
   compact-padding-inline-start: var(--size-scalable-5),
-  compact-avatar-size: var(--size-scalable-22),
+  compact-avatar-size: to-rem(22px),
   compact-button-size: var(--size-scalable-28),
   
   delete-padding-block: var(--size-scalable-0),
@@ -56,7 +58,7 @@ $vars: (
   gap: var(--size-scalable-4),
   hover-border-color: var(--palette-default-active-hover),
   
-  icon-size: var(--size-scalable-18),
+  icon-size: to-rem(18px),
   
   inline-size: fit-content,
   

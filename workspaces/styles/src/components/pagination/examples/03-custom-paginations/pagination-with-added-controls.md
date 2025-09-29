@@ -14,18 +14,21 @@
  * limitations under the License.
  *
  -->
+
 ---
+
 title: Pagination for tables
 description: Regular pagination with added controls for user to select the amount of items per page.
 classes: ['.v-pagination', '.v-pagination-overflow']
 tags: ['custom']
 order: 4
+
 ---
 
 <div class="v-flex v-flex-row v-flex-wrap-reverse v-align-items-center v-justify-content-between">
   <div class="v-flex v-align-items-center v-gap-4">
     <fieldset aria-labelledby="pagination-results-label" class="v-flex v-flex-row v-gap-4">
-      <label class="v-label v-flex-grow" for="pagination-results-field" id="pagination-results-label">
+      <label class="v-label v-flex-grow v-flex-shrink-0" for="pagination-results-field" id="pagination-results-label">
         Results per page
       </label>
       <div class="v-input-container v-surface v-flex-row">

@@ -24,7 +24,7 @@ import VisaSprite from "@visa/nova-icons-sprite/visa.svg?react";
 import useGlobalState from '../../data/global-state';
 import useStickyState from '../../data/use-sticky-state'; 
 
-const ExamplePage = ({ example, alternate=false, ...props}) => {
+const ExamplePage = ({ example, alternate=false, patterns=false, ...props}) => {
   const { globalState } = useContext(useGlobalState); 
   const [mode] = useStickyState(globalState.mode, 'w-mode'); 
 
@@ -39,9 +39,10 @@ const ExamplePage = ({ example, alternate=false, ...props}) => {
     );
     document.body.className = [
       'w-code-box',
-      alternate ? 'w-code-box-alt' : ''
-    ].join(' ').trim(); 
-  }, [alternate]); 
+      alternate && 'w-code-box-alt',
+      patterns && 'w-code-box-pattern'
+    ].filter(Boolean).join(' ').trim(); 
+  }, [alternate, patterns]); 
 
   useEffect(() => {
     document.querySelector('html').setAttribute('data-theme', mode); 

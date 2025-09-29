@@ -71,8 +71,8 @@
 
     & > .v-icon {
       // sass-lint:disable-block no-duplicate-properties 
-      #{--v-icon-primary}: var(--v-link-foreground); 
-      #{--v-icon-secondary}: var(--v-link-foreground); 
+      #{--v-icon-primary}: currentColor; 
+      #{--v-icon-secondary}: currentColor; 
       top: var(--v-link-icon-top); 
       transform: var(--v-link-icon-transformation); 
     }

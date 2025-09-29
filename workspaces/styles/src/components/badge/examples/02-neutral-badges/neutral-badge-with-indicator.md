@@ -14,16 +14,19 @@
  * limitations under the License.
  *
  -->
+
 ---
+
 title: Neutral badge with indicator
 description: Neutral badge.
 classes: ['.v-badge', '.v-badge-neutral', 'v-badge-ellipse']
 tags: ['docs']
 order: 8
+
 ---
 
 <div class="v-badge v-badge-neutral">
-  <svg class="v-icon v-icon-tiny v-badge-ellipse" height="16" style="--v-icon-height: var(--size-scalable-8); --v-icon-width: var(--size-scalable-8);" viewbox="0 0 16 16" width="16">
+  <svg class="v-icon v-icon-tiny v-badge-ellipse" height="16" style="--v-icon-height: var(--v-badge-ellipse-size); --v-icon-width: var(--v-badge-ellipse-size);" viewbox="0 0 16 16" width="16">
     <circle cx="8" cy="8" r="8" style="fill: var(--v-badge-ellipse-color);">
     </circle>
   </svg>

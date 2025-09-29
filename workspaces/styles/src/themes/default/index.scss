@@ -15,13 +15,7 @@
  *
  **/
 /**
-  * @name Default
-  * @description Design color palette includes multiple colors for text, surfaces, messaging, 
-  * and other elements. 
-  */
-
-@forward './config';
-@forward './overrides'; 
-@forward './palette';
-@forward './theme';
-@forward './typography';
+* @name Default
+* @description This theme is an alias for Default hybrid.
+*/
+@use '../default-hybrid' as *;

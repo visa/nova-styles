@@ -14,16 +14,19 @@
  * limitations under the License.
  *
  -->
+
 ---
+
 title: Content card with image
-description: card with image. 
+description: card with image.
 classes: ['.v-content-card-image']
 tags: ['docs']
 order: 7
+
 ---
 
 <div class="v-content-card" style="inline-size:50%">
-   <img class="v-content-card-image" src="https://productdesignsystem.visa.com/angular/assets/imgs/content-card.png" alt="" style="inline-size: 100%; block-size: auto; object-fit: contain; overflow: hidden">
+   <img class="v-content-card-image" src="/content-card-image.png" alt="" style="inline-size: 100%; block-size: auto; object-fit: contain; overflow: hidden">
   </img>
   <div class="v-content-card-body v-flex v-flex-col v-gap-4">
     <h3 class="v-content-card-title v-typography-headline-4">

@@ -20,10 +20,10 @@ $vars: (
   background: var(--palette-default-active),
   foreground: var(--palette-default-text-on-active),
   border-radius: var(--v-avatar-size),
-  size: var(--size-scalable-48),
+  size: to-rem(48px),
   icon-size: to-rem(24px),
   // small
-  small-size: var(--size-scalable-32),
+  small-size: to-rem(32px),
   small-icon-size: to-rem(24px),
   small-vertical-icon-size: to-rem(18px),
 );

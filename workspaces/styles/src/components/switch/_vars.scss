@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  **/
+@use '../../base/typography/vars' as *;
+
 $vars: (
 
   label-color: var(--palette-default-text),
@@ -21,34 +23,34 @@ $vars: (
   
   node-active-border-color: var(--palette-default-active-pressed),
   node-background-color: var(--palette-default-surface-1),
-  node-block-size: var(--size-scalable-18),
+  node-block-size: to-rem(18px),
   node-border-color: var(--palette-default-active-subtle),
   node-border-radius: var(--size-rounded-complete),
   node-border-style: solid,
-  node-border-width: var(--size-scalable-1),
+  node-border-width: to-rem(1px),
   node-margin-inline-start: 0px,
   
   node-checked-border-color: var(--palette-default-surface-1),
   node-checked-margin-inline-start: calc(100% - var(--v-switch-track-padding) - var(--v-switch-node-inline-size)),
 
   node-disabled-border-color: var(--palette-default-disabled),
-  node-disabled-border-width: var(--size-scalable-1),
+  node-disabled-border-width: to-rem(1px),
   node-focus-outline-glow-color: var(--palette-default-surface-highlight),
-  node-focus-outline-offset: var(--size-scalable-7),
-  node-focus-outline-width: var(--size-scalable-1),
+  node-focus-outline-offset: to-rem(7px),
+  node-focus-outline-width: to-rem(1px),
   
   node-hover-border-color: var(--palette-default-active-hover),
-  node-hover-border-width: var(--size-scalable-2),
+  node-hover-border-width: to-rem(2px),
   
-  node-inline-size: var(--size-scalable-18),
+  node-inline-size: to-rem(18px),
   
   track-active-background-color: var(--palette-default-surface-lowlight),
   track-active-border-color: var(--palette-default-active-pressed),
   track-background-color: var(--palette-default-surface-3),
-  track-block-size: var(--size-scalable-24),
+  track-block-size: to-rem(24px),
   track-border-color: var(--palette-default-active-subtle),
   track-border-radius: var(--size-rounded-pill),
-  track-border-size: var(--size-scalable-1),
+  track-border-size: to-rem(1px),
   track-border-style: solid,
 
   track-checked-border-color: var(--palette-default-transparent),
@@ -60,11 +62,11 @@ $vars: (
   track-hover-background-color: var(--palette-default-surface-highlight),
   track-hover-border-color: var(--palette-default-active-hover),
 
-  track-inline-size: var(--size-scalable-44),
+  track-inline-size: to-rem(44px),
   track-inset-inline-end: 0,
 
   track-margin: 0,
-  track-padding: var(--size-scalable-2),
+  track-padding: to-rem(2px),
   track-start-position: 0,
   
   transition: margin-inline-start .25s ease,

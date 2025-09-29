@@ -14,12 +14,15 @@
  * limitations under the License.
  *
  -->
+
 ---
+
 title: Small image avatar
-description: avatar class with image. 
+description: avatar class with image.
 classes: ['.v-avatar', '.v-avatar-small']
 tags: ['docs']
 order: 0
+
 ---
 
-<img alt="Alex Miller" class="v-avatar v-avatar-small" src="https:\/\/productdesignsystem.visa.com/react/static/media/stockphoto.00942236bfc829538141.png"/>
+<img alt="Alex Miller" class="v-avatar v-avatar-small" src="/alex-miller-stock.png"/>

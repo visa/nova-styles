@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  **/
+@use '../../base/typography/vars' as *; 
+
 $vars: (
   align-items: flex-start,
   block-size: var(--size-scalable-46),
@@ -22,12 +24,12 @@ $vars: (
   button-padding-block-small: calc((var(--v-button-default-block-size-small) - var(--v-accordion-icon-size)) / 2),
   icon-color: var(--palette-default-active),
   icon-margin: var(--size-scalable-3),
-  icon-size: var(--size-scalable-22),
+  icon-size: to-rem(22px),
   items-gap: var(--size-scalable-6),
   justify-content: flex-start,
   padding-block: 0px,
   padding-inline: var(--size-scalable-12),
-  toggle-icon-size: var(--size-scalable-16),
+  toggle-icon-size: to-rem(16px),
   
   // default 
   background: var(--palette-default-surface-1),
@@ -46,6 +48,11 @@ $vars: (
   panel-border-style: solid,
   panel-padding-block: var(--size-scalable-8) var(--size-scalable-16),
   panel-padding-inline: var(--size-scalable-40),  
+  // subtle
+  subtle-background: var(--palette-default-transparent),
+  subtle-gap: var(--size-scalable-2),
+  subtle-foreground-initial: var(--palette-default-active),
+  subtle-padding-inline: var(--size-scalable-8),
 );
 
 // generate component css variables 

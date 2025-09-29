@@ -106,6 +106,7 @@
         width: 100%;
         @include action-secondary(&); // allow hover, focus, active, and disabled states to still apply on selected item
         @include typography-label-large;
+        block-size: 100%;
 
         &.v-button-destructive:not(:disabled) {
           // @include typography-label-large-active;

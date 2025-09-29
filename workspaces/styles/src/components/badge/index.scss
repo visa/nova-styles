@@ -181,7 +181,8 @@
     @at-root a:not([href]),
       button:disabled,
       .v-link:not([href]),
-      .v-button[disabled] {
+      .v-button[disabled],
+      .v-button[aria-disabled="true"] {
       .v-badge {
         &:not(.v-badge-clear) {
           #{--v-badge-background}: var(--v-badge-disabled-background);

@@ -14,52 +14,59 @@
  * limitations under the License.
  *
  **/
-import React, { useContext, useEffect, useRef } from 'react'; 
+import React, { useContext, useEffect, useRef } from "react";
 
-/* Data Sources */ 
-import useGlobalState from '../../data/global-state'; 
+/* Data Sources */
+import useGlobalState from "../../data/global-state";
 
 /* Nova themes */
-import themeDefault from '@visa/nova-styles/dist/themes/default/index.css?raw';
-import themeDefaultLight from '@visa/nova-styles/dist/themes/default-light/index.css?raw';
-import themeDefaultDark from '@visa/nova-styles/dist/themes/default-dark/index.css?raw';
-import themeDefaultHybrid from '@visa/nova-styles/dist/themes/default-hybrid/index.css?raw';
-import themeNova from '@visa/nova-styles/dist/themes/nova/index.css?raw';
-import themeVisaLight from '@visa/nova-styles/dist/themes/visa-light/index.css?raw';
-import themeVisaDark from '@visa/nova-styles/dist/themes/visa-dark/index.css?raw';
-import themeVisaHybrid from '@visa/nova-styles/dist/themes/visa-hybrid/index.css?raw';
-import themeVisaDarkAlt from '@visa/nova-styles/dist/themes/visa-dark-alt/index.css?raw';
-import themeVisaHybridAlt from '@visa/nova-styles/dist/themes/visa-hybrid-alt/index.css?raw';
-import themeVault from '@visa/nova-styles/dist/themes/vault/index.css?raw'; 
+import themeDefaultBase from "@visa/nova-styles/dist/themes/default-base/index.css?raw";
+import themeDefault from "@visa/nova-styles/dist/themes/default/index.css?raw";
+import themeDefaultLight from "@visa/nova-styles/dist/themes/default-light/index.css?raw";
+import themeDefaultDark from "@visa/nova-styles/dist/themes/default-dark/index.css?raw";
+import themeDefaultHybrid from "@visa/nova-styles/dist/themes/default-hybrid/index.css?raw";
+import themeNova from "@visa/nova-styles/dist/themes/nova/index.css?raw";
+import themeVisa from "@visa/nova-styles/dist/themes/visa/index.css?raw";
+import themeVisaLight from "@visa/nova-styles/dist/themes/visa-light/index.css?raw";
+import themeVisaDark from "@visa/nova-styles/dist/themes/visa-dark/index.css?raw";
+import themeVisaHybrid from "@visa/nova-styles/dist/themes/visa-hybrid/index.css?raw";
+import themeVisaDarkAlt from "@visa/nova-styles/dist/themes/visa-dark-alt/index.css?raw";
+import themeVisaHybridAlt from "@visa/nova-styles/dist/themes/visa-hybrid-alt/index.css?raw";
+import themeVisaAlt from "@visa/nova-styles/dist/themes/visa-alt/index.css?raw";
+import themeVault from "@visa/nova-styles/dist/themes/vault/index.css?raw";
 
 const themesMap = {
-  "default": themeDefault,
+  "default-base": themeDefaultBase,
+  default: themeDefault,
   "default-light": themeDefaultLight,
   "default-dark": themeDefaultDark,
   "default-hybrid": themeDefaultHybrid,
-  "nova": themeNova,
+  nova: themeNova,
+  visa: themeVisa,
   "visa-light": themeVisaLight,
   "visa-dark": themeVisaDark,
   "visa-hybrid": themeVisaHybrid,
   "visa-dark-alt": themeVisaDarkAlt,
   "visa-hybrid-alt": themeVisaHybridAlt,
-  "vault": themeVault,
-}; 
+  "visa-alt": themeVisaAlt,
+  vault: themeVault,
+};
 
-const Theme = ({...props}) => {
-  const { globalState } = useContext(useGlobalState); 
+const Theme = ({ ...props }) => {
+  const { globalState } = useContext(useGlobalState);
   const styleRef = useRef();
 
   useEffect(() => {
-    styleRef.current.textContent = globalState.theme in themesMap 
-      ? themesMap[globalState.theme]
-      : ''; 
-  }, [globalState.theme]); 
+    styleRef.current.textContent =
+      globalState.theme in themesMap ? themesMap[globalState.theme] : "";
+  }, [globalState.theme]);
 
-  return (<>
-    <style ref={styleRef}></style>
-    {props.children}
-  </>)
-}; 
+  return (
+    <>
+      <style ref={styleRef}></style>
+      {props.children}
+    </>
+  );
+};
 
-export default Theme; 
+export default Theme;

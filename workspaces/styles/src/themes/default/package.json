@@ -1,0 +1,8 @@
+{
+  "name": "nova-styles/themes/default",
+  "version": "0.0.1",
+  "description": "This theme is an alias for Default hybrid.",
+  "keywords": [],
+  "project": "vpds-styles",
+  "library": "themes"
+}

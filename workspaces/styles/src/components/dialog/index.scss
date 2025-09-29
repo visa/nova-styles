@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  **/
-@use './_vars' as *;
-@use '../../base/typography/vars' as *;
+@use "./_vars" as *;
+@use "../../base/typography/vars" as *;
 
 @layer components {
   .v-dialog {
@@ -23,8 +23,15 @@
     // leave technical margin as 'auto' to keep dialog centered but add space between
     // dialog and edge by limiting size by the defined 'margin'
     max-block-size: calc(100% - (2 * var(--v-dialog-margin)));
-    #{--v-message-inline-size}: var(--v-dialog-inline-size);
-    #{--v-message-max-inline-size}: var(--v-dialog-inline-size);
+
+    // --v-dialog-inline-size can be provided at any scope
+    // but as a fallback, dialog's size is computed with --v-dialog-margin (also can be overridden at any scope)
+    $dialog-inline-size-fallback: calc(100% - (2 * var(--v-dialog-margin)));
+
+    #{--v-message-max-inline-size}: var(
+      --v-dialog-inline-size,
+      #{$dialog-inline-size-fallback}
+    );
 
     &-default {
       #{--v-message-border-color}: transparent;
@@ -59,7 +66,7 @@
         overflow-y: auto;
         padding-block: var(--v-dialog-content-padding-block);
         padding-inline: var(--v-dialog-content-padding-inline);
-        word-break: var(--v-dialog-content-word-break); 
+        word-break: var(--v-dialog-content-word-break);
       }
 
       dialog {

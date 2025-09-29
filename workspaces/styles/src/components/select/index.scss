@@ -24,9 +24,11 @@
       cursor: pointer;
       min-inline-size: max-content;
       padding-right: calc(var(--v-select-toggle-icon-inline-size) + var(--size-scalable-6));
+      padding-inline-start: var(--v-select-padding-inline-start);
 
       @at-root .v-input-container:has(&) {
         position: relative;
+        padding-inline-start: 0;
 
         .v-input-control {
           $height: calc(var(--v-input-container-block-size) - (2 * var(--v-input-container-padding-block)));

@@ -30,7 +30,11 @@
     inline-size: var(--v-icon-width); 
 
     &:not(.v-icon-visa) {
-      fill: var(--v-icon-primary, currentColor); 
+      fill: var(--v-icon-primary, currentColor);
+      
+      > use {
+        color: var(--v-icon-primary, currentColor);
+      }
     }
     
     &-generic {
@@ -52,6 +56,7 @@
       #{$root}-secondary {
         fill: var(--v-icon-secondary); 
       }
+      color: var(--v-icon-primary);
     }
     
 
@@ -76,6 +81,21 @@
       // sass-lint:disable-block no-duplicate-properties 
       #{--v-icon-height}: var(--v-icon-tiny-height); 
       #{--v-icon-width}: var(--v-icon-tiny-width); 
+    }
+
+    &-success:not(symbol):not(.v-badge *) {
+      #{--v-icon-primary}: var(--v-message-graphics-success);
+      #{--v-icon-secondary}: var(--v-message-graphics-success);
+    }
+
+    &-warning:not(symbol):not(.v-badge *) {
+      #{--v-icon-primary}: var(--v-message-graphics-warning);
+      #{--v-icon-secondary}: var(--v-message-graphics-warning);
+    }
+
+    &-error:not(symbol):not(.v-badge *) {
+      #{--v-icon-primary}: var(--v-message-graphics-error);
+      #{--v-icon-secondary}: var(--v-message-graphics-error);
     }
     
     // @TODO revisit the use of #nova. integrate or replace for #docs if needed in docs portal 

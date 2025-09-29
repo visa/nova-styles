@@ -24,6 +24,7 @@ export default defineConfig({
   base: packageJson.homepage === '/' 
     ? '' : 
     packageJson.homepage.replace(/\/$/, ''),
+  publicDir: 'public',
   build: {
     outDir: 'build'
   },

@@ -16,7 +16,8 @@
  **/
 $vars: (
   control-color: var(--palette-default-active),
-  toggle-icon-inline-size: var(--size-responsive-32)
+  toggle-icon-inline-size: var(--size-responsive-32),
+  padding-inline-start: var(--size-scalable-6)
 );
 
 // generate component css variables 

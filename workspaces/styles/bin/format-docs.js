@@ -22,6 +22,22 @@ const path = require('node:path');
 const DESTINATION = '../dist';
 const OUTPUT = 'api.json';
 
+const getFilesRecursively = (directory) => {
+  let files = [];
+  const items = fs.readdirSync(directory);
+
+  items.forEach((item) => {
+    const fullPath = path.join(directory, item);
+    if (fs.statSync(fullPath).isDirectory()) {
+      files = files.concat(getFilesRecursively(fullPath));
+    } else {
+      files.push(fullPath);
+    }
+  });
+
+  return files;
+};
+
 // process incoming args/parameters with following format: --arg=value
 const processArgs = (args) => {
   const params = {};
@@ -36,56 +52,85 @@ const processArgs = (args) => {
 };
 
 // return object with components metadata including associated examples, classes, and variables
-const itemizeComponent = (name, category, data) => ({
-  name: name,
-  version: "0.0.1",
-  description: data.length > 0 ? data[0].description : "",
-  category: category,
-  examples: data
-    .map(x => x.markup 
-      ? { 
-        'name': x.name, 
-        'description': x.description,
-        'snippet': x.markup,
-        'tags': x.tags, 
-        'order': x.order, 
-        'section': x.section,
-        'path': `${category === "base" ? category : `${category}s`}/${changeCase.paramCase(name)}/example/${changeCase.paramCase(x.name)}`
-      } 
-      : null)
-    .filter(x => x !== null),
-  properties: data
-    .map(x => x.classes.map(y => ({
-      'name': y,
-      'type': 'class',
-      'description': ''
-    })))
-    .flat()
-    .filter((x) => {
-      // console.log(x); 
-      return (
-      x.name.indexOf('(') < 0 && // remove sass mixins/functions 
-      x.name.indexOf('%') < 0 // remove sass placeholder-classes 
-    )})
-    .filter((x, i, self) => (
-      i === self.findIndex((j) => (
-        j.place === x.place && j.name === x.name // removing duplicates. some examples highlight the same class. 
-      ))
-    ))
-    .flat(),
-  variables: Object.keys(docs.entries.variables).map(x => (
-    (category === "base" && name === "sizes" && x.indexOf('--size') === 0) ||
-    (category === "base" && name === "elevation" && x.indexOf('--elevation') === 0) ||
-    (category === "base" && x.indexOf(name) === 0) ||
-    (x.indexOf(`v-${name}`) >= 0) 
-      ? {
-        'name': x, 
-        'type': 'variable',
-        'value': docs.entries.variables[x]
-      }
-      : null))
-      .filter(x => x !== null)
-}); 
+const itemizeComponent = (name, category, data, baseDir) => {
+  const exampleFiles = getFilesRecursively(baseDir);
+
+  return {
+    name: name,
+    version: "0.0.1",
+    description: data.length > 0 ? data[0].description : "",
+    category: category,
+    examples: data
+      .map((x) => {
+        if (!x.markup) return null;
+
+        // Attempt to find the exact file path for the example by matching the title
+        const exampleFile = exampleFiles.find((file) => {
+          try {
+            const fileContent = fs.readFileSync(file, 'utf-8');
+            const titleMatch = fileContent.match(/^title:\s*(.+)$/m);
+            const title = titleMatch ? titleMatch[1].trim() : null;
+            return title === x.name;
+          } catch (err) {
+            console.error(`Error reading or parsing file: ${file}`, err);
+            return false;
+          }
+        });
+
+        return {
+          'name': x.name, 
+          'description': x.description,
+          'snippet': x.markup,
+          'tags': x.tags, 
+          'order': x.order, 
+          'section': x.section,
+          'url': {
+            iframe: `${category === "base" ? category : `${category}s`}/${changeCase.paramCase(name)}/example/${changeCase.paramCase(x.name)}`,
+            github: exampleFile
+              ? `workspaces/styles/${path.relative(process.cwd(), exampleFile)}`
+              : null,
+          },
+        };
+      })
+      .filter((x) => x !== null),
+    properties: data
+      .map((x) =>
+        x.classes.map((y) => ({
+          'name': y,
+          'type': 'class',
+          'description': '',
+        }))
+      )
+      .flat()
+      .filter((x) => {
+        // console.log(x); 
+        return (
+          x.name.indexOf('(') < 0 && // remove sass mixins/functions 
+          x.name.indexOf('%') < 0 // remove sass placeholder-classes 
+        );
+      })
+      .filter(
+        (x, i, self) =>
+          i ===
+          self.findIndex((j) => j.place === x.place && j.name === x.name) // removing duplicates. some examples highlight the same class. 
+      )
+      .flat(),
+    variables: Object.keys(docs.entries.variables)
+      .map((x) =>
+        (category === "base" && name === "sizes" && x.indexOf('--size') === 0) ||
+        (category === "base" && name === "elevation" && x.indexOf('--elevation') === 0) ||
+        (category === "base" && x.indexOf(name) === 0) ||
+        x.indexOf(`v-${name}`) >= 0
+          ? {
+              'name': x, 
+              'type': 'variable',
+              'value': docs.entries.variables[x],
+            }
+          : null
+      )
+      .filter((x) => x !== null),
+  };
+};
 
 const parseCategory = (category, oorder=0) => {
   const _split = category.split("-")
@@ -121,12 +166,29 @@ const Process = async ({...args}) => {
     version: docs.version
   };
 
-  // Flatten itemized list of abstracts, base, and components
+  // Flatten itemized list of abstracts, base, components and patterns
   console.log("Grouping components, examples, classes, and variables"); 
-  const flatData = []
-    .concat(Object.keys(docs.entries.abstracts).map(x => itemizeComponent(x, "abstract", docs.entries.abstracts[x])))
-    .concat(Object.keys(docs.entries.base).map(x => itemizeComponent(x, "base", docs.entries.base[x])))
-    .concat(Object.keys(docs.entries.components).map(x => itemizeComponent(x, "component", docs.entries.components[x])))
+const flatData = []
+  .concat(
+    Object.keys(docs.entries.abstracts).map((x) =>
+      itemizeComponent(x, "abstract", docs.entries.abstracts[x], path.resolve(__dirname, "../src"))
+    )
+  )
+  .concat(
+    Object.keys(docs.entries.base).map((x) =>
+      itemizeComponent(x, "base", docs.entries.base[x], path.resolve(__dirname, "../src"))
+    )
+  )
+  .concat(
+    Object.keys(docs.entries.components).map((x) =>
+      itemizeComponent(x, "component", docs.entries.components[x], path.resolve(__dirname, "../src"))
+    )
+  )
+  .concat(
+    Object.keys(docs.entries.patterns || {}).map((x) =>
+      itemizeComponent(x, "pattern", docs.entries.patterns[x], path.resolve(__dirname, "../src"))
+    )
+  );
 
   const componentData = []
 
@@ -157,10 +219,13 @@ const Process = async ({...args}) => {
       const _example = {
         name: example.name,
         description: example.description,
-        snippets: {
-          "html": example.snippet
-        },
-        url: `${example.path}`,
+        snippets: _component.category === "pattern"
+          ? { 
+              // Remove '/example/' from the path for the snippet key
+              [`${example.url.iframe.replace('/example/', '/')}.html`]: example.snippet
+            }
+          : { "html": example.snippet },
+        url: example.url,
         tags: example.tags, 
         order: example.order,
         section: sectionObj.name,
@@ -209,17 +274,22 @@ const Process = async ({...args}) => {
       _component.properties.push(_variable); 
     }
 
+  const hasClasses = _component.properties.some(prop => prop.section === "classes");
+  const hasVariables = _component.properties.some(prop => prop.section === "variables");
+
+  if (hasClasses || hasVariables) {
     _component.propertySections.push({
       name: "classes",
       order: 0,
       description: ""
-    }); 
+    });
 
     _component.propertySections.push({
       name: "variables",
-      order: 1, 
+      order: 1,
       description: ""
-    }); 
+    });
+  }
 
     componentData.push(_component); 
   }

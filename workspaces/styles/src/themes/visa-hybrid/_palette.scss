@@ -159,7 +159,7 @@
   }  
 
   @media (prefers-color-scheme: dark) {
-    :root,
+    :root:not([data-theme="light"]),
     ::backdrop {
       // palette default
       --palette-default-active: #BDEAFF; 
@@ -215,7 +215,7 @@
       --palette-accent-app-name: #fff;
     }
 
-    .v-alternate {
+    :root:not([data-theme="light"]) .v-alternate {
       // palette alternate 
       --palette-default-active: #BDEAFF; 
       --palette-default-active-hover: #DBF4FF;

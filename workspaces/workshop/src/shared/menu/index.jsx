@@ -14,31 +14,40 @@
  * limitations under the License.
  *
  **/
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { paramCase, sentenceCase } from 'change-case';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { paramCase, sentenceCase } from "change-case";
 
 /* Shared Components */
-import Link from '../link';
-import Search from '../search';
+import Link from "../link";
+import Search from "../search";
 
 /* Data Sources */
-import useGlobalState from '../../data/global-state';
-import actionTypes from '../../data/global-state/action-types';
-import docs from '../../data/docs/metadata';
+import useGlobalState from "../../data/global-state";
+import actionTypes from "../../data/global-state/action-types";
+import docs from "../../data/docs/metadata";
 
 /* Styles */
-import './styles.css';
+import "./styles.css";
 
 const Menu = ({ selectedType, selectedItem, ...props }) => {
   const { dispatch, globalState } = useContext(useGlobalState);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [subMenuOpen, setSubMenuOpen] = useState([selectedType]);
   // define media query:
   const mediaQuery = window.matchMedia("(min-width: 768px)");
   const [isMdMedia, setIsMdMedia] = useState(mediaQuery.matches);
 
-  const TYPES = useMemo(() => ['base', 'abstracts', 'components', 'themes'], []);
+  const TYPES = useMemo(
+    () => ["base", "abstracts", "components", "patterns", "themes"],
+    []
+  );
 
   const flattenData = useCallback(() => {
     setFiltered(
@@ -47,7 +56,9 @@ const Menu = ({ selectedType, selectedItem, ...props }) => {
         : [
             Object.keys(docs.entries)
               .filter((x) => TYPES.indexOf(x.trim()) >= 0)
-              .sort((a) => TYPES.indexOf(a) - Object.keys(docs.entries).indexOf(a))
+              .sort(
+                (a) => TYPES.indexOf(a) - Object.keys(docs.entries).indexOf(a)
+              )
               .map((x) =>
                 Object.keys(docs.entries[x]).map((y) => ({
                   type: x.trim(),
@@ -58,7 +69,9 @@ const Menu = ({ selectedType, selectedItem, ...props }) => {
           ]
             .flat()
             .filter(
-              (x) => x.type.indexOf(filter) >= 0 || (x.item !== null && x.item.indexOf(filter) >= 0)
+              (x) =>
+                x.type.indexOf(filter) >= 0 ||
+                (x.item !== null && x.item.indexOf(filter) >= 0)
             )
     );
   }, [filter, TYPES]);
@@ -80,37 +93,39 @@ const Menu = ({ selectedType, selectedItem, ...props }) => {
   mediaQuery.onchange = (e) => {
     if (e.matches) {
       // show nav automatically when viewport is over 768px
-      dispatch({type: actionTypes.setSideNav, payload: true});
-      setIsMdMedia(true)
+      dispatch({ type: actionTypes.setSideNav, payload: true });
+      setIsMdMedia(true);
     } else {
       // close nav automatically when viewport is smaller than 768px
-      dispatch({type: actionTypes.setSideNav, payload: false});
+      dispatch({ type: actionTypes.setSideNav, payload: false });
       setIsMdMedia(false);
     }
-  }
+  };
 
   const closeOnClick = () => {
     if (isMdMedia) {
       return;
     }
-    dispatch({type: actionTypes.setSideNav, payload: false});
-  }
+    dispatch({ type: actionTypes.setSideNav, payload: false });
+  };
 
   return (
-    <nav 
+    <nav
       role="navigation"
       className={[
-        'w-nav',
-        'v-nav',
-        'v-nav-vertical',
-        globalState.sideNavOpen ? '' : 'v-hide'
-      ].join(' ').trim()}
+        "w-nav",
+        "v-nav",
+        "v-nav-vertical",
+        globalState.sideNavOpen ? "" : "v-hide",
+      ]
+        .join(" ")
+        .trim()}
       {...props}
     >
       {docs.version ? (
         <span
           className="v-badge v-badge-info v-typography-body-1 v-sm-container-hide v-desktop-container-hide v-mx-auto"
-          style={{ color: 'var(--palette-default-text-subtle)' }}
+          style={{ color: "var(--palette-default-text-subtle)" }}
         >
           {`v${docs.version}`}
         </span>
@@ -134,7 +149,11 @@ const Menu = ({ selectedType, selectedItem, ...props }) => {
                 <Link
                   route={`${paramCase(d.type)}/${paramCase(d.item)}`}
                   className="v-button v-button-tertiary"
-                  aria-current={selectedType === d.type && selectedItem === d.item ? 'page' : null}
+                  aria-current={
+                    selectedType === d.type && selectedItem === d.item
+                      ? "page"
+                      : null
+                  }
                   onClick={() => closeOnClick()}
                 >
                   {sentenceCase(d.item)}
@@ -146,22 +165,26 @@ const Menu = ({ selectedType, selectedItem, ...props }) => {
           <>
             <li className="v-tab">
               <Link
-                route={'#get-started'}
+                route={"#get-started"}
                 className="v-button v-button-tertiary"
-                aria-current={!selectedType && !selectedItem ? 'page' : null}
+                aria-current={!selectedType && !selectedItem ? "page" : null}
                 onClick={() => closeOnClick()}
               >
                 Get started
               </Link>
             </li>
             {Object.keys(docs.entries)
-              .sort((a) => TYPES.indexOf(a) - Object.keys(docs.entries).indexOf(a))
+              .sort(
+                (a) => TYPES.indexOf(a) - Object.keys(docs.entries).indexOf(a)
+              )
               .map((d, i) =>
                 TYPES.indexOf(d) >= 0 ? (
                   <li key={i} className="v-tab">
                     <button
                       className="v-button v-button-tertiary"
-                      aria-expanded={subMenuOpen.indexOf(d) >= 0 ? 'true' : 'false'}
+                      aria-expanded={
+                        subMenuOpen.indexOf(d) >= 0 ? "true" : "false"
+                      }
                       onClick={() => {
                         toggleSubMenu(d);
                       }}
@@ -175,45 +198,62 @@ const Menu = ({ selectedType, selectedItem, ...props }) => {
                       >
                         <use
                           href={`#visa-chevron-${
-                            subMenuOpen.indexOf(d) >= 0 ? 'up' : 'down'
+                            subMenuOpen.indexOf(d) >= 0 ? "up" : "down"
                           }-tiny`}
                         ></use>
                       </svg>
                     </button>
                     {subMenuOpen.indexOf(d) >= 0 ? (
                       <ul className="v-tabs v-tabs-vertical">
-                        {Object.keys(docs.entries[d]).map((e, j) => (
-                          e === "nova" || e === "default" 
-                            ? null 
-                            : <li key={j} className="v-tab">
+                        {Object.keys(docs.entries[d]).map((e, j) =>
+                          e === "nova" ||
+                          e === "default-base" ||
+                          e === "default-dark" ||
+                          e === "default-light" ||
+                          e === "default-hybrid" ||
+                          e === "visa-dark" ||
+                          e === "visa-dark-alt" ||
+                          e === "visa-hybrid" ||
+                          e === "visa-hybrid-alt" ||
+                          e === "visa-light" ? null : (
+                            <li key={j} className="v-tab">
                               <Link
                                 route={`${paramCase(d)}/${paramCase(e)}`}
                                 className="v-button v-button-tertiary"
                                 aria-current={
-                                  selectedType === d && selectedItem === e ? 'page' : null
+                                  selectedType === d && selectedItem === e
+                                    ? "page"
+                                    : null
                                 }
                                 onClick={() => closeOnClick()}
                               >
                                 {e === "nova" ? null : sentenceCase(e)}
                               </Link>
                             </li>
-                        ))}
-                        {d === "themes"
-                          ? <li className="v-tab">
-                            <Link 
-                              route={'https://bookmarks.visa.com/vpds-theme-app'} 
+                          )
+                        )}
+                        {d === "themes" ? (
+                          <li className="v-tab">
+                            <Link
+                              route={
+                                "https://bookmarks.visa.com/vpds-theme-app"
+                              }
                               className="v-button v-button-tertiary"
                               aria-label="create a custom theme(opens a new tab)"
                               newWindow
                             >
                               Custom (internal only)
-                              <svg className="v-icon v-icon-tiny v-tab-suffix" width="16" height="16" viewBox="0 0 16 16">
+                              <svg
+                                className="v-icon v-icon-tiny v-tab-suffix"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                              >
                                 <use href="#visa-maximize-tiny" />
                               </svg>
                             </Link>
                           </li>
-                          : null
-                        }
+                        ) : null}
                       </ul>
                     ) : null}
                   </li>

@@ -149,7 +149,7 @@
   }  
 
   @media (prefers-color-scheme: dark) {
-    :root,
+    :root:not([data-theme="light"]),
     ::backdrop {
       --palette-default-active-hover:hsla(41, 100%, 67%, 1);
       --palette-default-active-pressed:hsla(41, 100%, 60%, 1);
@@ -198,7 +198,7 @@
       --palette-accent-app-name: #fff;
     }
 
-    .v-alternate {
+     :root:not([data-theme="light"]) .v-alternate {
       // palette alternate 
       --palette-default-active: #fcc015; 
       --palette-default-active-hover: #fcc936;

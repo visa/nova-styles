@@ -26,8 +26,8 @@ $vars: (
   foreground: var(--palette-default-text),
   gap: var(--size-scalable-2),
   icon-color: var(--palette-messaging-graphics-info),
-  icon-size: var(--size-scalable-14),
-  icon-only-size: var(--size-scalable-10),
+  icon-size: to-rem(14px),
+  icon-only-size: to-rem(10px),
   padding-block: var(--size-scalable-4),
   padding-inline: var(--size-scalable-4),
   // states
@@ -36,7 +36,7 @@ $vars: (
   disabled-background: var(--palette-default-disabled),
   //ellipse
   ellipse-border-radius: var(--size-rounded-pill),
-  ellipse-size: var(--size-scalable-8),
+  ellipse-size: to-rem(8px),
   // info/neutral
   neutral-background: var(--palette-messaging-highlight-info),
   neutral-icon-color: var(--palette-messaging-text-info),
@@ -72,7 +72,7 @@ $vars: (
   number-block-size: var(--v-badge-number-size),
   number-foreground: var(--palette-default-surface-1),
   number-max-inline: fit-content,
-  number-padding-inline: var(--size-scalable-4),
+  number-padding-inline: to-rem(4px),
   // @TODO add padding block
   number-radius: var(--size-rounded-pill),
   number-size: to-rem(16px),

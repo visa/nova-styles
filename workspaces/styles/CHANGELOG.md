@@ -14,13 +14,31 @@
  * limitations under the License.
  *
  -->
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.4] (2025-09-26)
+
+### Features
+
+- Added patterns.
+  - Application layouts
+  - Wizard
+- Added List item component.
+- Added several classes.
+  - v-accordion-subtle
+  - v-icon-success
+  - v-icon-warning
+  - v-icon-error
+  - v-surface-2
+  - v-surface-3
+- Consolidated themes.
+
 ## [1.6.2] (2025-04-11)
 
-### Added
+### Features
 
 - Initial release of the component library.
 - Added a collection of components.

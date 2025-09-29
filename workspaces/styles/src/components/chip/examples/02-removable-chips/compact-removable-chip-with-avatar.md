@@ -14,16 +14,19 @@
  * limitations under the License.
  *
  -->
+
 ---
-title: Compact removable chip with avatar 
+
+title: Compact removable chip with avatar
 description: Compact delete chip with an avatar.
 classes: ['.v-chip', '.v-chip-compact']
 tags: []
 order: 13
+
 ---
 
 <div class="v-chip v-chip-compact v-flex">
-  <img alt="Alex Miller" class="v-avatar" src="https:\/\/productdesignsystem.visa.com/react/static/media/stockphoto.00942236bfc829538141.png"/>
+  <img alt="Alex Miller" class="v-avatar" src="/alex-miller-stock.png"/>
   <span>
     Label
   </span>

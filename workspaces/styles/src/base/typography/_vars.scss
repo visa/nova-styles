@@ -15,7 +15,7 @@
  *
  **/
 @use 'sass:math'; 
-@use '../../themes/default/config' as *; 
+@use '../../themes/default-base/config' as *; 
 
 // px to rem 
 // currently using default theme's $font-size for rem calculation

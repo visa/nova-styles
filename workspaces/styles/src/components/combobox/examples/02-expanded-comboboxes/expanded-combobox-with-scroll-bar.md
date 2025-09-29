@@ -37,8 +37,8 @@ order: 12
       </button>
     </div>
   </div>
-  <div class="v-listbox-container" style="max-height: 210px">
-    <ul aria-labelledby="combobox-scroll-label" class="v-listbox" id="combobox-scroll-listbox" role="listbox">
+  <div class="v-listbox-container">
+    <ul aria-labelledby="combobox-scroll-label" class="v-listbox v-listbox-scroll" id="combobox-scroll-listbox" role="listbox">
       <li aria-selected="false" class="v-listbox-item" role="option">
         <span class="v-radio v-flex-shrink-0">
         </span>

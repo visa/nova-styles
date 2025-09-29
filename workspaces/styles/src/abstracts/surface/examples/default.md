@@ -14,12 +14,15 @@
  * limitations under the License.
  *
  -->
+
 ---
+
 title: Default
 description: Default surface.
-classes: ['.v-surface']
+classes: ['.v-surface', '.v-surface-2', '.v-surface-3']
 tags: []
 order: 0
+
 ---
 
 <div class="v-surface">

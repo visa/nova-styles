@@ -16,9 +16,6 @@
  **/
 @use './vars' as *; 
 
-
-
-
 @layer base {
   :root {
     --elevation-offset-x: 0;
@@ -26,17 +23,8 @@
     --elevation-blur-radius: 0; 
     --elevation-spread: 0;
     --elevation-color: var(--palette-default-transparent); 
-  }
-}
-
-@layer base {
-  // class to treat elevation as box shadow 
-  .v-elevation {
-    box-shadow: var(--elevation-offset-x) var(--elevation-offset-y) var(--elevation-blur-radius) var(--elevation-spread) var(--elevation-color); 
-  }
 
   // generate elevation css variables by size with all props 
-  :root {
     @each $name, $definitions in $elevation-properties {
       @each $prop, $value in $definitions {
         --elevation-#{$name}-#{$prop}: #{$value}; 
@@ -55,10 +43,7 @@
   // generate elevation css classes by size 
   @each $name, $definitions in $elevation-properties {
     .v-elevation-#{$name} {
-      @each $prop, $value in $definitions {
-        --elevation-#{$prop}: var(--elevation-#{$name}-#{$prop}); 
-      }
-      @extend .v-elevation; 
+      box-shadow: var(--elevation-#{$name});
     }
   }
 }

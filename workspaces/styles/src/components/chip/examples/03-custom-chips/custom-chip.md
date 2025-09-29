@@ -14,19 +14,22 @@
  * limitations under the License.
  *
  -->
+
 ---
+
 title: Custom chip
 description: Custom chip
 classes: ['.v-chip']
 tags: ['custom']
 order: 18
+
 ---
 
 <style>
   .my-custom-chip { --v-chip-background-color: #eacffa; --v-chip-border-color: #c58cf5; --v-chip-border-width: 2px; --v-chip-border-radius: var(--size-rounded-small); --v-chip-gap: var(--size-scalable-6); --v-chip-padding-block: var(--size-scalable-4); --v-chip-padding-inline-end: var(--size-scalable-6); --v-chip-padding-inline-start: var(--size-scalable-6); }
 </style>
 <div class="v-chip my-custom-chip">
-  <img alt="Alex Miller" class="v-avatar" src="https:\/\/productdesignsystem.visa.com/react/static/media/stockphoto.00942236bfc829538141.png"/>
+  <img alt="Alex Miller" class="v-avatar" src="/alex-miller-stock.png"/>
   <span>
     Label
   </span>

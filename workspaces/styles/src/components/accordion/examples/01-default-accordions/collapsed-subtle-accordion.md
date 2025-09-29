@@ -14,16 +14,19 @@
  * limitations under the License.
  *
  -->
----
-title: Collapsed subtle accordion
-description: Collapsed subtle accordion
-classes: ['.v-accordion', '.v-accordion-heading.v-button-tertiary']
-tags: ['docs']
-order: 5
+
 ---
 
-<details class="v-accordion">
-  <summary class="v-button v-button-tertiary v-accordion-heading v-typography-body-2-medium" style="--v-button-default-background: transparent; --v-button-default-gap: 2px; --v-accordion-foreground-initial: var(--palette-default-active); --v-button-default-padding-inline: 8px">
+title: Collapsed subtle accordion
+description: Collapsed subtle accordion
+classes: ['.v-accordion', '.v-accordion-subtle', '.v-accordion-heading.v-button-tertiary']
+tags: ['docs']
+order: 5
+
+---
+
+<details class="v-accordion v-accordion-subtle">
+  <summary class="v-button v-button-tertiary v-accordion-heading v-typography-body-2-medium">
     <svg aria-hidden="true" class="v-icon v-icon-visa v-icon-tiny v-accordion-toggle-icon v-accordion-toggle-icon-closed" focusable="false" viewbox="0 0 16 16">
       <use href="#visa-chevron-right-tiny">
       </use>
@@ -34,7 +37,7 @@ order: 5
     </svg>
     Accordion title
   </summary>
-  <div class="v-accordion-panel" style="--v-accordion-panel-background-color: transparent; --v-accordion-panel-border-size: 0px; --v-accordion-panel-padding-inline: 32px">
+  <div class="v-accordion-panel">
     <p>This is required text that describes the accordion section in more detail.</p>
   </div>
 </details>

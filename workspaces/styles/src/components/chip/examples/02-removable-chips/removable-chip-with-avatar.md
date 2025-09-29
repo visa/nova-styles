@@ -14,16 +14,19 @@
  * limitations under the License.
  *
  -->
+
 ---
+
 title: Removable chip with avatar
-description: Delete chip with an avatar. 
+description: Delete chip with an avatar.
 classes: ['.v-chip']
 tags: ['docs']
 order: 9
+
 ---
 
 <div class="v-chip v-flex">
-  <img alt="Alex Miller" class="v-avatar" src="https:\/\/productdesignsystem.visa.com/react/static/media/stockphoto.00942236bfc829538141.png"/>
+  <img alt="Alex Miller" class="v-avatar" src="/alex-miller-stock.png"/>
   <span>
     Label
   </span>

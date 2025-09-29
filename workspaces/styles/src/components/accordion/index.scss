@@ -52,7 +52,7 @@
           display: none;
         }
 
-        #{$root}-heading {
+        > .v-accordion-heading {
           @extend %open-heading;
         }
       }
@@ -197,6 +197,7 @@
           // sass-lint:disable-block no-duplicate-properties
           #{--v-accordion-border-color}: var(--v-button-default-disabled-border-color);
           #{--v-accordion-foreground-initial}: var(--v-button-default-disabled-foreground);
+          #{--v-button-default-background}: var(--v-accordion-background);
           cursor: default;
           pointer-events: none;
 
@@ -227,6 +228,22 @@
       // add &:not([hidden="until-found"]) when more supported (see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden)
       &[aria-hidden='true'] {
         display: none;
+      }
+    }
+
+    &-subtle {
+      #{--v-accordion-foreground-initial}: var(--v-accordion-subtle-foreground-initial);
+
+      .v-accordion-heading.v-button {
+        #{--v-button-default-background}: var(--v-accordion-subtle-background);
+        #{--v-button-default-padding-inline}: var(--v-accordion-subtle-padding-inline);
+        #{--v-button-default-gap}: var(--v-accordion-subtle-gap);
+      }
+
+      .v-accordion-panel {
+        #{--v-accordion-panel-background-color}: var(--v-accordion-subtle-background);
+        #{--v-accordion-panel-border-size}: 0px;
+        #{--v-accordion-panel-padding-inline}: var(--size-scalable-32);
       }
     }
   }

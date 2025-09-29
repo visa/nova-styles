@@ -65,6 +65,7 @@
       @include typography-label-large;
       align-items: center;
       display: flex;
+      text-align: var(--v-listbox-item-text-align);
 
       &:hover {
         .v-label {
@@ -198,6 +199,9 @@
               &:not(:is(.v-link)) {
                 &:not(:is(.v-button)) {
                   @include action-secondary(&); // allow hover, focus, active, and disabled states to still apply on selected item
+                  &:active {
+                    --v-action-secondary-active-border-color: var(--v-listbox-item-border-color);
+                  }
                   @include typography-label-large;
                 }
               }
@@ -310,7 +314,7 @@
                 #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll) - var(--v-listbox-container-border-size));
 
                 @include media(mobile) {
-                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-lisbox-container-block-size));
+                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-listbox-container-border-size));
                 }
               }
             }
@@ -333,7 +337,7 @@
                 #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll) - var(--v-listbox-container-border-size));
 
                 @include media(mobile) {
-                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-lisbox-container-block-size));
+                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-listbox-container-border-size));
                 }
               }
             }
@@ -351,7 +355,7 @@
                 #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll) - var(--v-listbox-container-border-size));
 
                 @include media(mobile) {
-                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-lisbox-container-block-size));
+                  #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-listbox-container-border-size));
                 }
               }
             }
@@ -376,7 +380,7 @@
             #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll) - var(--v-listbox-container-border-size));
 
             @include media(mobile) {
-              #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-lisbox-container-block-size));
+              #{--v-listbox-block-size}: calc(var(--v-listbox-block-size-scroll-mobile) - var(--v-listbox-container-border-size));
             }
           }
         }

@@ -81,7 +81,7 @@ $colorsDark: (
   }
 
   @media (prefers-color-scheme: dark) {
-    :root,
+    :root:not([data-theme="light"]),
     ::backdrop {
       --color-transparent: rgba(255, 255, 255, 0);
       --color-primary: #{$primaryDark};
@@ -279,7 +279,7 @@ $paletteDark: (
   }
 
   @media (prefers-color-scheme: dark) {
-    :root,
+    :root:not([data-theme="light"]),
     ::backdrop {
       @each $scheme, $tokens in $paletteDark {
         @each $token, $value in $tokens {
@@ -288,7 +288,7 @@ $paletteDark: (
       }
     }
 
-    .v-alternate {
+    :root:not([data-theme="light"]) .v-alternate {
       @each $default-token, $default-value in map-get($paletteDark, "default") {
         @each $alternate-token, $alternate-value in map-get($paletteDark, "alternate") {
           @if $default-token == $alternate-token {

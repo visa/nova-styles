@@ -41,6 +41,7 @@ $vars: (
   item-selected-background: var(--palette-default-surface-3),
   item-border-color: var(--palette-default-transparent),
   item-gap: var(--size-scalable-6),
+  item-text-align: start,
   // checkbox/radio overrides
   checkbox-color: var(--palette-default-active),
   checkbox-hover: var(--palette-default-active-hover),

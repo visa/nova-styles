@@ -24,6 +24,10 @@ const parseMD = require('parse-md').default;
 const path = require('path');
 const postcss = require('postcss');
 
+const workshopPackageJson = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, '../../workshop/package.json'), 'utf-8')
+);
+
 const { uglify, removeLayers } = require('./css-utils'); 
 
 const SOURCE = './src';
@@ -81,13 +85,24 @@ module.exports = Process((args) => {
       const exampleFile = fs.readFileSync(examplePath, 'utf-8');
       const { metadata, content}  = parseMD(exampleFile);
 
+      // Process image paths in the content
+      let processedContent = content;
+
+      processedContent = processedContent.replace(
+        /src=["'](?!https?:\/\/|data:)(.*?\.(?:png|jpg|jpeg|gif|svg))["']/g,
+        (match, imgPath) => {
+          const baseUrl = (workshopPackageJson.homepage || '/').replace(/\/$/, '');
+          return `src="${baseUrl}${imgPath.startsWith('/') ? '' : '/'}${imgPath}"`;
+        }
+      );
+
       const exampleObject = {
         "name": metadata.title,
         "description": metadata.description,
         "order": metadata.order,
         "classes": metadata.classes,
         "tags": metadata.tags,
-        "markup": content,
+        "markup": processedContent,
         "example": `${category}/${component}/example/${example.replace('.md', '')}`,
         "section": section
       }; 
@@ -114,7 +129,7 @@ module.exports = Process((args) => {
         return;
       }
 
-      if (category === 'components' || category === 'base' || category === 'abstracts') {
+      if (category === 'components' || category === 'base' || category === 'abstracts' || category === 'patterns') {
         console.log(` - Getting ${category} data.`);
         fs.readdirSync(categoryPath).forEach((component) => {
           const componentPath = path.resolve(`${categoryPath}/${component}`);
@@ -207,4 +222,4 @@ module.exports = Process((args) => {
       }, 200); 
     }); 
   } 
-}); 
+});

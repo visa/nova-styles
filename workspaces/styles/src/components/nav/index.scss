@@ -84,6 +84,14 @@
           }
         }
       }
+
+      &:has(.v-surface) {
+        min-block-size: var(--v-nav-horizontal-expanded-block-size);
+
+        @container nav-container (max-width: 768px) {
+          --v-nav-horizontal-expanded-block-size: 62px;
+        }
+      }
     }
 
     

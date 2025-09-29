@@ -57,5 +57,15 @@ $surface_vars: (
   .v-surface {
     @include surface-default();
   }
+
+  .v-surface-2 {
+    @include surface-default();
+    #{--v-surface-background}: var(--palette-default-surface-2);
+  }
+  
+  .v-surface-3 {
+    @include surface-default();
+    #{--v-surface-background}: var(--palette-default-surface-3);
+  }
 }
 

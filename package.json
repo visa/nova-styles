@@ -1,6 +1,6 @@
 {
   "name": "@visa/nova-styles-project",
-  "version": "1.6.2",
+  "version": "1.6.4",
   "private": false,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -69,10 +69,6 @@
   "workspaces": [
     "workspaces/*"
   ],
-  "publishConfig": {
-    "registry": "https://artifactory.trusted.visa.com/api/npm/Visa_Commons_npm/",
-    "@visa:registry": "https://artifactory.trusted.visa.com/api/npm/Visa_Commons_npm/"
-  },
   "dependencies": {
     "prism-react-renderer": "2.3.1"
   }

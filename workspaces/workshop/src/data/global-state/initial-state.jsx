@@ -14,15 +14,39 @@
  * limitations under the License.
  *
  **/
-import docs from '../docs/metadata'; 
+import docs from "../docs/metadata";
 
-const localTheme = window.localStorage.getItem("w-theme")
+const localTheme = window.localStorage.getItem("w-theme");
+
+const normalizeTheme = (theme) => {
+  const validThemes = ["visa", "hybrid", "vault", "visa-alt", "none"];
+
+  if (validThemes.includes(theme)) {
+    return theme;
+  }
+
+  const themeMap = {
+    "visa-light": "visa",
+    "visa-dark": "visa",
+    "visa-hybrid": "visa",
+    "default-light": "default",
+    "default-dark": "default",
+    "default-hybrid": "default",
+    vault: "vault",
+    "visa-dark-alt": "visa-alt",
+    "visa-hybrid-alt": "visa-alt",
+  };
+  return themeMap[theme] || "none";
+};
 
 const initialState = {
   docs: docs,
-  theme: !localTheme || localTheme.indexOf("nova") >= 0 ? 'visa-light' : localTheme,
-  mode: 'light',
-  sideNavOpen: true
+  theme:
+    !localTheme || localTheme.indexOf("nova") >= 0
+      ? "visa"
+      : normalizeTheme(localTheme),
+  mode: "light",
+  sideNavOpen: true,
 };
 
 export default initialState;
