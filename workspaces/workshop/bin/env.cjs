@@ -48,7 +48,7 @@ const Process = (() => {
     const KVP = {
       "FAST_REFRESH": "false",
       "GENERATE_SOURCEMAP": "false",
-      "VITE_APP_GA_TRACKING_ID": "G-ER1Y9VSTKY"
+      "VITE_APP_GA_TRACKING_ID": ""
     };
 
     const lines = getEnvironment()
