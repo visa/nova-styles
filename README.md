@@ -31,7 +31,7 @@
 ## <a name="about"></a>Nova styles
 > Accessible Visa Product Design System components built for styles
 
-Nova styles is a comprehensive library of accessible components designed to align with the Visa Product Design System. It provides developers with a set of reusable UI elements that can be easily integrated into applications. With Nova styles, developers can quickly build visually consistent and user-friendly interfaces that adhere to accessibility best practices.
+Nova styles is a comprehensive library of accessible components designed to align with the Visa Product Design System at https://design.visa.com. It provides developers with a set of reusable UI elements that can be easily integrated into applications. With Nova styles, developers can quickly build visually consistent and user-friendly interfaces that adhere to accessibility best practices.
 
 ### Key Features
 - **Wide range of components**: Includes buttons, form elements, navigation menus, and more.
