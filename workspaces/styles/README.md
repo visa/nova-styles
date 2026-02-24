@@ -95,7 +95,7 @@ If you’re working with standard HTML, add a link to the Nova styles CSS file i
 
 ```html
 <link rel="stylesheet" href="path/to/nova-styles/styles.css" />
-<link rel="stylesheet" href="path/to/nova-styles/themes/visa-light/index.css" />
+<link rel="stylesheet" href="path/to/nova-styles/themes/visa/index.css" />
 ```
 
 ### Step 3: Add icons (optional)
