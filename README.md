@@ -35,7 +35,7 @@ Nova styles is a comprehensive library of accessible components designed to alig
 
 ### Key Features
 - **Wide range of components**: Includes buttons, form elements, navigation menus, and more.
-- **Customizable**: Allows extensive theming and customization.
+- **Customizable**: Allows extensive theming and customization capabilities.
 - **Accessibility**: Adheres to accessibility best practices to ensure inclusive user experiences.
 
 Whether you are building a small project or a large-scale application, Nova styles offers a robust foundation for creating visually appealing and accessible user interfaces.
