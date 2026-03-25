@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  **/
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 // import CodeMirror from '@uiw/react-codemirror';
 // import { html } from '@codemirror/lang-html';
 // import { oneDark } from '@codemirror/theme-one-dark';
@@ -45,7 +45,6 @@ const CodeView = ({
   description = "",
   tags = [],
   markup,
-  format = "html",
   classes = [],
   exampleLink,
   component,

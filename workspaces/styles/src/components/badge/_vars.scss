@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ $vars: (
   number-foreground: var(--palette-default-surface-1),
   number-max-inline: fit-content,
   number-padding-inline: to-rem(4px),
-  // @TODO add padding block
+  number-padding-block: none,
   number-radius: var(--size-rounded-pill),
   number-size: to-rem(16px),
   number-clean-border-width: 1px,

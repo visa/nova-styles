@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -124,6 +124,7 @@ $palette: (
 
 @layer theme {
   :root {
+    color-scheme: only light;
     @each $scheme, $tokens in $palette {
       @each $token, $value in $tokens {
         --palette-#{$scheme}-#{$token}: #{$value};

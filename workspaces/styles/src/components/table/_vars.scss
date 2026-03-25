@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@ $vars: (
   header-border-inline-size-alt: var(--size-scalable-1),
   header-padding-block: var(--size-scalable-8) var(--size-scalable-6),
   header-padding-block-alt: var(--size-scalable-10) var(--size-scalable-9),
-  header-padding-inline: var(--size-scalable-15),
-  header-padding-inline-alt: var(--size-scalable-15),
+  header-padding-inline: var(--size-scalable-11),
+  header-padding-inline-alt: var(--size-scalable-11),
   header-text-color: var(--palette-default-active),
   header-text-align-alt: center,
   
@@ -49,7 +49,7 @@ $vars: (
   data-padding-block-large: var(--size-scalable-17),
   data-padding-block-small: var(--size-scalable-3),
   data-padding-block-badge: calc(var(--v-table-data-padding-block) - var(--size-scalable-2)),
-  data-padding-inline: var(--size-scalable-15),
+  data-padding-inline: var(--size-scalable-11),
   data-text-align: start,
   
   //banded

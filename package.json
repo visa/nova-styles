@@ -1,6 +1,6 @@
 {
   "name": "@visa/nova-styles-project",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "private": false,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -22,11 +22,11 @@
     "lint": "npm-run-all --parallel lint:*",
     "lint:css": "npm run lint -w @visa/nova-styles",
     "lint:workshop": "npm run lint -w @visa/nova-styles-workshop",
-    "release:major": "npm-run-all --sequential release:css:major generate:changelog copy:changelog copy:version",
+    "release:major": "npm-run-all --sequential release:css:major copy:changelog copy:version",
     "release:css:major": "npm run release -w @visa/nova-styles -- --release-as major",
-    "release:minor": "npm-run-all --sequential release:css:minor generate:changelog copy:changelog copy:version",
+    "release:minor": "npm-run-all --sequential release:css:minor copy:changelog copy:version",
     "release:css:minor": "npm run release -w @visa/nova-styles -- --release-as minor",
-    "release:patch": "npm-run-all --sequential release:css:patch generate:changelog copy:changelog copy:version",
+    "release:patch": "npm-run-all --sequential release:css:patch copy:changelog copy:version",
     "release:css:patch": "npm run release -w @visa/nova-styles -- --release-as patch",
     "postbuild": "npm-run-all copy:metadata",
     "postinstall": "npm-run-all --sequential build:css build:docs generate:env",

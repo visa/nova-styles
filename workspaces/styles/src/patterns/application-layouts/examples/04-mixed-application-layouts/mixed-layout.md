@@ -1,5 +1,5 @@
 <!--
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ tags: ['patterns']
 order: 3
 
 ---
+
 <style>
     /* overrides just for documentation app */
     body.w-code-box-pattern:has(.v-nav.v-nav-horizontal, .layout-example),
@@ -74,7 +75,7 @@ order: 3
 
     /* customize the default footer color */
     .layout-mixed footer {
-        --v-footer-background-color: var(--v-palette-default-surface-3);
+        --v-footer-background-color: var(--palette-default-surface-3);
     }
 
     /* breakpoints */

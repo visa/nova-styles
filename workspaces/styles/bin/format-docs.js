@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@ const itemizeComponent = (name, category, data, baseDir) => {
           'order': x.order, 
           'section': x.section,
           'url': {
-            iframe: `${category === "base" ? category : `${category}s`}/${changeCase.paramCase(name)}/example/${changeCase.paramCase(x.name)}`,
+            iframe: `${category}/${changeCase.paramCase(name)}/example/${changeCase.paramCase(x.name)}`,
             github: exampleFile
               ? `workspaces/styles/${path.relative(process.cwd(), exampleFile)}`
               : null,
@@ -171,7 +171,7 @@ const Process = async ({...args}) => {
 const flatData = []
   .concat(
     Object.keys(docs.entries.abstracts).map((x) =>
-      itemizeComponent(x, "abstract", docs.entries.abstracts[x], path.resolve(__dirname, "../src"))
+      itemizeComponent(x, "abstracts", docs.entries.abstracts[x], path.resolve(__dirname, "../src"))
     )
   )
   .concat(
@@ -181,12 +181,12 @@ const flatData = []
   )
   .concat(
     Object.keys(docs.entries.components).map((x) =>
-      itemizeComponent(x, "component", docs.entries.components[x], path.resolve(__dirname, "../src"))
+      itemizeComponent(x, "components", docs.entries.components[x], path.resolve(__dirname, "../src"))
     )
   )
   .concat(
     Object.keys(docs.entries.patterns || {}).map((x) =>
-      itemizeComponent(x, "pattern", docs.entries.patterns[x], path.resolve(__dirname, "../src"))
+      itemizeComponent(x, "patterns", docs.entries.patterns[x], path.resolve(__dirname, "../src"))
     )
   );
 
@@ -219,7 +219,7 @@ const flatData = []
       const _example = {
         name: example.name,
         description: example.description,
-        snippets: _component.category === "pattern"
+        snippets: _component.category === "patterns"
           ? { 
               // Remove '/example/' from the path for the snippet key
               [`${example.url.iframe.replace('/example/', '/')}.html`]: example.snippet

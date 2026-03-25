@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,6 +88,7 @@
 
   [data-theme="dark"],
   .v-dark {
+    color-scheme: dark;
     // palette default
     --palette-default-active: #BDEAFF; 
     --palette-default-active-hover: #DBF4FF; 
@@ -144,6 +145,7 @@
 
   [data-theme="dark"] .v-alternate,
   .v-dark .v-alternate {
+    color-scheme: dark;
     // palette alternate 
     --palette-default-active: #BDEAFF; 
     --palette-default-active-hover: #DBF4FF;
@@ -161,6 +163,7 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]),
     ::backdrop {
+      color-scheme: dark;
       // palette default
       --palette-default-active: #BDEAFF; 
       --palette-default-active-hover: #DBF4FF; 
@@ -216,6 +219,7 @@
     }
 
     :root:not([data-theme="light"]) .v-alternate {
+      color-scheme: dark;
       // palette alternate 
       --palette-default-active: #BDEAFF; 
       --palette-default-active-hover: #DBF4FF;

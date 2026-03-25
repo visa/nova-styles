@@ -1,5 +1,5 @@
 <!--
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,9 +69,9 @@ order: 3
     </thead>
     <tbody>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A1
-        </td>
+        </th>
         <td class="v-td">
           B1
         </td>
@@ -107,9 +107,9 @@ order: 3
         </td>
       </tr>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A2
-        </td>
+        </th>
         <td class="v-td">
           B2
         </td>
@@ -145,9 +145,9 @@ order: 3
         </td>
       </tr>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A3
-        </td>
+        </th>
         <td class="v-td">
           B3
         </td>
@@ -183,9 +183,9 @@ order: 3
         </td>
       </tr>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A4
-        </td>
+        </th>
         <td class="v-td">
           B4
         </td>
@@ -221,9 +221,9 @@ order: 3
         </td>
       </tr>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A5
-        </td>
+        </th>
         <td class="v-td">
           B5
         </td>
@@ -259,9 +259,9 @@ order: 3
         </td>
       </tr>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A6
-        </td>
+        </th>
         <td class="v-td">
           B6
         </td>
@@ -297,9 +297,9 @@ order: 3
         </td>
       </tr>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A7
-        </td>
+        </th>
         <td class="v-td">
           B7
         </td>
@@ -335,9 +335,9 @@ order: 3
         </td>
       </tr>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A8
-        </td>
+        </th>
         <td class="v-td">
           B8
         </td>
@@ -373,9 +373,9 @@ order: 3
         </td>
       </tr>
       <tr>
-        <td class="v-td">
+        <th scope="row" class="v-td">
           A9
-        </td>
+        </th>
         <td class="v-td">
           B9
         </td>

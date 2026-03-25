@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  *
  **/
-import React, { useCallback, useEffect, useState } from 'react'; 
+import { useCallback, useEffect, useState } from 'react'; 
 import { useLocation, useNavigate } from 'react-router-dom'; 
 import { paramCase, noCase } from 'change-case'; 
 
 import './styles.css'; 
 
-const List = ({ items, selected, onSelect, ...props}) => {
+const List = ({ items, selected, onSelect }) => {
   return (
     <ul>
       { items.map((x, i) => (
@@ -38,7 +38,7 @@ const List = ({ items, selected, onSelect, ...props}) => {
   )
 }; 
 
-const TableOfContents = ({ outline, headerRef, contentRef = { current: window }, ...props}) => {
+const TableOfContents = ({ outline, headerRef, contentRef = { current: window } }) => {
   const { hash } = useLocation(); 
   const navigate = useNavigate(); 
   const [selected, setSelected] = useState({}); 

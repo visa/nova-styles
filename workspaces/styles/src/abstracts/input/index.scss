@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -150,6 +150,11 @@ $input-vars: (
         color: transparent;
       }
     }
+  }
+
+  &[type='date']::-webkit-calendar-picker-indicator,
+  &[type='time']::-webkit-calendar-picker-indicator {
+    outline-color: var(--v-input-focus-indicator-color);
   }
 
   &[type='color'] {

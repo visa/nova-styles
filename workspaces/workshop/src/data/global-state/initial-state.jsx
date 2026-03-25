@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,14 @@ import docs from "../docs/metadata";
 const localTheme = window.localStorage.getItem("w-theme");
 
 const normalizeTheme = (theme) => {
-  const validThemes = ["visa", "hybrid", "vault", "visa-alt", "none"];
+  const validThemes = [
+    "visa",
+    "hybrid",
+    "vault",
+    "default",
+    "visa-alt",
+    "none",
+  ];
 
   if (validThemes.includes(theme)) {
     return theme;

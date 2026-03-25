@@ -1,5 +1,5 @@
 <!--
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,9 +44,9 @@ order: 4
   </thead>
   <tbody>
     <tr>
-      <td class="v-td">
+      <th scope="row"class="v-td">
         A1
-      </td>
+      </th>
       <td class="v-td">
         B1
       </td>
@@ -58,9 +58,9 @@ order: 4
       </td>
     </tr>
     <tr>
-      <td class="v-td">
+      <th scope="row" class="v-td">
         A2
-      </td>
+      </th>
       <td class="v-td">
         B2
       </td>

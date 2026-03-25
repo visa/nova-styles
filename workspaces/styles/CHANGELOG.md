@@ -1,5 +1,5 @@
 <!--
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,21 @@
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.6.5] (2026-03-19)
+
+### Features
+
+- Added Surface 2 and Surface 3 examples.
+
+### Bug Fixes
+
+- Improved dark mode support for color, date, and time inputs.
+- Fixed table row scope attributes and adjusted inline table padding.
+- Fixed Select RTL support.
+- Fixed Select options background color styling.
+- Improved link wrapping behavior with trailing icons.
+- Updated Typography active color variable.
 
 ## [1.6.4] (2025-09-26)
 

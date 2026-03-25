@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ const { getFile } = require('../../../bin/fsio.cjs');
 const SOURCE = '../styles/CHANGELOG.md';
 const DEST = './src/data/docs/changelog.js';
 
-const Process = (() => {
+(() => {
   const copyChangelog = () => {
     console.log("Copying changelog.\n");
     const changelog = getFile(path.resolve(SOURCE)); 

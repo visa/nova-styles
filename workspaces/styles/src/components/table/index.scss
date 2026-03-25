@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@
     }
   }
 
-  %th {
+  %th:not([scope='row']) {
     @extend %border;
     background-color: var(--v-table-header-bg-color);
     block-size: var(--v-table-header-block);
@@ -110,6 +110,9 @@
 
       &:has(.v-badge) {
         #{--v-table-data-padding-block-default}: var(--v-table-data-padding-block-badge);
+      }
+      &[scope='row'] {
+        text-align: var(--v-table-data-text-align);
       }
     }
 
@@ -202,9 +205,12 @@
             }
           }
           td {
-            &:first-of-type {
+            &:first-child {
               #{--v-table-border-inline-start-size-default}: var(--v-table-border-none);
             }
+          }
+          th + td {
+            #{--v-table-border-inline-start-size-default}: var(--size-scalable-1);
           }
         }
       }

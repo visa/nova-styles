@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,6 +88,7 @@
 
   [data-theme="dark"],
   .v-dark {
+    color-scheme: dark;
     --palette-default-active-hover:hsla(41, 100%, 67%, 1);
     --palette-default-active-pressed:hsla(41, 100%, 60%, 1);
     --palette-default-active-subtle:hsla(100, 100%, 100%, 0.5);
@@ -135,6 +136,7 @@
     --palette-accent-app-name: #fff;
 
     .v-alternate {
+      color-scheme: dark;
       // palette alternate 
       --palette-default-active: hsla(41, 100%, 61%, 1);
       --palette-default-active-hover: hsla(41, 100%, 67%, 1);
@@ -151,6 +153,7 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]),
     ::backdrop {
+      color-scheme: dark;
       --palette-default-active-hover:hsla(41, 100%, 67%, 1);
       --palette-default-active-pressed:hsla(41, 100%, 60%, 1);
       --palette-default-active-subtle:hsla(100, 100%, 100%, 0.5);
@@ -199,6 +202,7 @@
     }
 
      :root:not([data-theme="light"]) .v-alternate {
+      color-scheme: dark;
       // palette alternate 
       --palette-default-active: #fcc015; 
       --palette-default-active-hover: #fcc936;

@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  **/
-import React, { useCallback, useEffect, useState } from 'react'; 
+import { useCallback, useEffect, useState } from 'react'; 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ReactGA from 'react-ga4';
 
@@ -25,7 +25,7 @@ import docs from '../../data/docs/metadata';
 /* Static Assets */
 import './styles.css';
 
-const Color = ({ token, value, ...props}) => {
+const Color = ({ token, value }) => {
   // const { globalState } = useContext(useGlobalState); 
   const [tree, setTree] = useState([]); 
 

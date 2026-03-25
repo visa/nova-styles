@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -221,7 +221,7 @@
     &-icon {
       // sass-lint:disable-block no-duplicate-properties
       #{--v-badge-border-radius}: var(--v-badge-number-radius);
-      #{--v-badge-padding-block}: none;
+      #{--v-badge-padding-block}: var(--v-badge-number-padding-block);
       #{--v-badge-padding-inline}: var(--v-badge-number-padding-inline);
       #{--v-badge-block-size}: var(--v-badge-number-block-size);
       box-sizing: content-box;

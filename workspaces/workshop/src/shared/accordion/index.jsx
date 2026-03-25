@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  * limitations under the License.
  *
  **/
-import React, { useRef } from 'react'; 
+import { useRef } from 'react'; 
 
-const Accordion = ({ id, label, expanded, onClick, children, ...props }) => {
+const Accordion = ({ label, onClick, children, ...props }) => {
   const accordionRef = useRef(null); 
 
   const handleClick = () => {

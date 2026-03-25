@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,6 +75,20 @@
       #{--v-icon-secondary}: currentColor; 
       top: var(--v-link-icon-top); 
       transform: var(--v-link-icon-transformation); 
+    }
+
+    &:has(> .v-icon) {
+      #{--v-link-display}: inline;
+      
+      & > .v-icon {
+        margin-left: var(--v-link-icon-gap);
+      }
+    }
+
+    &.v-link-no-underline:has(> .v-icon) {
+      & > .v-icon {
+        margin-left: calc(var(--v-link-icon-gap) * 0.3025);
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <!--
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,68 +28,68 @@ order: 7
   </caption>
   <thead>
     <tr class="v-typography-overline">
-      <th class="v-th-alt" colspan="2">
+      <th class="v-th-alt" colspan="2" id="group-header-1">
         Group header 1
       </th>
-      <th class="v-th-alt" colspan="2">
+      <th class="v-th-alt" colspan="2" id="group-header-2">
         Group header 2
       </th>
     </tr>
     <tr>
-      <th class="v-th">
+      <th class="v-th" headers="group-header-1" id="column-A">
         Column A
       </th>
-      <th class="v-th">
+      <th class="v-th" headers="group-header-1" id="column-B">
         Column B
       </th>
-      <th class="v-th">
+      <th class="v-th" headers="group-header-2" id="column-C">
         Column C
       </th>
-      <th class="v-th">
+      <th class="v-th" headers="group-header-2" id="column-D">
         Column D
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td class="v-td">
+      <th scope="row" class="v-td" id="A1" headers="group-header-1 column-A">
         A1
-      </td>
-      <td class="v-td">
+      </th>
+      <td class="v-td" headers="group-header-1 column-B A1">
         B1
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="group-header-2 column-C A1">
         C1
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="group-header-2 column-D A1">
         D1
       </td>
     </tr>
     <tr>
-      <td class="v-td">
+      <th scope="row" class="v-td" id="A2" headers="group-header-1 column-A">
         A2
-      </td>
-      <td class="v-td">
+      </th>
+      <td class="v-td" headers="group-header-1 column-B A2">
         B2
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="group-header-2 column-C A2">
         C2
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="group-header-2 column-D A2">
         D2
       </td>
     </tr>
     <tr>
-      <td class="v-td">
+      <th scope="row" class="v-td" id="A3" headers="group-header-1 column-A">
         A3
-      </td>
-      <td class="v-td">
+      </th>
+      <td class="v-td" headers="group-header-1 column-B A3">
         B3
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="group-header-2 column-C A3">
         C3
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="group-header-2 column-D A3">
         D3
       </td>
     </tr>

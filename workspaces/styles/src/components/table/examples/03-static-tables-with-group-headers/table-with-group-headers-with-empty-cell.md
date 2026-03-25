@@ -1,5 +1,5 @@
 <!--
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,56 +30,56 @@ order: 8
     <tr class="v-typography-overline">
       <td class="v-th-alt">
       </td>
-      <th class="v-th-alt" colspan="1">
+      <th class="v-th-alt" colspan="1" id="Group-Header-1">
         Group header 1
       </th>
-      <th class="v-th-alt" colspan="1">
+      <th class="v-th-alt" colspan="1" id="Group-Header-2">
         Group header 2
       </th>
     </tr>
     <tr>
-      <th class="v-th">
+      <th class="v-th" id="Column-A">
         Column A
       </th>
-      <th class="v-th">
+      <th class="v-th" id="Column-B">
         Column B
       </th>
-      <th class="v-th">
+      <th class="v-th" id="Column-C">
         Column C
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td class="v-td">
+      <th scope="row" class="v-td" id="A1" headers="Column-A">
         A1
-      </td>
-      <td class="v-td">
+      </th>
+      <td class="v-td" headers="Group-Header-1 Column-B A1">
         B1
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="Group-Header-2 Column-C A1">
         C1
       </td>
     </tr>
     <tr>
-      <td class="v-td">
+      <th scope="row" class="v-td" id="A2" headers="Column-A">
         A2
-      </td>
-      <td class="v-td">
+      </th>
+      <td class="v-td" headers="Group-Header-1 Column-B A2">
         B2
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="Group-Header-2 Column-C A2">
         C2
       </td>
     </tr>
     <tr>
-      <td class="v-td">
+      <th scope="row" class="v-td" id="A3" headers="Column-A">
         A3
-      </td>
-      <td class="v-td">
+      </th>
+      <td class="v-td" headers="Group-Header-1 Column-B A3">
         B3
       </td>
-      <td class="v-td">
+      <td class="v-td" headers="Group-Header-2 Column-C A3">
         C3
       </td>
     </tr>

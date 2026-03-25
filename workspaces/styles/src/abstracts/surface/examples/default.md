@@ -1,5 +1,5 @@
 <!--
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 
 title: Default
 description: Default surface.
-classes: ['.v-surface', '.v-surface-2', '.v-surface-3']
+classes: ['.v-surface']
 tags: []
 order: 0
 

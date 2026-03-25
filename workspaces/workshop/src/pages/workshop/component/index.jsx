@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import { sentenceCaseHelper } from "../../../shared/utils/string-utils";
 // import useStickyState from '../../../data/use-sticky-state';
 import docs from "../../../data/docs/metadata";
 
-const WorkshopComponent = ({ type, item, ...props }) => {
+const WorkshopComponent = ({ type, item }) => {
   const [selectedTab, setSelectedTab] = useState("examples");
   const [groupedExamples, setGroupedExamples] = useState({});
   const [filteredClasses, setFilteredClasses] = useState([]);
@@ -214,7 +214,7 @@ const WorkshopComponent = ({ type, item, ...props }) => {
                   <tbody>
                     {filteredVariables.map((x, i) => (
                       <tr key={i}>
-                        <td className="v-td">{x}</td>
+                        <th scope="row" className="v-td">{x}</th>
                         {item === "typography" ? (
                           <td className="v-td">
                             {docs.entries.themes.nova.variables[x]}

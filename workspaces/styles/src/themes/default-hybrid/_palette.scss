@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,6 +63,7 @@ $colorsDark: (
 @layer theme {
   [data-theme="dark"],
   .v-dark {
+    color-scheme: dark;
     --color-transparent: rgba(255, 255, 255, 0);
     --color-primary: #{$primaryDark};
     --color-secondary: #{$secondaryDark};
@@ -83,6 +84,7 @@ $colorsDark: (
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]),
     ::backdrop {
+      color-scheme: dark;
       --color-transparent: rgba(255, 255, 255, 0);
       --color-primary: #{$primaryDark};
       --color-secondary: #{$secondaryDark};
@@ -259,6 +261,7 @@ $paletteDark: (
 
   [data-theme="dark"],
   .v-dark {
+    color-scheme: dark;
     @each $scheme, $tokens in $paletteDark {
       @each $token, $value in $tokens {
         --palette-#{$scheme}-#{$token}: #{$value};
@@ -268,6 +271,7 @@ $paletteDark: (
 
   [data-theme="dark"] .v-alternate,
   .v-dark .v-alternate {
+    color-scheme: dark;
     @each $default-token, $default-value in map-get($paletteDark, "default") {
       @each $alternate-token, $alternate-value in map-get($paletteDark, "alternate") {
         @if $default-token == $alternate-token {
@@ -281,6 +285,7 @@ $paletteDark: (
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]),
     ::backdrop {
+      color-scheme: dark;
       @each $scheme, $tokens in $paletteDark {
         @each $token, $value in $tokens {
           --palette-#{$scheme}-#{$token}: #{$value};
@@ -289,6 +294,7 @@ $paletteDark: (
     }
 
     :root:not([data-theme="light"]) .v-alternate {
+      color-scheme: dark;
       @each $default-token, $default-value in map-get($paletteDark, "default") {
         @each $alternate-token, $alternate-value in map-get($paletteDark, "alternate") {
           @if $default-token == $alternate-token {

@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  **/
-import React, { useContext, useEffect } from 'react'; 
+import { useContext, useEffect } from 'react'; 
 
 /* VPDS Nova Icons */ 
 import GenericSprite from '@visa/nova-icons-sprite/generic.svg?react'; 
@@ -24,7 +24,7 @@ import VisaSprite from "@visa/nova-icons-sprite/visa.svg?react";
 import useGlobalState from '../../data/global-state';
 import useStickyState from '../../data/use-sticky-state'; 
 
-const ExamplePage = ({ example, alternate=false, patterns=false, ...props}) => {
+const ExamplePage = ({ example, alternate=false, patterns=false }) => {
   const { globalState } = useContext(useGlobalState); 
   const [mode] = useStickyState(globalState.mode, 'w-mode'); 
 

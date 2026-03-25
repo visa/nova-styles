@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ const PUBLIC_URL =
     : "";
 
 const Header = React.forwardRef((props, ref) => {
-  const { version, ...remainingProps } = props;
+  const { ...remainingProps } = props;
   const { dispatch, globalState } = useContext(useGlobalState);
   // const [mode, setMode] = useStickyState(globalState.mode, 'w-mode');
   const [isHybrid, setIsHybrid] = useState(false);

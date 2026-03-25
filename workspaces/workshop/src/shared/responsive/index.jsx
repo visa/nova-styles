@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  **/
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const _breakpoints = {
@@ -28,7 +28,7 @@ const _breakpoints = {
   "max": Math.pow(10, 10)
 };
 
-const Responsive = ({ maxBreakpoint, minBreakpoint, children, ...props }) => {
+const Responsive = ({ maxBreakpoint, minBreakpoint, children }) => {
   const [matchesMin, setMatchesMin] = useState(false);
   const [matchesMax, setMatchesMax] = useState(false);
 

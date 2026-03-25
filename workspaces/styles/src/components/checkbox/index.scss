@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -158,7 +158,7 @@
 
     
 
-    @at-root fieldset {
+    @at-root fieldset, .v-input-container {
       & > .v-flex-col,
       & > .v-flex-row {
         gap: var(--v-checkbox-group-gap); // sass-lint:disable-line no-misspelled-properties
@@ -166,6 +166,30 @@
 
         &:has(.v-checkbox-panel) {
           #{--v-checkbox-group-gap}: var(--v-checkbox-panel-group-gap);
+        }
+      }
+
+      // Disabled state for checkboxes/radios with labels and descriptions  
+      li:has(.v-checkbox:disabled),
+      li:has(.v-radio:disabled), 
+      .v-checkbox-panel:has(.v-checkbox:disabled),
+      .v-radio-panel:has(.v-radio:disabled),
+      // Only for direct checkbox/radio containers (no lists, no panels)
+      &:has(.v-checkbox:disabled):not(:has(li)):not(:has(.v-checkbox-panel)):not(:has(.v-radio-panel)),
+      &:has(.v-radio:disabled):not(:has(li)):not(:has(.v-checkbox-panel)):not(:has(.v-radio-panel)) {
+        
+        // Style all labels in containers that have disabled inputs
+        label.v-label {
+          #{--v-label-color}: var(--v-checkbox-disabled-color);
+          cursor: default;
+          pointer-events: none;
+        }
+        
+        // Style all input messages in containers that have disabled inputs
+        .v-input-message {
+          #{--v-input-message-color}: var(--v-checkbox-disabled-color);
+          cursor: default;
+          pointer-events: none;
         }
       }
     }

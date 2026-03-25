@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +23,9 @@
       appearance: none;
       cursor: pointer;
       min-inline-size: max-content;
-      padding-right: calc(var(--v-select-toggle-icon-inline-size) + var(--size-scalable-6));
+      padding-inline-end: calc(var(--v-select-toggle-icon-inline-size) + var(--size-scalable-6));
       padding-inline-start: var(--v-select-padding-inline-start);
+      background-color: var(--v-select-background-color);
 
       @at-root .v-input-container:has(&) {
         position: relative;
@@ -45,7 +46,7 @@
           justify-content: center;
           pointer-events: none;
           position: absolute;
-          right: $right;
+          inset-inline-end: $right;
         }
       }
 

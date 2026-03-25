@@ -3,3 +3,4 @@ src
 dist 
 generators
 .sass-lint.yml
+CHANGELOG.md

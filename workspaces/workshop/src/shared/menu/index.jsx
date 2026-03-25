@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  **/
-import React, {
+import {
   useCallback,
   useContext,
   useEffect,
@@ -90,8 +90,8 @@ const Menu = ({ selectedType, selectedItem, ...props }) => {
     flattenData();
   }, [filter, flattenData]);
 
-  mediaQuery.onchange = (e) => {
-    if (e.matches) {
+  mediaQuery.onchange = (_e) => {
+    if (_e.matches) {
       // show nav automatically when viewport is over 768px
       dispatch({ type: actionTypes.setSideNav, payload: true });
       setIsMdMedia(true);

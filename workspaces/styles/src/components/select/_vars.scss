@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  **/
 $vars: (
   control-color: var(--palette-default-active),
+  background-color: var(--palette-default-surface-1),
   toggle-icon-inline-size: var(--size-responsive-32),
   padding-inline-start: var(--size-scalable-6)
 );

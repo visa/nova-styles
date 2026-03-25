@@ -1,5 +1,5 @@
 /**
- *              © 2025 Visa
+ *              © 2025-2026 Visa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  **/
-import React, { useContext, useCallback, useEffect, useState } from "react";
+import { useContext, useCallback, useEffect, useState } from "react";
 import { capitalCase, paramCase } from "change-case";
 
 import { AlluvialDiagram } from "@visa/charts-react/dist/components/visa-charts";
@@ -29,7 +29,7 @@ import docs from "../../../data/docs/metadata";
 /* Styles */
 import "./styles.css";
 
-const WorkshopTheme = ({ type, item, ...props }) => {
+const WorkshopTheme = ({ item }) => {
   const { globalState, dispatch } = useContext(useGlobalState);
   const [relationalGraphData, setRelationalGraphData] = useState([]);
   const [relationalGraphNodes, setRelationalGraphNodes] = useState([]);
@@ -293,11 +293,11 @@ const WorkshopTheme = ({ type, item, ...props }) => {
                 {Object.keys(docs.entries.themes[item].variables).map((x, i) =>
                   x.indexOf("--theme") === 0 ? (
                     <tr className="v-tr" key={i}>
-                      <td className="v-td">
+                      <th scope="row" className="v-td">
                         <code className="w-code v-badge v-badge-subtle">
                           {`var(${x})`}
                         </code>
-                      </td>
+                      </th>
                       <td className="v-td">
                         <code
                           className={[
@@ -354,11 +354,11 @@ const WorkshopTheme = ({ type, item, ...props }) => {
                 {Object.keys(docs.entries.themes[item].variables).map((x, i) =>
                   x.indexOf("--palette") === 0 ? (
                     <tr className="v-tr" key={i}>
-                      <td className="v-td">
+                      <th scope="row" className="v-td">
                         <code className="w-code v-badge v-badge-subtle">
                           {`var(${x})`}
                         </code>
-                      </td>
+                      </th>
                       <td className="v-td">
                         <div className="w-color-head">
                           <div className="w-color-box">
@@ -418,11 +418,11 @@ const WorkshopTheme = ({ type, item, ...props }) => {
                 {Object.keys(docs.entries.themes[item].variables).map((x, i) =>
                   x.indexOf("--elevation") === 0 ? (
                     <tr className="v-tr" key={i}>
-                      <td className="v-td">
+                      <th scope="row" className="v-td">
                         <code className="w-code v-badge v-badge-subtle">
                           {`var(${x})`}
                         </code>
-                      </td>
+                      </th>
                       <td className="v-td">
                         <code
                           className={[
@@ -478,11 +478,11 @@ const WorkshopTheme = ({ type, item, ...props }) => {
                 {Object.keys(docs.entries.themes[item].variables).map((x, i) =>
                   x.indexOf("--typography") === 0 ? (
                     <tr className="v-tr" key={i}>
-                      <td className="v-td">
+                      <th scope="row" className="v-td">
                         <code className="w-code v-badge v-badge-subtle">
                           {`var(${x})`}
                         </code>
-                      </td>
+                      </th>
                       <td className="v-td">
                         <code
                           className={[
@@ -538,11 +538,11 @@ const WorkshopTheme = ({ type, item, ...props }) => {
                 {Object.keys(docs.entries.themes[item].variables).map((x, i) =>
                   x.indexOf("--v") === 0 ? (
                     <tr className="v-tr" key={i}>
-                      <td className="v-td">
+                      <th scope="row" className="v-td">
                         <code className="w-code v-badge v-badge-subtle">
                           {`var(${x})`}
                         </code>
-                      </td>
+                      </th>
                       <td className="v-td">
                         <code
                           className={[
@@ -578,8 +578,8 @@ const WorkshopTheme = ({ type, item, ...props }) => {
                   id="token-relationships"
                   name="token-relationships"
                   value={relationalGraphSegment}
-                  onChange={(e) => {
-                    setRelationalGraphSegment(e.target.value);
+                  onChange={(_e) => {
+                    setRelationalGraphSegment(_e.target.value);
                   }}
                 >
                   <option name="all">all</option>
@@ -625,7 +625,7 @@ const WorkshopTheme = ({ type, item, ...props }) => {
                 onHoverEvent={(event) =>
                   setHoverLink({ ...event.detail.data, group: "highlight" })
                 }
-                onMouseOutEvent={(event) => setHoverLink("")}
+                onMouseOutEvent={() => setHoverLink("")}
                 hoverStyle={{ color: "var(--palette-default-active-accent" }}
                 hoverOpacity={0.5}
                 hoverHighlight={hoverLink}
